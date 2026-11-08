@@ -1,0 +1,8 @@
+{
+  "name": "site-adrian-balan",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "genereaza": "node scripts/genereaza.mjs"
+  }
+}

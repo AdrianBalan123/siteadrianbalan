@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+.vercel
+
+# vechea versiune PHP, nefolosită (conține hash-ul parolei de admin)
+_versiune-php/
+
+# setări personale de editor
+.vscode/

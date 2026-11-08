@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Administrare articole</title>
+<link rel="icon" href="/assets/img/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/vendor/quill/quill.snow.css">
+<link rel="stylesheet" href="/admin/admin.css">
+<script src="/assets/vendor/quill/quill.js"></script>
+<script type="module" src="/admin/admin.js"></script>
+</head>
+<body class="admin">
+<header class="admin-bar">
+  <div class="wrap admin-bar-inner">
+    <a href="/admin/" class="logo">
+      <svg viewBox="200 15 570 925" aria-hidden="true"><path d="M444 22 583 403h-27L444 90 268 580h-26zM207 432h214v20H207z" fill="currentColor"/><path d="M467 442h88c105 0 165 58 165 126 0 47-20 72-70 102 60 20 100 60 100 125 0 80-60 125-175 125H467z" fill="none" stroke="currentColor" stroke-width="20"/></svg>
+      <span><span class="logo-name">Articole</span><span class="logo-role">Administrare site</span></span>
+    </a>
+    <nav class="admin-nav" id="admin-nav" hidden>
+      <a href="/" target="_blank" rel="noopener">Vezi site-ul</a>
+      <button type="button" class="linklike" id="logout">Ieși din cont</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap admin-main">
+  <p class="flash" id="flash" role="status" hidden></p>
+  <p class="form-error" id="error" role="alert" hidden></p>
+
+  <!-- Conectare -->
+  <section id="view-login" hidden>
+    <div class="login-card">
+      <h1>Intră în administrare</h1>
+      <p>Articolele se publică prin GitHub. Introdu cheia de acces primită (un token GitHub). Rămâi conectat pe acest calculator.</p>
+      <form class="form" id="login-form">
+        <label for="token">Cheia de acces</label>
+        <input id="token" type="password" autocomplete="current-password" required>
+        <details class="advanced">
+          <summary>Setări repository</summary>
+          <label for="repo" style="margin-top:14px">Repository (utilizator/nume)</label>
+          <input id="repo" type="text" placeholder="tudor/site-adrian-balan" autocomplete="off">
+          <label for="branch" style="margin-top:14px">Ramura</label>
+          <input id="branch" type="text" placeholder="main" autocomplete="off">
+        </details>
+        <button class="btn btn-primary" type="submit">Intră</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Lista articolelor -->
+  <section id="view-list" hidden>
+    <div class="admin-head">
+      <div>
+        <h1>Articole</h1>
+        <p id="list-count"></p>
+      </div>
+      <a class="btn btn-primary" href="#nou">Scrie un articol nou</a>
+    </div>
+    <ul class="admin-list" id="list"></ul>
+  </section>
+
+  <!-- Editor -->
+  <section id="view-editor" hidden>
+    <a href="#" class="back">Înapoi la articole</a>
+    <div class="admin-head">
+      <h1 id="editor-title">Articol nou</h1>
+      <a class="btn btn-ghost" id="view-on-site" target="_blank" rel="noopener" hidden>Vezi pe site</a>
+    </div>
+    <form class="form editor-form" id="article-form">
+      <div class="editor-main">
+        <label for="title">Titlu</label>
+        <input id="title" type="text" required maxlength="220" class="input-title">
+        <label for="editor">Conținut</label>
+        <div class="editor-wrap"><div id="editor"></div></div>
+        <p class="hint">Poți lipi text direct din Word. Folosește „Titlu secțiune” pentru subtitluri.</p>
+      </div>
+      <aside class="editor-side">
+        <div class="side-box">
+          <label for="thumbnail">Thumbnail</label>
+          <div class="thumb thumb-preview" id="thumb-preview"></div>
+          <input type="file" id="thumbnail" accept="image/jpeg,image/png,image/webp">
+          <p class="hint">JPG, PNG sau WebP. Se redimensionează automat.</p>
+          <label class="check" id="remove-thumb-row" hidden><input type="checkbox" id="remove-thumb"> Elimină imaginea</label>
+        </div>
+        <div class="side-box">
+          <label for="excerpt">Rezumat <span class="optional">(opțional)</span></label>
+          <textarea id="excerpt" rows="4" maxlength="400"></textarea>
+          <p class="hint">Apare pe cardul articolului. Dacă îl lași gol, se ia primul paragraf.</p>
+        </div>
+        <div class="side-box">
+          <label class="check" style="margin-top:0"><input type="checkbox" id="published" checked> Publicat pe site</label>
+          <p class="hint">Debifează ca să-l ascunzi fără să-l ștergi.</p>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit" id="save-btn">Salvează articolul</button>
+      </aside>
+    </form>
+  </section>
+
+  <p class="empty" id="loading" hidden>Se încarcă…</p>
+</main>
+</body>
+</html>
