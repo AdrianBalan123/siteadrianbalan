@@ -102,7 +102,7 @@
   height: 30px;
 }
 .admin-title {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 18px;
   font-weight: 500;
   text-decoration: none;
@@ -247,7 +247,7 @@
   align-items: start;
 }
 .input-title {
-  font-family: var(--serif) !important;
+  font-family: var(--sans) !important;
   font-size: 24px !important;
   margin-bottom: 22px;
 }
@@ -268,7 +268,7 @@
   border: 1.5px solid var(--line);
   border-top: 0;
   border-radius: 0 0 var(--r-sm) var(--r-sm);
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 18px;
 }
 .editor-wrap .ql-editor {

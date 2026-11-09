@@ -86,7 +86,6 @@ export function layout({ title, description, path = '/', current = '', ogImage =
 <meta property="og:image" content="${esc(SITE.url + ogImage)}">
 <meta name="theme-color" content="#FBF9F5">
 <link rel="icon" href="/assets/img/icon.svg" type="image/svg+xml">
-<link rel="preload" href="/assets/fonts/cormorant-garamond-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/lexend-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css">
 <script src="/assets/js/main.js" defer blocking="render"></script>
