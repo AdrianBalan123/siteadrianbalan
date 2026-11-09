@@ -1,7 +1,7 @@
 // Șabloanele HTML ale site-ului. Sunt folosite de:
 //  - scripts/genereaza.mjs (generează toate paginile, rulat cu Node)
 //  - admin/admin.js (generează pagina unui articol când e salvat din admin)
-import { NAV, SERVICES, SITE, TESTIMONIALS, TOPICS } from './content.js';
+import { NAV, SERVICES, SITE, TESTIMONIALS } from './content.js';
 
 export const esc = (s) =>
   String(s ?? '')
@@ -25,6 +25,8 @@ const ICONS = {
   quote: '<path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/>',
   heart: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
   shield: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>',
+  arrowUpRight: '<path d="M7 7h10v10"/><path d="M7 17 17 7"/>',
+  book: '<path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>',
   chevronDown: '<path d="m6 9 6 6 6-6"/>',
   chevronLeft: '<path d="m15 18-6-6 6-6"/>',
   chevronRight: '<path d="m9 18 6-6-6-6"/>',
@@ -59,10 +61,10 @@ export function thumb(src) {
 }
 
 export function card(a) {
-  return `<a href="/articole/${esc(a.slug)}.html" class="card" data-search="${esc(`${a.title} ${a.excerpt}`.toLowerCase())}"><div class="thumb">${thumb(a.thumbnail)}</div><div class="card-body"><h3>${esc(a.title)}</h3>${a.excerpt ? `<p>${esc(a.excerpt)}</p>` : ''}<span class="meta">${Number(a.readingMinutes) || 1} min de citit</span></div></a>`;
+  return `<a href="/articole/${esc(a.slug)}.html" class="card" data-search="${esc(`${a.title} ${a.excerpt}`.toLowerCase())}"><div class="thumb">${thumb(a.thumbnail)}<span class="card-arrow" aria-hidden="true">${icon('arrowUpRight')}</span></div><div class="card-body"><h3>${esc(a.title)}</h3><span class="meta">${icon('book')} ${Number(a.readingMinutes) || 1} min de citit</span></div></a>`;
 }
 
-export function layout({ title, description, path = '/', current = '', ogImage = '/assets/img/adrian-balan.jpg', body, type = 'website' }) {
+export function layout({ title, description, path = '/', current = '', ogImage = '/assets/img/adrian-balan.jpg', body, type = 'website', head = '' }) {
   const nav = NAV.map((n) => `<a href="${n.href}"${n.href === current ? ' aria-current="page"' : ''}>${esc(n.label)}</a>`).join('');
   return `<!doctype html>
 <html lang="ro">
@@ -83,6 +85,22 @@ export function layout({ title, description, path = '/', current = '', ogImage =
 <link rel="preload" href="/assets/fonts/lora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css">
 <script src="/assets/js/main.js" defer></script>
+<script>
+// Intro animations start when the page is actually shown (not while it is prerendered in the background),
+// and the Acasă → Despre navigation gets its own "scroll" transition.
+(function (d) {
+  var show = function () { d.documentElement.classList.add('revealed'); };
+  if (d.prerendering) d.addEventListener('prerenderingchange', show, { once: true });
+  else show();
+  addEventListener('pagereveal', function (e) {
+    var a = window.navigation && navigation.activation;
+    var from = a && a.from && a.from.url ? new URL(a.from.url).pathname : '';
+    if (e.viewTransition && (from === '/' || from === '/index.html') && location.pathname === '/despre.html') {
+      e.viewTransition.types.add('to-about');
+    }
+  });
+})(document);
+</script>${head}
 </head>
 <body>
 <a href="#continut" class="skip">Sari la conținut</a>
@@ -150,7 +168,7 @@ export const MARK = {
 export const published = (list) => list.filter((a) => a.published !== false);
 
 export function listBlock(list) {
-  return `<div class="cards">${published(list).map(card).join('\n')}</div>`;
+  return `<div class="cards article-list">${published(list).map(card).join('\n')}</div>`;
 }
 
 export function replaceBetween(html, start, end, inner) {
@@ -172,7 +190,7 @@ export function articlePage(a, content) {
 <header class="article-head">
 <a href="/articole.html" class="back">Înapoi la articole</a>
 <h1>${esc(a.title)}</h1>
-<p class="article-meta">Adrian Bălan, psiholog clinician. ${Number(a.readingMinutes) || 1} min de citit</p>
+<p class="article-meta"><span class="article-author">${archMark()} Adrian Bălan</span><span class="article-time">${icon('book')} ${Number(a.readingMinutes) || 1} min</span></p>
 </header>
 ${a.thumbnail ? `<div class="article-cover"><img src="${esc(a.thumbnail)}" alt="" fetchpriority="high"></div>` : ''}
 <div class="prose">
@@ -205,27 +223,58 @@ const reviews = () =>
 
 // Prima pagină: doar hero-ul, pe tot ecranul. Scroll în jos (sau săgeata) duce la Despre.
 export function homePage() {
+  const trust = [
+    ['Confidențialitate', 'Tot ce discutăm rămâne între noi.'],
+    ['Evaluare clinică', 'Instrumente standardizate și validate științific.'],
+    ['Ritmul tău', 'Fără grabă și fără presiune.'],
+  ];
   const body = `<section class="hero hero-full" data-next="/despre.html">
+<div class="hero-blob hero-blob-1" aria-hidden="true"></div><div class="hero-blob hero-blob-2" aria-hidden="true"></div>
 <div class="wrap hero-center">
-<div class="hero-mark">${archMark()}</div>
-<h1>Un loc sigur în care să te poți înțelege</h1>
-<p class="hero-lead"><span>Psiholog clinician în Timișoara</span><span class="sep" aria-hidden="true"> · </span><span>adolescenți și adulți</span></p>
-${contactActions()}
-<ul class="topics-line" aria-label="Teme frecvente">${TOPICS.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
+<canvas class="hero-brain" aria-hidden="true"></canvas>
+<div class="hero-copy">
+<p class="status-badge"><span class="status-dot" aria-hidden="true"></span>Cabinet în Timișoara · Adolescenți și adulți</p>
+<h1><span class="hero-title">De la simptom la <em>soluție</em>.</span> <span class="hero-sub">Psihologie clinică explicată pe înțelesul tău.</span></h1>
+<p class="hero-lead">Evaluări clinice riguroase și ghidaj psihoterapeutic specializat pentru parcursul tău personal sau de cuplu. Fără jargon inutil, doar pași clari spre binele tău.</p>
+<div class="hero-actions"><a class="btn btn-primary" href="${BOOK}">${icon('calendar')} Programează o ședință</a><a class="btn btn-ghost" href="/servicii.html">Cum te pot ajuta</a></div>
+<ul class="trust-points">${trust.map(([h, d]) => `<li><strong>${esc(h)}</strong><span>${esc(d)}</span></li>`).join('')}</ul>
+</div>
 </div>
 <a class="scroll-cue" href="/despre.html">Află mai multe despre mine ${icon('chevronDown')}</a>
 </section>`;
-  return layout({ title: 'Adrian Bălan, psiholog clinician în Timișoara', description: 'Psiholog clinician în Timișoara: terapie pentru depresie, anxietate, ADHD și traumă, evaluări psihologice, suport pentru persoane LGBTQIA+. Programări la 0720 754 920.', path: '/', current: '/', body });
+  // Despre is loaded ahead of time so the scroll transition is instant:
+  // prerendered in Chrome/Edge, otherwise just downloaded (page + photo).
+  const head = `
+<script type="speculationrules">{"prerender":[{"source":"list","urls":["/despre.html"],"eagerness":"immediate"}]}</script>
+<link rel="prefetch" href="/despre.html">
+<link rel="prefetch" href="/assets/img/adrian-balan.jpg" as="image">
+<script src="/assets/js/brain.js" defer></script>`;
+  return layout({ title: 'Adrian Bălan, psiholog clinician în Timișoara', description: 'Psiholog clinician în Timișoara: terapie pentru depresie, anxietate, ADHD și traumă, evaluări psihologice, suport pentru persoane LGBTQIA+. Programări la 0720 754 920.', path: '/', current: '/', body, head });
 }
 
+// Filtre rapide pe pagina Articole: eticheta și rădăcina căutată în titlu și rezumat
+const TOPIC_FILTERS = [
+  ['Depresie', 'depresi'],
+  ['Anxietate', 'anxiet'],
+  ['ADHD', 'adhd'],
+  ['Traumă', 'traum'],
+  ['Identitate', 'identit'],
+  ['Relații', 'relati'],
+  ['Sexualitate', 'sexual'],
+];
+
 export function articlesPage(list) {
-  const body = `<div class="wrap page-head"><h1>Articole</h1><p>Gânduri, explicații și ghiduri practice despre emoții, relații și sănătate mintală. Le poți citi în ritmul tău, oricând ai nevoie.</p></div>
+  const body = `<div class="wrap page-head page-head-compact"><h1>Articole</h1><p>Gânduri, explicații și ghiduri practice despre emoții, relații și sănătate mintală. Le poți citi în ritmul tău, oricând ai nevoie.</p></div>
 <div class="wrap">
-<div style="margin-bottom:32px"><label for="cauta" class="sr-only">Caută în articole</label><input id="cauta" type="search" class="search" placeholder="Caută, de exemplu anxietate" autocomplete="off"></div>
+<div class="article-tools">
+<div class="search-row"><label for="cauta" class="sr-only">Caută în articole</label><input id="cauta" type="search" class="search" placeholder="Caută un articol" autocomplete="off"><p class="results-count" id="numar-articole" aria-live="polite"></p></div>
+<div class="topic-filters" role="group" aria-label="Filtrează după temă"><button type="button" aria-pressed="true" data-q="">Toate</button>${TOPIC_FILTERS.map(([label, q]) => `<button type="button" aria-pressed="false" data-q="${q}">${esc(label)}</button>`).join('')}</div>
+</div>
 ${MARK.listStart}
 ${listBlock(list)}
 ${MARK.listEnd}
-<p id="fara-rezultate" class="empty" hidden>Niciun articol nu conține „<span></span>”. Încearcă un alt cuvânt.</p>
+<nav class="pagination" id="paginare" aria-label="Pagini cu articole" hidden></nav>
+<p id="fara-rezultate" class="empty" hidden>Niciun articol nu se potrivește. Încearcă un alt cuvânt sau alege „Toate”.</p>
 </div>`;
   return layout({ title: 'Articole | Adrian Bălan, psiholog Timișoara', description: 'Articole despre depresie, anxietate, ADHD, traumă, relații, identitate și sexualitate, scrise de psihologul Adrian Bălan.', path: '/articole.html', current: '/articole.html', body });
 }

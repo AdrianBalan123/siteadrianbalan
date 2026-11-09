@@ -120,5 +120,3 @@ export const SERVICES = [
     note: 'Dacă viața ta sau a altcuiva este în pericol imediat, sună la 112.',
   },
 ];
-
-export const TOPICS = ['Depresie', 'Anxietate', 'ADHD', 'Traumă', 'Identitate', 'Relații', 'Sexualitate'];

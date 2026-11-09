@@ -17,6 +17,22 @@
 <link rel="preload" href="/assets/fonts/lora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css">
 <script src="/assets/js/main.js" defer></script>
+<script>
+// Intro animations start when the page is actually shown (not while it is prerendered in the background),
+// and the Acasă → Despre navigation gets its own "scroll" transition.
+(function (d) {
+  var show = function () { d.documentElement.classList.add('revealed'); };
+  if (d.prerendering) d.addEventListener('prerenderingchange', show, { once: true });
+  else show();
+  addEventListener('pagereveal', function (e) {
+    var a = window.navigation && navigation.activation;
+    var from = a && a.from && a.from.url ? new URL(a.from.url).pathname : '';
+    if (e.viewTransition && (from === '/' || from === '/index.html') && location.pathname === '/despre.html') {
+      e.viewTransition.types.add('to-about');
+    }
+  });
+})(document);
+</script>
 </head>
 <body>
 <a href="#continut" class="skip">Sari la conținut</a>
@@ -33,7 +49,7 @@
 <header class="article-head">
 <a href="/articole.html" class="back">Înapoi la articole</a>
 <h1>Cum să gestionezi relațiile cu membrii familiei care nu acceptă orientarea sexuală</h1>
-<p class="article-meta">Adrian Bălan, psiholog clinician. 18 min de citit</p>
+<p class="article-meta"><span class="article-author"><svg viewBox="200 15 570 925" aria-hidden="true"><path d="M444 22 583 403h-27L444 90 268 580h-26zM207 432h214v20H207z" fill="currentColor"/><path d="M467 442h88c105 0 165 58 165 126 0 47-20 72-70 102 60 20 100 60 100 125 0 80-60 125-175 125H467z" fill="none" stroke="currentColor" stroke-width="20"/></svg> Adrian Bălan</span><span class="article-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> 18 min</span></p>
 </header>
 
 <div class="prose">

@@ -25,28 +25,104 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  // Article search (Articole page)
+  // Card de articol apăsat: poza lui „devine” coperta articolului (tranziție între pagini, unde e suportată)
+  document.addEventListener('click', function (e) {
+    var c = e.target.closest && e.target.closest('a.card');
+    if (!c || e.ctrlKey || e.metaKey || e.shiftKey || e.button) return;
+    var img = c.querySelector('.thumb img');
+    if (img) img.style.viewTransitionName = 'article-cover';
+  });
+  // back/forward cache restores the page as it was: clear the name so the next click works
+  window.addEventListener('pageshow', function () {
+    document.querySelectorAll('.thumb img').forEach(function (img) { img.style.viewTransitionName = ''; });
+  });
+
+  // Articole: căutare + filtre pe teme (se combină), numărul de rezultate și paginare
   var search = document.getElementById('cauta');
   if (search) {
-    var cards = Array.prototype.slice.call(document.querySelectorAll('.cards .card'));
+    var list = document.querySelector('.article-list');
+    var cards = Array.prototype.slice.call(list.querySelectorAll('.card'));
     var empty = document.getElementById('fara-rezultate');
+    var count = document.getElementById('numar-articole');
+    var chips = Array.prototype.slice.call(document.querySelectorAll('.topic-filters button'));
+    var pager = document.getElementById('paginare');
+    var tools = document.querySelector('.article-tools');
+    var PER_PAGE = 12;
+    var topic = '';
+    var page = Math.max(1, parseInt(new URLSearchParams(location.search).get('pagina'), 10) || 1);
     var norm = function (s) {
-      return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+      return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     };
     var index = cards.map(function (c) {
       return norm(c.dataset.search || c.textContent);
     });
-    search.addEventListener('input', function () {
+    var chevron = function (d) {
+      return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + d + '"/></svg>';
+    };
+    var pageButton = function (p, label, cls, current) {
+      return '<button type="button" class="' + cls + '" data-p="' + p + '"' + (current ? ' aria-current="page"' : '') + '>' + label + '</button>';
+    };
+    var apply = function () {
       var q = norm(search.value.trim());
-      var shown = 0;
-      cards.forEach(function (c, i) {
-        var hit = !q || index[i].indexOf(q) !== -1;
-        c.hidden = !hit;
-        if (hit) shown++;
+      var filtered = Boolean(q || topic);
+      var hits = cards.filter(function (c, i) {
+        return (!q || index[i].indexOf(q) !== -1) && (!topic || index[i].indexOf(topic) !== -1);
       });
-      empty.hidden = shown > 0;
-      empty.querySelector('span').textContent = search.value.trim();
+      // page 1 of the full list also holds the large "newest" card
+      var extra = filtered ? 0 : 1;
+      var pages = Math.max(1, Math.ceil((hits.length - extra) / PER_PAGE));
+      page = Math.min(page, pages);
+      var from = page === 1 ? 0 : extra + (page - 1) * PER_PAGE;
+      var to = extra + page * PER_PAGE;
+      cards.forEach(function (c) { c.hidden = true; });
+      hits.slice(from, to).forEach(function (c) { c.hidden = false; });
+      // the first article is shown large only on page 1, when nothing is filtered
+      list.classList.toggle('is-filtered', filtered || page > 1);
+      empty.hidden = hits.length > 0;
+      count.textContent = hits.length === 1 ? '1 articol' : hits.length + ' articole';
+
+      pager.hidden = pages < 2;
+      var html = pageButton(page - 1, chevron('m15 18-6-6 6-6') + '<span>Înapoi</span>', 'page-step', false);
+      for (var p = 1; p <= pages; p++) {
+        // up to 7 pages: all of them; more: first, last and the pages around the current one
+        if (pages <= 7 || p === 1 || p === pages || Math.abs(p - page) <= 1) html += pageButton(p, p, 'page-num', p === page);
+        else if (Math.abs(p - page) === 2) html += '<span class="page-gap" aria-hidden="true">…</span>';
+      }
+      html += pageButton(page + 1, '<span>Înainte</span>' + chevron('m9 18 6-6-6-6'), 'page-step', false);
+      pager.innerHTML = html;
+      pager.querySelectorAll('.page-step')[0].disabled = page === 1;
+      pager.querySelectorAll('.page-step')[1].disabled = page === pages;
+      pager.querySelectorAll('.page-num').forEach(function (b) { b.setAttribute('aria-label', 'Pagina ' + b.dataset.p); });
+
+      var url = new URL(location.href);
+      if (page > 1) url.searchParams.set('pagina', page);
+      else url.searchParams.delete('pagina');
+      history.replaceState(null, '', url);
+    };
+    pager.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (!b || b.disabled) return;
+      page = Number(b.dataset.p);
+      apply();
+      var top = tools.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     });
+    // hide topics that match no article
+    chips.forEach(function (b) {
+      var q = b.dataset.q;
+      if (q && !index.some(function (t) { return t.indexOf(q) !== -1; })) b.hidden = true;
+      b.addEventListener('click', function () {
+        topic = q;
+        page = 1;
+        chips.forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+        apply();
+      });
+    });
+    search.addEventListener('input', function () {
+      page = 1;
+      apply();
+    });
+    apply();
   }
 
   // Programare: compune mesajul din câmpuri și îl deschide în WhatsApp
@@ -85,11 +161,30 @@
     var nearTop = function () {
       return window.scrollY < heroFull.offsetHeight / 2;
     };
+    var supportsCrossDoc = 'onpagereveal' in window; // cross-document view transitions (Chrome, Edge)
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var go = function () {
       if (going) return;
       going = true;
-      window.location.href = next;
+      if (supportsCrossDoc || reduced) {
+        window.location.href = next;
+        return;
+      }
+      // other browsers: slide the page up ourselves, then open Despre (already downloaded)
+      document.documentElement.classList.add('leaving');
+      setTimeout(function () { window.location.href = next; }, 380);
     };
+    // mark this navigation so the CSS can use the "scroll up" animation
+    window.addEventListener('pageswap', function (e) {
+      if (e.viewTransition && e.activation && new URL(e.activation.entry.url).pathname === '/despre.html') {
+        e.viewTransition.types.add('to-about');
+      }
+    });
+    // coming back with the back button: undo the fallback animation
+    window.addEventListener('pageshow', function () {
+      going = false;
+      document.documentElement.classList.remove('leaving');
+    });
     window.addEventListener('wheel', function (e) {
       if (e.deltaY > 10 && nearTop()) go();
     }, { passive: true });
@@ -179,6 +274,8 @@
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
   };
+  var arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>';
+  var book = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>';
   fetch('/data/articole.json', { cache: 'no-cache' })
     .then(function (r) { return r.json(); })
     .then(function (all) {
@@ -191,7 +288,7 @@
         var t = a.thumbnail
           ? '<img src="' + esc(a.thumbnail) + '" alt="" loading="lazy">'
           : '<div class="thumb-fallback"><svg viewBox="200 15 570 925" aria-hidden="true"><path d="M444 22 583 403h-27L444 90 268 580h-26zM207 432h214v20H207z" fill="currentColor"/><path d="M467 442h88c105 0 165 58 165 126 0 47-20 72-70 102 60 20 100 60 100 125 0 80-60 125-175 125H467z" fill="none" stroke="currentColor" stroke-width="20"/></svg></div>';
-        return '<a href="/articole/' + esc(a.slug) + '.html" class="card"><div class="thumb">' + t + '</div><div class="card-body"><h3>' + esc(a.title) + '</h3>' + (a.excerpt ? '<p>' + esc(a.excerpt) + '</p>' : '') + '<span class="meta">' + (a.readingMinutes || 1) + ' min de citit</span></div></a>';
+        return '<a href="/articole/' + esc(a.slug) + '.html" class="card"><div class="thumb">' + t + '<span class="card-arrow" aria-hidden="true">' + arrow + '</span></div><div class="card-body"><h3>' + esc(a.title) + '</h3><span class="meta">' + book + ' ' + (a.readingMinutes || 1) + ' min de citit</span></div></a>';
       }).join('');
       box.hidden = false;
     })
