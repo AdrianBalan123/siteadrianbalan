@@ -19,7 +19,7 @@
 <script src="/assets/js/main.js" defer></script>
 <script>
 // Intro animations start when the page is actually shown (not while it is prerendered in the background),
-// and the Acasă → Despre navigation gets its own "scroll" transition.
+// and Acasă ⇄ Despre navigations get their own "scroll" transitions.
 (function (d) {
   var show = function () { d.documentElement.classList.add('revealed'); };
   if (d.prerendering) d.addEventListener('prerenderingchange', show, { once: true });
@@ -27,9 +27,10 @@
   addEventListener('pagereveal', function (e) {
     var a = window.navigation && navigation.activation;
     var from = a && a.from && a.from.url ? new URL(a.from.url).pathname : '';
-    if (e.viewTransition && (from === '/' || from === '/index.html') && location.pathname === '/despre.html') {
-      e.viewTransition.types.add('to-about');
-    }
+    var home = function (p) { return p === '/' || p === '/index.html'; };
+    if (!e.viewTransition) return;
+    if (home(from) && location.pathname === '/despre.html') e.viewTransition.types.add('to-about');
+    if (from === '/despre.html' && home(location.pathname)) e.viewTransition.types.add('to-landing');
   });
 })(document);
 </script>

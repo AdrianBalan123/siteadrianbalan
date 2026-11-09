@@ -1,7 +1,7 @@
 // Șabloanele HTML ale site-ului. Sunt folosite de:
 //  - scripts/genereaza.mjs (generează toate paginile, rulat cu Node)
 //  - admin/admin.js (generează pagina unui articol când e salvat din admin)
-import { NAV, SERVICES, SITE, TESTIMONIALS } from './content.js';
+import { NAV, SERVICES, SITE, TESTIMONIALS, TOPICS } from './content.js';
 
 export const esc = (s) =>
   String(s ?? '')
@@ -87,7 +87,7 @@ export function layout({ title, description, path = '/', current = '', ogImage =
 <script src="/assets/js/main.js" defer></script>
 <script>
 // Intro animations start when the page is actually shown (not while it is prerendered in the background),
-// and the Acasă → Despre navigation gets its own "scroll" transition.
+// and Acasă ⇄ Despre navigations get their own "scroll" transitions.
 (function (d) {
   var show = function () { d.documentElement.classList.add('revealed'); };
   if (d.prerendering) d.addEventListener('prerenderingchange', show, { once: true });
@@ -95,9 +95,10 @@ export function layout({ title, description, path = '/', current = '', ogImage =
   addEventListener('pagereveal', function (e) {
     var a = window.navigation && navigation.activation;
     var from = a && a.from && a.from.url ? new URL(a.from.url).pathname : '';
-    if (e.viewTransition && (from === '/' || from === '/index.html') && location.pathname === '/despre.html') {
-      e.viewTransition.types.add('to-about');
-    }
+    var home = function (p) { return p === '/' || p === '/index.html'; };
+    if (!e.viewTransition) return;
+    if (home(from) && location.pathname === '/despre.html') e.viewTransition.types.add('to-about');
+    if (from === '/despre.html' && home(location.pathname)) e.viewTransition.types.add('to-landing');
   });
 })(document);
 </script>${head}
@@ -223,21 +224,20 @@ const reviews = () =>
 
 // Prima pagină: doar hero-ul, pe tot ecranul. Scroll în jos (sau săgeata) duce la Despre.
 export function homePage() {
-  const trust = [
-    ['Confidențialitate', 'Tot ce discutăm rămâne între noi.'],
-    ['Evaluare clinică', 'Instrumente standardizate și validate științific.'],
-    ['Ritmul tău', 'Fără grabă și fără presiune.'],
-  ];
   const body = `<section class="hero hero-full" data-next="/despre.html">
 <div class="hero-blob hero-blob-1" aria-hidden="true"></div><div class="hero-blob hero-blob-2" aria-hidden="true"></div>
 <div class="wrap hero-center">
-<canvas class="hero-brain" aria-hidden="true"></canvas>
+<h1 class="sr-only">De la simptom la soluție. Psihologie clinică explicată pe înțelesul tău.</h1>
+<div class="hero-stage" aria-hidden="true">
+<span class="stage-word stage-left"><small>De la</small>simptom</span>
+<canvas class="hero-brain"></canvas>
+<span class="stage-word stage-right"><small>la</small><em>soluție</em>.</span>
+</div>
 <div class="hero-copy">
-<p class="status-badge"><span class="status-dot" aria-hidden="true"></span>Cabinet în Timișoara · Adolescenți și adulți</p>
-<h1><span class="hero-title">De la simptom la <em>soluție</em>.</span> <span class="hero-sub">Psihologie clinică explicată pe înțelesul tău.</span></h1>
+<p class="hero-sub" aria-hidden="true">Psihologie clinică explicată pe înțelesul tău.</p>
 <p class="hero-lead">Evaluări clinice riguroase și ghidaj psihoterapeutic specializat pentru parcursul tău personal sau de cuplu. Fără jargon inutil, doar pași clari spre binele tău.</p>
 <div class="hero-actions"><a class="btn btn-primary" href="${BOOK}">${icon('calendar')} Programează o ședință</a><a class="btn btn-ghost" href="/servicii.html">Cum te pot ajuta</a></div>
-<ul class="trust-points">${trust.map(([h, d]) => `<li><strong>${esc(h)}</strong><span>${esc(d)}</span></li>`).join('')}</ul>
+<ul class="topics-line" aria-label="Teme frecvente">${TOPICS.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
 </div>
 </div>
 <a class="scroll-cue" href="/despre.html">Află mai multe despre mine ${icon('chevronDown')}</a>

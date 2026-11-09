@@ -7,7 +7,6 @@
   if (!canvas || !canvas.getContext) return;
   var ctx = canvas.getContext('2d');
   var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var canDrag = window.matchMedia('(pointer: fine)').matches; // on touch, a swipe opens Despre
 
   var SAGE = '123, 158, 137';
   var ROSE = '221, 165, 165';
@@ -90,7 +89,7 @@
     canvas.width = W * dpr;
     canvas.height = H * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    scale = Math.min(W / 3.2, H / 2.5); // whole brain fits from every angle, perspective included
+    scale = Math.min(W / 2.8, H / 2.45); // whole brain fits from every angle, perspective included
     cx = W / 2;
     cy = H * 0.52;
   };
@@ -275,18 +274,50 @@
     for (var b = 0; b < 8; b++) fire(best, 5 + Math.floor(rand() * 4));
   });
 
-  if (canDrag) {
-    canvas.addEventListener('pointerdown', function (e) {
-      dragging = true;
-      moved = 0;
-      lastX = e.clientX;
-      lastY = e.clientY;
-      canvas.classList.add('is-dragging');
+  // drag to turn it: right away with a mouse; on touch, hold still for a moment first,
+  // so a quick swipe over the brain still works as a swipe (it opens Despre on the landing)
+  var holdTimer = 0, touchDown = false, downX = 0, downY = 0;
+  var startDrag = function (x, y) {
+    dragging = true;
+    moved = 0;
+    lastX = x;
+    lastY = y;
+    canvas.classList.add('is-dragging');
+  };
+  var endDrag = function () {
+    clearTimeout(holdTimer);
+    touchDown = false;
+    dragging = false;
+    canvas.classList.remove('is-dragging');
+  };
+  canvas.addEventListener('pointerdown', function (e) {
+    if (e.pointerType === 'mouse') {
+      startDrag(e.clientX, e.clientY);
       e.preventDefault();
-    });
-    window.addEventListener('pointerup', function () {
-      dragging = false;
-      canvas.classList.remove('is-dragging');
-    });
-  }
+      return;
+    }
+    touchDown = true;
+    moved = 0;
+    downX = lastX = e.clientX;
+    downY = lastY = e.clientY;
+    clearTimeout(holdTimer);
+    holdTimer = setTimeout(function () {
+      if (!touchDown) return;
+      startDrag(lastX, lastY);
+      if (navigator.vibrate) navigator.vibrate(8);
+    }, 220);
+  });
+  canvas.addEventListener('pointermove', function (e) {
+    if (!touchDown || dragging) return;
+    lastX = e.clientX;
+    lastY = e.clientY;
+    // moved before the hold kicked in: it's a swipe, not a drag
+    if (Math.abs(e.clientX - downX) + Math.abs(e.clientY - downY) > 10) {
+      clearTimeout(holdTimer);
+      touchDown = false;
+    }
+  });
+  window.addEventListener('pointerup', endDrag);
+  window.addEventListener('pointercancel', endDrag);
+  canvas.addEventListener('contextmenu', function (e) { e.preventDefault(); });
 })();

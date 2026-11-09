@@ -191,9 +191,63 @@
     var ty = null;
     window.addEventListener('touchstart', function (e) { ty = e.touches[0].clientY; }, { passive: true });
     window.addEventListener('touchmove', function (e) {
+      if (document.querySelector('.hero-brain.is-dragging')) return; // turning the brain, not swiping
       if (ty !== null && ty - e.touches[0].clientY > 60 && nearTop()) go();
     }, { passive: true });
   }
+
+  // Despre: dacă ai venit de pe prima pagină, scroll în sus (sau glisare în jos) când ești sus
+  // de tot te duce înapoi. Doar dacă pagina stătea deja sus, nu când ajungi sus din inerție.
+  (function () {
+    if (location.pathname !== '/despre.html') return;
+    var ref = '';
+    try { ref = document.referrer ? new URL(document.referrer).pathname : ''; } catch (err) {}
+    var cameFromHome = (ref === '/' || ref === '/index.html') && document.referrer.indexOf(location.origin) === 0;
+    if (!cameFromHome) return;
+    var supportsCrossDoc = 'onpagereveal' in window;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var going = false;
+    // since when the page has been resting at the very top (0 = not at the top);
+    // updated from scroll events, which arrive after the wheel event that caused them
+    var topSince = window.scrollY <= 0 ? Date.now() : 0;
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 0) topSince = 0;
+      else if (!topSince) topSince = Date.now();
+    }, { passive: true });
+    var settledAtTop = function () {
+      return topSince > 0 && window.scrollY <= 0 && Date.now() - topSince > 400;
+    };
+    var open = function () {
+      if (history.length > 1) history.back();
+      else window.location.href = '/';
+    };
+    var back = function () {
+      if (going) return;
+      going = true;
+      if (supportsCrossDoc || reduced) return open();
+      document.documentElement.classList.add('leaving-down');
+      setTimeout(open, 380);
+    };
+    window.addEventListener('pageswap', function (e) {
+      if (!e.viewTransition || !e.activation) return;
+      var to = new URL(e.activation.entry.url).pathname;
+      if (to === '/' || to === '/index.html') e.viewTransition.types.add('to-landing');
+    });
+    window.addEventListener('pageshow', function () {
+      going = false;
+      document.documentElement.classList.remove('leaving-down');
+    });
+    window.addEventListener('wheel', function (e) {
+      if (e.deltaY < -10 && settledAtTop()) back();
+    }, { passive: true });
+    var ty = null;
+    window.addEventListener('touchstart', function (e) {
+      ty = settledAtTop() ? e.touches[0].clientY : null;
+    }, { passive: true });
+    window.addEventListener('touchmove', function (e) {
+      if (ty !== null && e.touches[0].clientY - ty > 70) back();
+    }, { passive: true });
+  })();
 
   // Carusel recenzii (pagina Despre): săgeți, buline, tastatură și swipe
   var stage = document.querySelector('.quote-stage');
