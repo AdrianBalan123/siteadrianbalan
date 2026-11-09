@@ -575,7 +575,30 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 .stage-right em {
   font-style: normal;
   font-weight: 700;
-  color: var(--sage-deep);
+  color: var(--sage-deep); /* fallback where text gradients are not supported */
+}
+/* "soluție." in a gradient from the palette: deep sage → sage → deep rose, drifting slowly */
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .stage-right em {
+    background: linear-gradient(100deg, var(--sage-deep) 0%, var(--sage) 35%, #b9757a 70%, var(--sage-deep) 100%);
+    background-size: 220% 100%;
+    background-position: 0% 50%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    padding-right: 0.04em; /* the clip would shave the last letter's edge */
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .stage-right em {
+      animation: solutie-drift 9s ease-in-out infinite alternate;
+    }
+    @keyframes solutie-drift {
+      to {
+        background-position: 100% 50%;
+      }
+    }
+  }
 }
 /* interactive brain in the middle: it takes the height the rest of the landing leaves free */
 .hero-brain {
