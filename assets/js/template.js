@@ -127,12 +127,12 @@ ${footer ? `<footer class="site-footer">
 <div class="footer-top">
 ${logo()}
 <nav aria-label="Navigare în subsol"><ul class="footer-pages">${NAV.map((n) => `<li><a href="${n.href}">${esc(n.label)}</a></li>`).join('')}</ul></nav>
-</div>
 <ul class="footer-contact" aria-label="Contact">
-<li><a href="tel:${SITE.phoneTel}"><span class="fc-icon">${icon('phone')}</span><span><small>Telefon</small>${esc(SITE.phoneDisplay)}</span></a></li>
-<li><a href="${SITE.whatsapp}" target="_blank" rel="noopener noreferrer"><span class="fc-icon">${icon('whatsapp')}</span><span><small>WhatsApp</small>Scrie-mi un mesaj</span></a></li>
-<li><a href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(SITE.mapsQuery)}" target="_blank" rel="noopener noreferrer"><span class="fc-icon">${icon('pin')}</span><span><small>Cabinet</small>${esc(SITE.address)}</span></a></li>
+<li><a href="tel:${SITE.phoneTel}" aria-label="Sună: ${esc(SITE.phoneDisplay)}" data-tip="${esc(SITE.phoneDisplay)}">${icon('phone')}</a></li>
+<li><a href="${SITE.whatsapp}" target="_blank" rel="noopener noreferrer" aria-label="Scrie pe WhatsApp" data-tip="WhatsApp">${icon('whatsapp')}</a></li>
+<li><a href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(SITE.mapsQuery)}" target="_blank" rel="noopener noreferrer" aria-label="Cabinet: ${esc(SITE.address)} (hartă)" data-tip="${esc(SITE.address)}">${icon('pin')}</a></li>
 </ul>
+</div>
 <div class="footer-bottom"><span>© ${new Date().getFullYear()} Adrian Bălan, psiholog clinician</span><span>Pentru urgențe medicale sau psihiatrice, sună la 112.</span></div>
 </div>
 </footer>` : ''}

@@ -2252,16 +2252,16 @@ fieldset.field {
   margin-top: clamp(48px, 6vw, 72px);
   background: var(--bg);
   border-top: 1px solid var(--line);
-  padding-block: 32px 18px;
+  padding-block: 44px 24px;
   font-size: 14px;
 }
-/* row 1: logo on the left, the page links on the right */
+/* one row: logo on the left, page links in the middle, contact icons on the right */
 .footer-top {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px 32px;
+  gap: 18px 32px;
+  padding-bottom: 28px;
 }
 .site-footer ul {
   list-style: none;
@@ -2271,8 +2271,9 @@ fieldset.field {
 .footer-pages {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 28px;
-  font-size: 15px;
+  justify-content: center;
+  gap: 6px 30px;
+  font-size: 16px;
 }
 .site-footer a {
   text-decoration: none;
@@ -2281,71 +2282,86 @@ fieldset.field {
 .footer-pages a:hover {
   color: var(--sage-deep);
 }
-/* row 2: contact as three even columns, icon in a soft circle, a small label above each value */
 .site-footer .footer-contact {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  justify-content: space-between;
-  gap: 12px 24px;
-  margin-top: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--line);
+  justify-self: end;
+  display: flex;
+  gap: 10px;
 }
 .footer-contact a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13.5px;
-  line-height: 1.35;
-}
-.fc-icon {
+  position: relative;
   display: grid;
   place-items: center;
-  width: 30px;
-  height: 30px;
-  flex: none;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background: var(--sage-soft);
   color: var(--sage-deep);
-  transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
 }
-.fc-icon svg {
-  width: 14px;
-  height: 14px;
+.footer-contact svg {
+  width: 18px;
+  height: 18px;
 }
-.footer-contact small {
-  display: block;
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--sage-deep);
-}
-.footer-contact a:hover .fc-icon {
+.footer-contact a:hover {
   background: var(--sage);
   color: #fff;
+  transform: translateY(-2px);
+}
+/* the number / address shows in a small bubble above the icon */
+.footer-contact a::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 12.5px;
+  white-space: nowrap;
+  opacity: 0;
+  translate: 0 4px;
+  pointer-events: none;
+  transition: opacity 0.2s, translate 0.2s;
+}
+.footer-contact a:hover::after,
+.footer-contact a:focus-visible::after {
+  opacity: 1;
+  translate: 0 0;
 }
 .footer-bottom {
-  padding-top: 16px;
   color: var(--muted);
-  font-size: 12.5px;
+  font-size: 13px;
   display: flex;
   justify-content: space-between;
   gap: 6px 24px;
   flex-wrap: wrap;
 }
-/* tablets: contact stacks once three columns get cramped */
-@media (max-width: 860px) {
+/* tablets and phones: logo, links and icons stacked and centred; small print centred */
+@media (max-width: 960px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
   .site-footer .footer-contact {
-    grid-template-columns: auto;
-    justify-content: center;
+    justify-self: center;
+  }
+  .footer-contact a::after {
+    right: 50%;
+    translate: 50% 4px;
+  }
+  .footer-contact a:hover::after,
+  .footer-contact a:focus-visible::after {
+    translate: 50% 0;
   }
 }
-/* phones: logo and page links centred (links in even rows, never one alone), small print centred */
-@media (max-width: 560px) {
-  .footer-top {
-    flex-direction: column;
+/* touch screens have no hover: no bubbles there (the long address would also run off narrow screens) */
+@media (hover: none), (max-width: 560px) {
+  .footer-contact a::after {
+    display: none;
   }
+}
+@media (max-width: 560px) {
   .site-footer ul.footer-pages {
     display: block;
     text-align: center;
