@@ -482,7 +482,7 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
    animation stays cheap: nothing is repainted frame by frame. */
 /* the grey text on the landing is a step darker so it stays readable (≥ 4.5:1) on the tinted background */
 .hero-full {
-  --muted: #4f5b6c;
+  --muted: #48546a;
 }
 .hero-bg {
   position: absolute;
@@ -496,11 +496,11 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   position: absolute;
   inset: -25%;
   background:
-    radial-gradient(46% 42% at 80% 20%, rgba(123, 158, 137, 0.62) 0%, rgba(123, 158, 137, 0.18) 45%, transparent 72%),
-    radial-gradient(44% 44% at 16% 80%, rgba(221, 165, 165, 0.66) 0%, rgba(221, 165, 165, 0.2) 45%, transparent 72%),
-    radial-gradient(30% 30% at 88% 88%, rgba(221, 165, 165, 0.4) 0%, transparent 70%),
-    radial-gradient(28% 26% at 10% 12%, rgba(123, 158, 137, 0.32) 0%, transparent 70%),
-    linear-gradient(140deg, #dce8e0 0%, #f1f1ec 42%, #f4e4e1 70%, #efd6d3 100%);
+    radial-gradient(50% 46% at 80% 20%, rgba(123, 158, 137, 0.75) 0%, rgba(123, 158, 137, 0.22) 45%, transparent 72%),
+    radial-gradient(36% 40% at 22% 42%, rgba(123, 158, 137, 0.42) 0%, transparent 70%),
+    radial-gradient(34% 32% at 88% 86%, rgba(95, 129, 112, 0.38) 0%, transparent 70%),
+    radial-gradient(42% 42% at 14% 84%, rgba(221, 165, 165, 0.6) 0%, rgba(221, 165, 165, 0.18) 45%, transparent 72%),
+    linear-gradient(140deg, #cfe0d5 0%, #e9efe9 38%, #f2ebe6 66%, #efdcd8 100%);
   will-change: transform;
 }
 @media (prefers-reduced-motion: no-preference) {
