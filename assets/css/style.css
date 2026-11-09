@@ -480,6 +480,10 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
    Its box reaches up under the transparent header but stops at the bottom of the screen, so it never
    makes the page scrollable. The colours sit on an oversized layer that only moves (transform), so the
    animation stays cheap: nothing is repainted frame by frame. */
+/* the grey text on the landing is a step darker so it stays readable (≥ 4.5:1) on the tinted background */
+.hero-full {
+  --muted: #4f5b6c;
+}
 .hero-bg {
   position: absolute;
   inset: -200px 0 0;
@@ -492,11 +496,11 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   position: absolute;
   inset: -25%;
   background:
-    radial-gradient(44% 40% at 78% 22%, rgba(123, 158, 137, 0.42) 0%, transparent 70%),
-    radial-gradient(40% 40% at 18% 78%, rgba(221, 165, 165, 0.34) 0%, transparent 70%),
-    radial-gradient(34% 30% at 55% 55%, rgba(231, 239, 233, 0.9) 0%, transparent 70%),
-    radial-gradient(30% 34% at 92% 85%, rgba(246, 230, 228, 0.9) 0%, transparent 70%),
-    linear-gradient(150deg, #eef3ef 0%, var(--bg) 45%, #f7ecea 100%);
+    radial-gradient(46% 42% at 80% 20%, rgba(123, 158, 137, 0.62) 0%, rgba(123, 158, 137, 0.18) 45%, transparent 72%),
+    radial-gradient(44% 44% at 16% 80%, rgba(221, 165, 165, 0.66) 0%, rgba(221, 165, 165, 0.2) 45%, transparent 72%),
+    radial-gradient(30% 30% at 88% 88%, rgba(221, 165, 165, 0.4) 0%, transparent 70%),
+    radial-gradient(28% 26% at 10% 12%, rgba(123, 158, 137, 0.32) 0%, transparent 70%),
+    linear-gradient(140deg, #dce8e0 0%, #f1f1ec 42%, #f4e4e1 70%, #efd6d3 100%);
   will-change: transform;
 }
 @media (prefers-reduced-motion: no-preference) {
