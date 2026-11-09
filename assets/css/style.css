@@ -696,23 +696,26 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
     bottom: 6px;
   }
 }
-/* phones: a big brain on top, the title under it on two centred lines
-     De la simptom
-      la soluție.          */
+/* phones: a big brain on top, the title under it on one centred line, read as a sentence:
+     De la simptom la soluție.          */
 @media (max-width: 560px) {
   .hero-full .hero-stage {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: auto auto;
     grid-template-areas:
-      'brain'
-      'left'
-      'right';
-    justify-items: center;
+      'brain brain'
+      'left right';
+    justify-content: center;
+    align-items: baseline;
+    column-gap: 0.28em;
     row-gap: 2px;
+  }
+  .hero-full .hero-brain {
+    justify-self: center;
   }
   .hero-full .stage-left,
   .hero-full .stage-right {
-    justify-self: center;
-    text-align: center;
+    justify-self: auto;
+    text-align: left;
   }
   .hero-full .hero-brain {
     width: min(80vw, 44vh);
@@ -721,12 +724,12 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
     margin-bottom: 6px;
   }
   .hero-full .stage-word {
-    font-size: clamp(26px, 7.6vw, 34px);
+    font-size: clamp(27px, 9.4vw, 40px);
   }
   .hero-full .stage-word small {
     display: inline;
-    margin: 0 0.3em 0 0;
-    font-size: 0.62em;
+    margin: 0 0.22em 0 0;
+    font-size: 0.6em;
   }
 }
 /* phones: start right under the header and spread the rest out, buttons the same width */
