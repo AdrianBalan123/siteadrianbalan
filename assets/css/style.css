@@ -1684,6 +1684,10 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   left: 0;
   width: 46px;
   height: 46px;
+  /* green here, to match the quote (the reviews keep the rose badge) */
+  background: var(--sage-soft);
+  border-color: var(--sage);
+  color: var(--sage-deep);
 }
 .about-quote .quote-icon svg {
   width: 18px;
