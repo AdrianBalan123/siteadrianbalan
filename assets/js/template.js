@@ -68,7 +68,7 @@ export function card(a) {
   return `<a href="/articole/${esc(a.slug)}.html" class="card" data-search="${esc(`${a.title} ${a.excerpt}`.toLowerCase())}"><div class="thumb">${thumb(a.thumbnail)}<span class="card-arrow" aria-hidden="true">${icon('arrowUpRight')}</span></div><div class="card-body"><h3>${esc(a.title)}</h3><span class="meta">${icon('book')} ${Number(a.readingMinutes) || 1} min de citit</span></div></a>`;
 }
 
-export function layout({ title, description, path = '/', current = '', ogImage = '/assets/img/adrian-balan.jpg', body, type = 'website', head = '' }) {
+export function layout({ title, description, path = '/', current = '', ogImage = '/assets/img/adrian-balan.jpg', body, type = 'website', head = '', footer = true }) {
   const nav = NAV.map((n) => `<a href="${n.href}"${n.href === current ? ' aria-current="page"' : ''}>${esc(n.label)}</a>`).join('');
   return `<!doctype html>
 <html lang="ro">
@@ -122,7 +122,7 @@ ${logo()}
 <main id="continut">
 ${body}
 </main>
-<footer class="site-footer">
+${footer ? `<footer class="site-footer">
 <div class="wrap">
 <div class="footer-grid">
 <div class="footer-brand">${logo()}<p>Terapie, evaluare psihologică și suport emoțional pentru adolescenți și adulți, în Timișoara.</p></div>
@@ -131,7 +131,7 @@ ${body}
 </div>
 <div class="footer-bottom"><span>© ${new Date().getFullYear()} Adrian Bălan, psiholog clinician</span><span>Pentru urgențe medicale sau psihiatrice, sună la 112.</span></div>
 </div>
-</footer>
+</footer>` : ''}
 <a class="fab" href="${SITE.whatsapp}" target="_blank" rel="noopener noreferrer" aria-label="Scrie pe WhatsApp">${icon('whatsapp')}</a>
 </body>
 </html>
@@ -248,7 +248,7 @@ const reviews = () =>
 // Prima pagină: doar hero-ul, pe tot ecranul. Scroll în jos (sau săgeata) duce la Despre.
 export function homePage() {
   const body = `<section class="hero hero-full" data-next="/despre.html">
-<div class="hero-blob hero-blob-1" aria-hidden="true"></div><div class="hero-blob hero-blob-2" aria-hidden="true"></div>
+<div class="hero-blobs" aria-hidden="true"><div class="hero-blob hero-blob-1"></div><div class="hero-blob hero-blob-2"></div></div>
 <div class="wrap hero-center">
 <h1 class="sr-only">De la simptom la soluție. Psihologie clinică explicată pe înțelesul tău.</h1>
 <div class="hero-stage" aria-hidden="true">
@@ -272,7 +272,7 @@ export function homePage() {
 <link rel="prefetch" href="/despre.html">
 <link rel="prefetch" href="/assets/img/adrian-balan.jpg" as="image">
 <script src="/assets/js/brain.js" defer></script>`;
-  return layout({ title: 'Adrian Bălan, psiholog clinician în Timișoara', description: 'Psiholog clinician în Timișoara: terapie pentru depresie, anxietate, ADHD și traumă, evaluări psihologice, suport pentru persoane LGBTQIA+. Programări la 0720 754 920.', path: '/', current: '/', body, head });
+  return layout({ title: 'Adrian Bălan, psiholog clinician în Timișoara', description: 'Psiholog clinician în Timișoara: terapie pentru depresie, anxietate, ADHD și traumă, evaluări psihologice, suport pentru persoane LGBTQIA+. Programări la 0720 754 920.', path: '/', current: '/', body, head, footer: false }); // no footer: the landing is one screen, scrolling opens Despre
 }
 
 // Filtre rapide pe pagina Articole: eticheta și rădăcina căutată în titlu și rezumat

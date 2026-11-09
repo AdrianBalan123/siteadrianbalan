@@ -373,8 +373,8 @@ body:has(.hero-full) .site-header:not([data-scrolled='true']):not([data-open='tr
   position: relative;
   /* clip sideways only, so the shapes can fade softly under the header */
   overflow-x: clip;
-  min-height: calc(100vh - 62px);
-  min-height: calc(100svh - 62px);
+  min-height: calc(100vh - 63px);
+  min-height: calc(100svh - 63px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -489,6 +489,18 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 /* same idea for browsers without view transitions */
 .leaving main {
   animation: vt-up-out 0.38s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+/* soft organic shapes drifting behind the landing; their box reaches up under the header
+   but stops at the bottom of the screen, so they never make the page scrollable */
+.hero-blobs {
+  position: absolute;
+  inset: -200px 0 0;
+  z-index: 0;
+  overflow: clip;
+  pointer-events: none;
+}
+.hero-blobs .hero-blob-1 {
+  top: 60px;
 }
 /* soft organic shapes drifting behind the landing */
 .hero-blob {
