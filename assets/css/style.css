@@ -1113,7 +1113,10 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  background: var(--card);
+  /* the cards cover most of the Articole page, so they carry the gradient themselves:
+     white at the top, a breath of sage in the middle, light rose in the lower corner */
+  --muted: #4a5568; /* a shade darker so grey text keeps ≥ 4.5:1 on the tinted part */
+  background: linear-gradient(165deg, #ffffff 0%, #fbfcfa 38%, #eaf2ec 66%, #f6e5e2 100%);
   border-radius: var(--r-md);
   overflow: hidden;
   border: 1px solid var(--line);
