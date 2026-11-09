@@ -137,6 +137,7 @@ ${logo()}
 </div>
 </footer>` : ''}
 <a class="fab" href="${SITE.whatsapp}" target="_blank" rel="noopener noreferrer" aria-label="Scrie pe WhatsApp">${icon('whatsapp')}</a>
+<a class="fab fab-phone" href="tel:${SITE.phoneTel}" aria-label="Sună: ${esc(SITE.phoneDisplay)}">${icon('phone')}</a>
 </body>
 </html>
 `;

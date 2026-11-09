@@ -212,6 +212,7 @@ body:has(.hero-full) .site-header:not([data-scrolled='true']):not([data-open='tr
   font-size: 18px;
   font-weight: 500;
   line-height: 1.1;
+  white-space: nowrap;
 }
 .logo-role {
   display: block;
@@ -2439,8 +2440,8 @@ fieldset.field {
 }
 @media (max-width: 560px) {
   .footer-contact a {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
   }
   .footer-contact svg {
     width: 16px;
@@ -2484,33 +2485,42 @@ fieldset.field {
 /* the floating WhatsApp button never covers the small print */
 @media (max-width: 760px) {
   .site-footer {
-    padding-bottom: 88px;
+    padding-bottom: 72px;
   }
 }
 
-/* floating whatsapp on mobile */
+/* floating buttons on phones: WhatsApp bottom right, call bottom left */
 .fab {
   display: none;
 }
 @media (max-width: 760px) {
+  /* small and quiet: they stay at hand without covering the page */
   .fab {
     display: inline-flex;
     position: fixed;
-    right: 16px;
-    bottom: 16px;
+    right: 14px;
+    bottom: 14px;
     z-index: 40;
-    width: 56px;
-    height: 56px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     background: var(--sage);
     color: #fff;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 10px 28px -10px rgba(45, 55, 72, 0.5);
+    box-shadow: 0 6px 18px -8px rgba(45, 55, 72, 0.45);
   }
   .fab svg {
-    width: 26px;
-    height: 26px;
+    width: 21px;
+    height: 21px;
+  }
+  .fab-phone {
+    right: auto;
+    left: 14px;
+  }
+  .fab-phone svg {
+    width: 19px;
+    height: 19px;
   }
 }
 
