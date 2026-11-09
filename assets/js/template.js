@@ -258,7 +258,7 @@ export function homePage() {
 <div class="hero-stage" aria-hidden="true">
 <span class="stage-word stage-left"><small>De la</small>simptom</span>
 <canvas class="hero-brain"></canvas>
-<span class="stage-word stage-right"><small>la</small><em>soluție</em>.</span>
+<span class="stage-word stage-right"><small>la</small><em>soluție.</em></span>
 </div>
 <div class="hero-copy">
 <p class="hero-sub" aria-hidden="true">Psihologie clinică explicată pe înțelesul tău.</p>
