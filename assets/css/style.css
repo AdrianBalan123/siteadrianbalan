@@ -2399,22 +2399,36 @@ fieldset.field {
   gap: 6px 24px;
   flex-wrap: wrap;
 }
-/* tablets and phones: logo, links and icons stacked and centred; small print centred */
+/* tablets and phones: logo top left, contact icons top right, the page links on their own row below */
 @media (max-width: 960px) {
   .footer-top {
-    grid-template-columns: 1fr;
-    justify-items: center;
+    grid-template-columns: auto auto;
+    grid-template-areas:
+      'logo icons'
+      'nav nav';
+    justify-content: space-between;
+    row-gap: 22px;
   }
-  .site-footer .footer-contact {
+  .footer-top .logo {
+    grid-area: logo;
+  }
+  .footer-top nav {
+    grid-area: nav;
     justify-self: center;
   }
-  .footer-contact a::after {
-    right: 50%;
-    translate: 50% 4px;
+  .site-footer .footer-contact {
+    grid-area: icons;
+    gap: 8px;
   }
-  .footer-contact a:hover::after,
-  .footer-contact a:focus-visible::after {
-    translate: 50% 0;
+}
+@media (max-width: 560px) {
+  .footer-contact a {
+    width: 38px;
+    height: 38px;
+  }
+  .footer-contact svg {
+    width: 16px;
+    height: 16px;
   }
 }
 /* the privacy link in the small print */
