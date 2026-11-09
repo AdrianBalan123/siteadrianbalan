@@ -55,7 +55,7 @@ export const SERVICES = [
     tags: ['Depresie', 'Anxietate', 'ADHD', 'Traumă'],
     title: 'Intervenție psihologică și suport emoțional',
     intro:
-      'Intervenții bazate pe dovezi științifice pentru depresie, anxietate, ADHD, traumă și dificultăți de reglare emoțională, care sprijină procesul de reconectare cu sine și de redescoperire a sensului personal.',
+      'Ofer intervenții bazate pe dovezi științifice pentru depresie, anxietate, ADHD, traumă și dificultăți de reglare emoțională, sprijinind clienții în procesul de reconectare cu sine și de redescoperire a sensului personal.',
     items: [
       'Depresie și anxietate',
       'Gestionarea ADHD-ului',
@@ -64,15 +64,30 @@ export const SERVICES = [
       'Gestionarea disfuncțiilor sexuale',
     ],
     note:
-      'Lucrez și cu teme din sfera sexualității: întrebări legate de identitatea de gen sau orientarea sexuală, disfuncții sexuale, blocaje emoționale sau dificultăți în viața intimă. Fiecare temă este abordată cu respect, delicatețe și profesionalism, într-un cadru sigur și confidențial.',
+      'De asemenea, lucrez cu persoane care se confruntă cu probleme din sfera sexualității, de la întrebări legate de identitatea de gen sau orientarea sexuală, până la disfuncții sexuale, blocaje emoționale sau dificultăți în viața intimă. Fiecare dintre aceste teme este abordată cu respect, delicatețe și profesionalism, într-un cadru sigur și confidențial.',
+  },
+  {
+    id: 'psihoeducatie',
+    duration: '50 min / ședință',
+    tags: ['Coping', 'Burnout', 'Familie'],
+    title: 'Psihoeducație și strategii de coping',
+    intro:
+      'Consider că înțelegerea propriilor mecanisme emoționale este primul pas către schimbare. Prin psihoeducație, ofer clienților și familiilor lor informații clare și instrumente practice pentru gestionarea stresului, prevenirea burnout-ului, reglarea emoțiilor și dezvoltarea unei relații mai blânde cu sine.',
+    items: [
+      'Educație privind gestionarea ADHD-ului, anxietății, depresiei și traumelor',
+      'Informare despre sănătatea mentală pentru persoane LGBTQIA+',
+      'Strategii de adaptare și coping pentru stres și burnout',
+      'Educație pentru familii și parteneri în susținerea persoanelor cu ADHD',
+      'Informarea partenerilor sau familiilor despre impactul depresiei, anxietății sau traumelor asupra relațiilor',
+    ],
   },
   {
     id: 'evaluari',
     duration: '', // lasă gol dacă durata variază
     tags: ['ADHD', 'Personalitate', 'Raport psihologic'],
-    title: 'Evaluări și testări psihologice',
+    title: 'Evaluări psihologice complexe',
     intro:
-      'Evaluări clinice și psihodiagnostic cu instrumente standardizate și validate științific. Evaluarea este un proces atent și empatic, menit nu doar să pună un diagnostic, ci să ofere înțelegere și direcție.',
+      'Realizez evaluări clinice și psihodiagnostic cu instrumente standardizate și validate științific, pentru identificarea și clarificarea tulburărilor de tip ADHD, depresiv, anxios sau traumatic, pentru explorarea structurii de personalitate, precum și evaluări și rapoarte psihologice pentru Comisia de Evaluare a Persoanelor Adulte cu Handicap. Evaluarea este un proces atent și empatic, menit nu doar să pună un diagnostic, ci să ofere înțelegere și direcție.',
     items: [
       'Evaluare ADHD: teste de atenție și concentrare, chestionare de autoevaluare și observații clinice',
       'Evaluare pentru depresie și anxietate: teste standardizate, chestionare clinice și interviuri semi-structurate',
@@ -88,25 +103,10 @@ export const SERVICES = [
     tags: ['LGBTQIA+', 'Tranziție de gen'],
     title: 'Consiliere și evaluare pentru afirmarea identității',
     intro:
-      'Persoanele LGBTQIA+ aflate în procesul de afirmare a identității pot beneficia de consiliere emoțională, psihoeducație, evaluare și raport psihologic în vederea începerii procesului de tranziție de gen. Însoțesc fiecare parcurs cu empatie, discreție și sprijin constant.',
+      'Persoanele LGBTQIA+ care se află în procesul de afirmare a identității pot beneficia de consiliere emoțională, psihoeducație, evaluare și raport psihologic în vederea începerii procesului de tranziție de gen. Abordez aceste demersuri cu respect profund față de autenticitatea fiecărui parcurs personal, însoțind clienții cu empatie, discreție și sprijin constant.',
     items: [
       'Suport emoțional și psihoeducație în procesul de afirmare a identității',
       'Evaluare și raport psihologic pentru începerea tranziției de gen',
-    ],
-  },
-  {
-    id: 'psihoeducatie',
-    duration: '50 min / ședință',
-    tags: ['Coping', 'Burnout', 'Familie'],
-    title: 'Psihoeducație și strategii de coping',
-    intro:
-      'Înțelegerea propriilor mecanisme emoționale este primul pas către schimbare. Ofer clienților și familiilor lor informații clare și instrumente practice pentru gestionarea stresului, prevenirea burnout-ului, reglarea emoțiilor și o relație mai blândă cu sine.',
-    items: [
-      'Educație privind gestionarea ADHD-ului, anxietății, depresiei și traumelor',
-      'Informare despre sănătatea mentală pentru persoane LGBTQIA+',
-      'Strategii de adaptare și coping pentru stres și burnout',
-      'Educație pentru familii și parteneri în susținerea persoanelor cu ADHD',
-      'Informarea partenerilor sau familiilor despre impactul depresiei, anxietății sau traumelor asupra relațiilor',
     ],
   },
   {
@@ -115,10 +115,10 @@ export const SERVICES = [
     tags: ['Stabilizare', 'Prevenție'],
     title: 'Intervenție în criză și prevenirea suicidului',
     intro:
-      'În situațiile de criză emoțională ofer suport imediat pentru stabilizare și reducerea riscului suicidar, într-un spațiu în care persoana poate fi ascultată, înțeleasă și conținută. Scopul este diminuarea suferinței, reconectarea cu resursele personale și accesul la sprijin terapeutic continuu.',
+      'În situațiile de criză emoțională, ofer suport imediat pentru stabilizarea emoțională și reducerea riscului suicidar, creând un spațiu de siguranță în care persoana poate fi ascultată, înțeleasă și conținută. Intervenția în astfel de momente vizează nu doar diminuarea suferinței, ci și reconectarea cu resursele personale și accesul la sprijinul terapeutic continuu.',
     items: ['Suport pentru prevenirea suicidului', 'Gestionarea episoadelor de criză emoțională'],
     note: 'Dacă viața ta sau a altcuiva este în pericol imediat, sună la 112.',
   },
 ];
 
-export const TOPICS = ['Depresie', 'Anxietate', 'ADHD', 'Traumă', 'Identitate', 'Relații', 'Sexualitate'];
+export const TOPICS = ['Depresie', 'Anxietate', 'Traume', 'Relaționare', 'Sexualitate', 'Dificultăți de identitate'];

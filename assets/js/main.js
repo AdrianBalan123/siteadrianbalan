@@ -125,6 +125,39 @@
     apply();
   }
 
+  // Distribuie articolul: linkurile folosesc adresa reală a paginii, „copiază” pune linkul în clipboard
+  var share = document.querySelector('.share');
+  if (share) {
+    var here = location.origin + location.pathname;
+    var shareTitle = share.getAttribute('data-share-title');
+    share.querySelector('[data-share="whatsapp"]').href = 'https://wa.me/?text=' + encodeURIComponent(shareTitle + ' ' + here);
+    share.querySelector('[data-share="facebook"]').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(here);
+    var copyBtn = share.querySelector('[data-share="copy"]');
+    var copyTimer;
+    copyBtn.addEventListener('click', function () {
+      var done = function () {
+        copyBtn.querySelector('.share-copied').textContent = 'Link copiat';
+        copyBtn.classList.add('is-copied');
+        clearTimeout(copyTimer);
+        copyTimer = setTimeout(function () {
+          copyBtn.classList.remove('is-copied');
+        }, 1800);
+      };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(here).then(done, function () {});
+      else {
+        var t = document.createElement('textarea');
+        t.value = here;
+        document.body.appendChild(t);
+        t.select();
+        try {
+          document.execCommand('copy');
+          done();
+        } catch (e) {}
+        t.remove();
+      }
+    });
+  }
+
   // Programare: compune mesajul din câmpuri și îl deschide în WhatsApp
   var form = document.getElementById('programare');
   if (form) {

@@ -30,11 +30,15 @@ const ICONS = {
   chevronDown: '<path d="m6 9 6 6 6-6"/>',
   chevronLeft: '<path d="m15 18-6-6 6-6"/>',
   chevronRight: '<path d="m9 18 6-6-6-6"/>',
+  link: '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
 };
 
 export function icon(name) {
   if (name === 'whatsapp') {
     return '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 15l-1.4 5.1 5.24-1.37A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.1.82.83-3.03-.2-.31a8.2 8.2 0 1 1 6.95 3.85Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.97-.14.16-.29.18-.53.06-.25-.12-1.04-.38-1.98-1.22a7.4 7.4 0 0 1-1.37-1.7c-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47a.9.9 0 0 0-.66.31c-.23.25-.86.84-.86 2.05 0 1.2.88 2.37 1 2.53.13.17 1.73 2.64 4.2 3.7.58.25 1.04.4 1.4.52.59.19 1.12.16 1.54.1.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.15-1.17-.06-.1-.23-.17-.47-.29Z"/></svg>';
+  }
+  if (name === 'facebook') {
+    return '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21.9v-7.1h2.4l.36-2.8H13.5v-1.78c0-.81.23-1.36 1.38-1.36h1.47V6.35a19.7 19.7 0 0 0-2.15-.11c-2.13 0-3.59 1.3-3.59 3.69V12H8.2v2.8h2.4v7.1a10 10 0 1 1 2.9 0Z"/></svg>';
   }
   return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name]}</svg>`;
 }
@@ -185,6 +189,20 @@ export function sitemap(list) {
 }
 
 /* ---------- full pages ---------- */
+// Distribuie articolul: WhatsApp, Facebook, copiere link (main.js pune adresa paginii curente)
+const shareBar = (a) => {
+  const url = `${SITE.url}/articole/${a.slug}.html`;
+  const u = encodeURIComponent(url);
+  return `<div class="share" data-share-title="${esc(a.title)}">
+<span class="share-label">Distribuie articolul</span>
+<div class="share-btns">
+<a class="share-btn" data-share="whatsapp" href="https://wa.me/?text=${encodeURIComponent(`${a.title} ${url}`)}" target="_blank" rel="noopener noreferrer" aria-label="Distribuie pe WhatsApp">${icon('whatsapp')}</a>
+<a class="share-btn" data-share="facebook" href="https://www.facebook.com/sharer/sharer.php?u=${u}" target="_blank" rel="noopener noreferrer" aria-label="Distribuie pe Facebook">${icon('facebook')}</a>
+<button class="share-btn" type="button" data-share="copy" aria-label="Copiază linkul">${icon('link')}<span class="share-copied" role="status"></span></button>
+</div>
+</div>`;
+};
+
 export function articlePage(a, content) {
   const body = `<article>
 <div class="wrap">
@@ -197,6 +215,7 @@ ${a.thumbnail ? `<div class="article-cover"><img src="${esc(a.thumbnail)}" alt="
 <div class="prose">
 ${content}
 </div>
+${shareBar(a)}
 <div style="max-width:1000px">${ctaBox()}</div>
 </div>
 <section class="section" id="alte-articole" data-slug="${esc(a.slug)}" hidden aria-labelledby="alte-articole-t"><div class="wrap"><div class="section-head"><h2 id="alte-articole-t">Alte articole</h2><a href="/articole.html" class="text-link">Toate articolele</a></div><div class="cards"></div></div></section>
@@ -292,7 +311,7 @@ export function aboutPage() {
 <p class="pill">${icon('pin')} Psiholog clinician în Timișoara</p>
 <h1>Despre mine</h1>
 <p class="lead">Mă numesc Adrian Bălan și sunt psiholog clinician, dedicat înțelegerii profunde a oamenilor și a modului în care aceștia se raportează la sine, la ceilalți și la lume.</p>
-<p>Lucrez cu adolescenți și adulți care se confruntă cu depresie, anxietate, ADHD, traume, dificultăți de identitate, relaționare sau sexualitate.</p>
+<p>Lucrez cu adolescenți și adulți care se confruntă cu depresie, anxietate, traume, sexualitate, relaționare și dificultăți de identitate.</p>
 <ul class="tags about-tags"><li>Adolescenți și adulți</li><li>Abordare integrativă</li><li>CBT și psihoterapii experiențiale</li></ul>
 ${contactActions()}
 </div>
@@ -308,8 +327,8 @@ ${contactActions()}
 <div class="wrap about-how-grid">
 <div class="about-how-text">
 <h2 id="cum-lucrez">Cum lucrez</h2>
-<p>Abordarea mea este integrativă, îmbinând elemente din terapia cognitiv-comportamentală (CBT) cu elemente din psihoterapiile experiențiale, adaptată nevoilor și ritmului fiecărui client. În centrul practicii mele se află relația terapeutică autentică.</p>
-<p>Cred într-un demers terapeutic care respectă diversitatea și individualitatea. În cabinetul meu creez un spațiu sigur, incluziv și lipsit de judecată, în care oricine poate explora, cu blândețe și curaj, propriile emoții, frici, dorințe și limite.</p>
+<p>Abordarea mea este integrativă, îmbinând elemente din terapia cognitiv-comportamentală (CBT) cu elemente din psihoterapii experiențiale, adaptată nevoilor și ritmului fiecărui client. În centrul practicii mele se află relația terapeutică autentică, bazată pe empatie, încredere și respect profund pentru experiența unică a fiecărui om.</p>
+<p>Cred într-un demers terapeutic care respectă diversitatea și individualitatea, indiferent de orientare, identitate de gen, istoric personal sau stil de viață. În cabinetul meu, creez un spațiu sigur, incluziv și lipsit de judecată, în care oricine poate explora, cu blândețe și curaj, propriile emoții, frici, dorințe și limite.</p>
 </div>
 <ul class="values">${values.map(([ic, h, d]) => `<li class="value"><span class="value-icon">${icon(ic)}</span><div><h3>${esc(h)}</h3><p>${esc(d)}</p></div></li>`).join('')}</ul>
 </div>
