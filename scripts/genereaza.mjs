@@ -17,6 +17,7 @@ writeFileSync(p('articole.html'), T.articlesPage(list));
 writeFileSync(p('despre.html'), T.aboutPage());
 writeFileSync(p('servicii.html'), T.servicesPage());
 writeFileSync(p('contact.html'), T.contactPage());
+writeFileSync(p('confidentialitate.html'), T.privacyPage());
 writeFileSync(p('404.html'), T.notFoundPage());
 writeFileSync(p('sitemap.xml'), T.sitemap(list));
 
@@ -29,4 +30,4 @@ for (const a of T.published(list)) {
 }
 for (const f of readdirSync(p('articole'))) if (!keep.has(f)) rmSync(p('articole', f));
 
-console.log(`Gata: 6 pagini + ${keep.size} articole generate.`);
+console.log(`Gata: 7 pagini + ${keep.size} articole generate.`);

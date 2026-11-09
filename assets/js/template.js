@@ -133,7 +133,7 @@ ${logo()}
 <li><a href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(SITE.mapsQuery)}" target="_blank" rel="noopener noreferrer" aria-label="Cabinet: ${esc(SITE.address)} (hartă)" data-tip="${esc(SITE.address)}">${icon('pin')}</a></li>
 </ul>
 </div>
-<div class="footer-bottom"><span>© ${new Date().getFullYear()} Adrian Bălan, psiholog clinician</span><span>Pentru urgențe medicale sau psihiatrice, sună la 112.</span></div>
+<div class="footer-bottom"><span>© ${new Date().getFullYear()} Adrian Bălan, psiholog clinician · <a href="/confidentialitate.html">Confidențialitate</a></span><span>Pentru urgențe medicale sau psihiatrice, sună la 112.</span></div>
 </div>
 </footer>` : ''}
 <a class="fab" href="${SITE.whatsapp}" target="_blank" rel="noopener noreferrer" aria-label="Scrie pe WhatsApp">${icon('whatsapp')}</a>
@@ -191,7 +191,7 @@ export function replaceBetween(html, start, end, inner) {
 }
 
 export function sitemap(list) {
-  const urls = ['/', '/articole.html', '/despre.html', '/servicii.html', '/contact.html', ...published(list).map((a) => `/articole/${a.slug}.html`)];
+  const urls = ['/', '/articole.html', '/despre.html', '/servicii.html', '/contact.html', '/confidentialitate.html', ...published(list).map((a) => `/articole/${a.slug}.html`)];
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${esc(SITE.url + u)}</loc></url>`).join('\n')}\n</urlset>\n`;
 }
 
@@ -364,6 +364,30 @@ export function contactPage() {
 <div class="wrap contact-grid">${bookingForm()}${contactInfo()}</div>
 <div class="wrap"><div class="map map-wide"><iframe src="https://www.google.com/maps?q=${q}&amp;z=16&amp;output=embed" title="Harta: cabinetul de pe strada Aristide Demetriade 1/3, Timișoara" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div></div>`;
   return layout({ title: 'Contact și programări | Adrian Bălan, psiholog Timișoara', description: 'Programări la 0720 754 920, telefonic, pe WhatsApp sau prin formular. Cabinet pe strada Aristide Demetriade nr. 1/3, Timișoara.', path: '/contact.html', current: '/contact.html', body });
+}
+
+// Confidențialitate: ce date ajung unde (site, WhatsApp, servicii externe) și drepturile din GDPR
+export function privacyPage() {
+  const body = `<div class="wrap page-head"><h1>Confidențialitate</h1><p>Cum sunt tratate informațiile tale, atât pe acest site, cât și în cabinet.</p></div>
+<div class="wrap"><div class="prose prose-plain">
+<h2>Ce discutăm rămâne între noi</h2>
+<p>Tot ce discuți în ședințe este confidențial. Ca psiholog, am obligația legală și deontologică de a păstra secretul profesional. Excepțiile sunt doar cele prevăzute de lege, de exemplu atunci când există un risc grav și iminent pentru viața ta sau a altcuiva.</p>
+<h2>Ce date colectează site-ul</h2>
+<p>Site-ul nu folosește cookie-uri de urmărire, statistici de vizitare sau reclame și nu are conturi de utilizator.</p>
+<p>Formularul de programare nu trimite nimic pe un server: ce completezi este pus într-un mesaj pe care îl trimiți tu, din aplicația WhatsApp. Mesajele de pe WhatsApp sunt criptate end-to-end.</p>
+<h2>Datele pe care mi le trimiți</h2>
+<p>Numele, numărul de telefon și ce îmi scrii prin telefon sau WhatsApp le folosesc doar ca să îți răspund și să stabilim programarea. Nu le vând și nu le transmit altor persoane.</p>
+<h2>Servicii externe</h2>
+<ul>
+<li><strong>Găzduirea</strong> site-ului este asigurată de Vercel. Ca orice server, poate înregistra date tehnice (de exemplu adresa IP și tipul de browser), necesare pentru funcționare și securitate.</li>
+<li><strong>Harta</strong> de pe pagina Contact este oferită de Google Maps. Când se încarcă, Google poate folosi propriile cookie-uri.</li>
+<li><strong>Butoanele de distribuire</strong> ale articolelor deschid WhatsApp sau Facebook doar dacă le apeși.</li>
+</ul>
+<h2>Drepturile tale</h2>
+<p>Conform Regulamentului general privind protecția datelor (GDPR), ai dreptul să ceri acces la datele tale, corectarea sau ștergerea lor, restricționarea prelucrării, să te opui prelucrării și să le primești într-un format portabil. Dacă ai o nemulțumire, te poți adresa Autorității Naționale de Supraveghere a Prelucrării Datelor cu Caracter Personal (<a href="https://www.dataprotection.ro" target="_blank" rel="noopener noreferrer">dataprotection.ro</a>).</p>
+<p>Pentru orice întrebare sau cerere legată de datele tale, sună-mă la <a href="tel:${SITE.phoneTel}">${esc(SITE.phoneDisplay)}</a> sau scrie-mi pe <a href="${SITE.whatsapp}" target="_blank" rel="noopener noreferrer">WhatsApp</a>.</p>
+</div></div>`;
+  return layout({ title: 'Confidențialitate | Adrian Bălan, psiholog Timișoara', description: 'Cum sunt tratate datele tale pe site și în cabinet: secret profesional, fără cookie-uri de urmărire, drepturile tale conform GDPR.', path: '/confidentialitate.html', body });
 }
 
 export function notFoundPage() {
