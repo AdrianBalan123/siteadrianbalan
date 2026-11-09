@@ -273,7 +273,7 @@
     }
     if (dragging) {
       dragY += (e.clientX - lastX) * 0.008;
-      dragX = Math.max(-0.9, Math.min(0.9, dragX + (e.clientY - lastY) * 0.006));
+      dragX = Math.max(-0.9, Math.min(0.9, dragX - (e.clientY - lastY) * 0.006));
       moved += Math.abs(e.clientX - lastX) + Math.abs(e.clientY - lastY);
       lastX = e.clientX;
       lastY = e.clientY;

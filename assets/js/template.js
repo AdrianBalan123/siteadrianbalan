@@ -88,7 +88,7 @@ export function layout({ title, description, path = '/', current = '', ogImage =
 <link rel="icon" href="/assets/img/icon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/lora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css">
-<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/main.js" defer blocking="render"></script>
 <script>
 // Intro animations start when the page is actually shown (not while it is prerendered in the background),
 // and Acasă ⇄ Despre navigations get their own "scroll" transitions.
@@ -102,7 +102,10 @@ export function layout({ title, description, path = '/', current = '', ogImage =
     var home = function (p) { return p === '/' || p === '/index.html'; };
     if (!e.viewTransition) return;
     if (home(from) && location.pathname === '/despre.html') e.viewTransition.types.add('to-about');
-    if (from === '/despre.html' && home(location.pathname)) e.viewTransition.types.add('to-landing');
+    if (from === '/despre.html' && home(location.pathname)) {
+      e.viewTransition.types.add('to-landing');
+      d.documentElement.classList.add('no-intro');
+    }
   });
 })(document);
 </script>${head}
@@ -313,7 +316,7 @@ export function aboutPage() {
 <h1>Despre mine</h1>
 <p class="lead">Mă numesc Adrian Bălan și sunt psiholog clinician, dedicat înțelegerii profunde a oamenilor și a modului în care aceștia se raportează la sine, la ceilalți și la lume.</p>
 <p>Lucrez cu adolescenți și adulți care se confruntă cu depresie, anxietate, traume, sexualitate, relaționare și dificultăți de identitate.</p>
-<ul class="tags about-tags"><li>Adolescenți și adulți</li><li>Abordare integrativă</li><li>CBT și psihoterapii experiențiale</li></ul>
+<ul class="tags about-tags"><li>CBT și psihoterapii experiențiale</li><li>Adolescenți și adulți</li><li>Abordare integrativă</li></ul>
 ${contactActions()}
 </div>
 </div>

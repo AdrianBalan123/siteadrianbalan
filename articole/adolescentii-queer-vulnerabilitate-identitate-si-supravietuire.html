@@ -16,7 +16,7 @@
 <link rel="icon" href="/assets/img/icon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/lora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css">
-<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/main.js" defer blocking="render"></script>
 <script>
 // Intro animations start when the page is actually shown (not while it is prerendered in the background),
 // and Acasă ⇄ Despre navigations get their own "scroll" transitions.
@@ -30,7 +30,10 @@
     var home = function (p) { return p === '/' || p === '/index.html'; };
     if (!e.viewTransition) return;
     if (home(from) && location.pathname === '/despre.html') e.viewTransition.types.add('to-about');
-    if (from === '/despre.html' && home(location.pathname)) e.viewTransition.types.add('to-landing');
+    if (from === '/despre.html' && home(location.pathname)) {
+      e.viewTransition.types.add('to-landing');
+      d.documentElement.classList.add('no-intro');
+    }
   });
 })(document);
 </script>

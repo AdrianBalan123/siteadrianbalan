@@ -789,6 +789,11 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
       transform: scale(0.92);
     }
   }
+  /* back from Despre: the landing arrives already in place, the page transition is the only motion */
+  .no-intro .hero-brain,
+  .no-intro .hero-center > * {
+    animation: none;
+  }
 }
 .hero-full .hero-center,
 .hero-full .scroll-cue {
