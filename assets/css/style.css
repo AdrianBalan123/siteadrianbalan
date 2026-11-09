@@ -577,20 +577,22 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   line-height: 1.05;
   letter-spacing: -0.02em;
 }
+/* the title pairs the two fonts: "simptom" in the bold sans, "soluție" in the serif italic, in sage */
 .stage-word {
   white-space: nowrap;
-  font-size: clamp(20px, 4.6vw, 68px);
-  font-weight: 500;
+  font-family: var(--sans);
+  font-size: clamp(18px, 3.6vw, 54px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
 }
-/* the small connecting words sit just above the big ones */
+/* the small connecting words sit just above the big ones, light and quiet */
 .stage-word small {
   display: block;
   margin-bottom: 0.15em;
   font-size: max(0.4em, 15px);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: 0;
-  color: var(--sage-deep);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--muted);
 }
 .stage-left {
   grid-area: left;
@@ -604,10 +606,12 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 }
 /* the highlighted word: italic sage on a soft rose marker stroke */
 .stage-right em {
+  font-family: var(--serif);
+  font-size: 1.25em;
   font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0;
   color: var(--sage-deep);
-  padding-inline: 0.06em;
-  background: linear-gradient(transparent 64%, var(--rose-soft) 64%, var(--rose-soft) 90%, transparent 90%);
 }
 /* interactive brain in the middle: it takes the height the rest of the landing leaves free */
 .hero-brain {
@@ -699,18 +703,22 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 /* phones: a big brain on top, the title under it on one centred line, read as a sentence:
      De la simptom la soluție.          */
 @media (max-width: 560px) {
+  /* the brain spans the whole row; the two halves of the title sit snugly in the middle columns,
+     the outer 1fr columns soak up the brain's extra width so nothing stretches between the words */
   .hero-full .hero-stage {
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr auto auto 1fr;
     grid-template-areas:
-      'brain brain'
-      'left right';
-    justify-content: center;
+      'brain brain brain brain'
+      '. left right .';
     align-items: baseline;
-    column-gap: 0.28em;
+    column-gap: 0;
     row-gap: 2px;
   }
   .hero-full .hero-brain {
     justify-self: center;
+  }
+  .hero-full .stage-right {
+    margin-left: 0.3em;
   }
   .hero-full .stage-left,
   .hero-full .stage-right {
@@ -724,11 +732,11 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
     margin-bottom: 6px;
   }
   .hero-full .stage-word {
-    font-size: clamp(27px, 9.4vw, 40px);
+    font-size: clamp(24px, 8vw, 36px);
   }
   .hero-full .stage-word small {
     display: inline;
-    margin: 0 0.22em 0 0;
+    margin: 0 0.32em 0 0;
     font-size: 0.6em;
   }
 }
