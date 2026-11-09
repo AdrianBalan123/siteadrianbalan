@@ -492,30 +492,48 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   pointer-events: none;
   background: var(--bg);
 }
+/* colour with a job: warm rose glows behind the green things (the brain, "soluție") so they stand out,
+   and the sage tints stay at the edges and corners, where nothing green sits */
 .hero-bg-layer {
   position: absolute;
-  inset: -25%;
+  inset: -12%;
+  /* positions are in the oversized layer: the visible screen spans about 10–90% across and 20–90% down */
   background:
-    radial-gradient(50% 46% at 80% 20%, rgba(123, 158, 137, 0.75) 0%, rgba(123, 158, 137, 0.22) 45%, transparent 72%),
-    radial-gradient(36% 40% at 22% 42%, rgba(123, 158, 137, 0.42) 0%, transparent 70%),
-    radial-gradient(34% 32% at 88% 86%, rgba(95, 129, 112, 0.38) 0%, transparent 70%),
-    radial-gradient(42% 42% at 14% 84%, rgba(221, 165, 165, 0.6) 0%, rgba(221, 165, 165, 0.18) 45%, transparent 72%),
-    linear-gradient(140deg, #cfe0d5 0%, #e9efe9 38%, #f2ebe6 66%, #efdcd8 100%);
+    radial-gradient(22% 26% at 50% 48%, rgba(221, 165, 165, 0.5) 0%, rgba(246, 230, 228, 0.6) 50%, transparent 78%),
+    radial-gradient(13% 15% at 68% 49%, rgba(246, 230, 228, 0.95) 0%, transparent 72%),
+    radial-gradient(26% 32% at 10% 22%, rgba(123, 158, 137, 0.62) 0%, transparent 70%),
+    radial-gradient(22% 28% at 90% 22%, rgba(123, 158, 137, 0.5) 0%, transparent 70%),
+    radial-gradient(24% 28% at 10% 90%, rgba(123, 158, 137, 0.5) 0%, transparent 70%),
+    radial-gradient(22% 26% at 90% 90%, rgba(123, 158, 137, 0.45) 0%, transparent 70%),
+    linear-gradient(180deg, #f3f5f0 0%, var(--bg) 40%, #f8f2ee 100%);
   will-change: transform;
+}
+/* phones: the brain sits near the top, so the rose glow moves up with it; the green stays on the sides */
+@media (max-width: 560px) {
+  .hero-bg-layer {
+    background:
+      radial-gradient(40% 16% at 50% 37%, rgba(221, 165, 165, 0.5) 0%, rgba(246, 230, 228, 0.6) 50%, transparent 78%),
+      radial-gradient(34% 22% at 10% 22%, rgba(123, 158, 137, 0.6) 0%, transparent 70%),
+      radial-gradient(30% 20% at 90% 24%, rgba(123, 158, 137, 0.5) 0%, transparent 70%),
+      radial-gradient(36% 18% at 10% 88%, rgba(123, 158, 137, 0.5) 0%, transparent 70%),
+      radial-gradient(32% 16% at 90% 90%, rgba(123, 158, 137, 0.45) 0%, transparent 70%),
+      linear-gradient(180deg, #f3f5f0 0%, var(--bg) 40%, #f8f2ee 100%);
+  }
 }
 @media (prefers-reduced-motion: no-preference) {
   .hero-bg-layer {
-    animation: hero-bg-drift 26s ease-in-out infinite alternate;
+    animation: hero-bg-drift 22s ease-in-out infinite alternate;
   }
+  /* a slow breathing drift, small enough that the rose stays behind the brain */
   @keyframes hero-bg-drift {
     0% {
-      transform: translate(0, 0) rotate(0deg) scale(1);
+      transform: translate(0, 0) scale(1);
     }
     50% {
-      transform: translate(-4%, 3%) rotate(6deg) scale(1.06);
+      transform: translate(-1.5%, 1%) scale(1.04);
     }
     100% {
-      transform: translate(3%, -2%) rotate(-4deg) scale(1.03);
+      transform: translate(1.5%, -1%) scale(1.02);
     }
   }
 }
