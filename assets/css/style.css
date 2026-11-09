@@ -476,58 +476,42 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 .leaving main {
   animation: vt-up-out 0.38s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
-/* soft organic shapes drifting behind the landing; their box reaches up under the header
-   but stops at the bottom of the screen, so they never make the page scrollable */
-.hero-blobs {
+/* landing background: a soft gradient in the palette (cream, light sage, light rose) that drifts slowly.
+   Its box reaches up under the transparent header but stops at the bottom of the screen, so it never
+   makes the page scrollable. The colours sit on an oversized layer that only moves (transform), so the
+   animation stays cheap: nothing is repainted frame by frame. */
+.hero-bg {
   position: absolute;
   inset: -200px 0 0;
   z-index: 0;
   overflow: clip;
   pointer-events: none;
+  background: var(--bg);
 }
-.hero-blobs .hero-blob-1 {
-  top: 60px;
-}
-/* soft organic shapes drifting behind the landing */
-.hero-blob {
+.hero-bg-layer {
   position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  will-change: transform; /* no blur filter: the soft gradient is enough and stays cheap to animate */
-}
-.hero-blob-1 {
-  top: -140px;
-  right: -100px;
-  width: min(520px, 80vw);
-  aspect-ratio: 1;
-  background: radial-gradient(closest-side, var(--sage-soft) 0%, rgba(231, 239, 233, 0.5) 55%, transparent 100%);
-  border-radius: 50%;
-}
-.hero-blob-2 {
-  bottom: -80px;
-  left: -120px;
-  width: min(480px, 75vw);
-  aspect-ratio: 1;
-  background: radial-gradient(closest-side, var(--rose-soft) 0%, rgba(246, 230, 228, 0.45) 55%, transparent 100%);
-  border-radius: 50%;
+  inset: -25%;
+  background:
+    radial-gradient(44% 40% at 78% 22%, rgba(123, 158, 137, 0.42) 0%, transparent 70%),
+    radial-gradient(40% 40% at 18% 78%, rgba(221, 165, 165, 0.34) 0%, transparent 70%),
+    radial-gradient(34% 30% at 55% 55%, rgba(231, 239, 233, 0.9) 0%, transparent 70%),
+    radial-gradient(30% 34% at 92% 85%, rgba(246, 230, 228, 0.9) 0%, transparent 70%),
+    linear-gradient(150deg, #eef3ef 0%, var(--bg) 45%, #f7ecea 100%);
+  will-change: transform;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .hero-blob-1 {
-    animation: blob-morph 20s ease-in-out infinite alternate;
+  .hero-bg-layer {
+    animation: hero-bg-drift 26s ease-in-out infinite alternate;
   }
-  .hero-blob-2 {
-    animation: blob-morph 24s ease-in-out infinite alternate-reverse;
-  }
-  /* drift and gently squash: transform only, so it stays on the GPU */
-  @keyframes blob-morph {
+  @keyframes hero-bg-drift {
     0% {
-      transform: translate(0, 0) scale(1, 1) rotate(0deg);
+      transform: translate(0, 0) rotate(0deg) scale(1);
     }
     50% {
-      transform: translate(20px, 30px) scale(1.08, 0.94) rotate(8deg);
+      transform: translate(-4%, 3%) rotate(6deg) scale(1.06);
     }
     100% {
-      transform: translate(-10px, -20px) scale(0.95, 1.06) rotate(-6deg);
+      transform: translate(3%, -2%) rotate(-4deg) scale(1.03);
     }
   }
 }
@@ -575,30 +559,7 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 .stage-right em {
   font-style: normal;
   font-weight: 700;
-  color: var(--sage-deep); /* fallback where text gradients are not supported */
-}
-/* "soluție." in a gradient from the palette: deep sage → sage → deep rose, drifting slowly */
-@supports ((-webkit-background-clip: text) or (background-clip: text)) {
-  .stage-right em {
-    background: linear-gradient(100deg, var(--sage-deep) 0%, var(--sage) 35%, #b9757a 70%, var(--sage-deep) 100%);
-    background-size: 220% 100%;
-    background-position: 0% 50%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    padding-right: 0.04em; /* the clip would shave the last letter's edge */
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .stage-right em {
-      animation: solutie-drift 9s ease-in-out infinite alternate;
-    }
-    @keyframes solutie-drift {
-      to {
-        background-position: 100% 50%;
-      }
-    }
-  }
+  color: var(--sage-deep);
 }
 /* interactive brain in the middle: it takes the height the rest of the landing leaves free */
 .hero-brain {

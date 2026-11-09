@@ -252,13 +252,13 @@ const reviews = () =>
 // Prima pagină: doar hero-ul, pe tot ecranul. Scroll în jos (sau săgeata) duce la Despre.
 export function homePage() {
   const body = `<section class="hero hero-full" data-next="/despre.html">
-<div class="hero-blobs" aria-hidden="true"><div class="hero-blob hero-blob-1"></div><div class="hero-blob hero-blob-2"></div></div>
+<div class="hero-bg" aria-hidden="true"><div class="hero-bg-layer"></div></div>
 <div class="wrap hero-center">
 <h1 class="sr-only">De la simptom la soluție. Psihologie clinică explicată pe înțelesul tău.</h1>
 <div class="hero-stage" aria-hidden="true">
 <span class="stage-word stage-left"><small>De la</small>simptom</span>
 <canvas class="hero-brain"></canvas>
-<span class="stage-word stage-right"><small>la</small><em>soluție.</em></span>
+<span class="stage-word stage-right"><small>la</small><em>soluție</em>.</span>
 </div>
 <div class="hero-copy">
 <p class="hero-sub" aria-hidden="true">Psihologie clinică explicată pe înțelesul tău.</p>
