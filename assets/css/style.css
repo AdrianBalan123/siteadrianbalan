@@ -182,6 +182,16 @@ p {
   padding: 0 16px;
   font-size: 14px;
 }
+/* header button: a small arrow that nudges forward on hover */
+.btn-arrow svg {
+  width: 16px;
+  height: 16px;
+  margin-right: -2px;
+  transition: transform 0.2s ease;
+}
+.btn-arrow:hover svg {
+  transform: translateX(3px);
+}
 
 /* ---------- header ---------- */
 .site-header {

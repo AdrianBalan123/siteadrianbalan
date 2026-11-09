@@ -116,7 +116,7 @@ export function layout({ title, description, path = '/', current = '', ogImage =
 <div class="wrap header-inner">
 ${logo()}
 <nav class="nav" id="main-nav" aria-label="Navigare principală">${nav}<a class="nav-call" href="${BOOK}">Programează o ședință</a></nav>
-<div class="header-cta"><a class="btn btn-primary btn-sm" href="${BOOK}">Programează o ședință</a><button class="menu-btn" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Deschide meniul"><span class="i-open">${icon('menu')}</span><span class="i-close" hidden>${icon('close')}</span></button></div>
+<div class="header-cta"><a class="btn btn-primary btn-sm btn-arrow" href="${BOOK}">Programează o ședință ${icon('arrow')}</a><button class="menu-btn" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Deschide meniul"><span class="i-open">${icon('menu')}</span><span class="i-close" hidden>${icon('close')}</span></button></div>
 </div>
 </header>
 <main id="continut">
