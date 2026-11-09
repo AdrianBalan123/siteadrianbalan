@@ -665,7 +665,7 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
     font-size: 13.5px;
   }
   .hero-full ul.topics-line {
-    font-size: 13px;
+    font-size: 13.5px;
   }
 }
 /* landing: the paragraph and the two buttons share one width; both buttons the same size */
@@ -785,6 +785,17 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   }
   .hero-full .topics-line {
     margin-top: clamp(14px, 2.8vh, 30px);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+}
+/* narrow phones: a touch smaller and closer together so the topics still sit on two lines */
+@media (max-width: 400px) {
+  .hero-full .topics-line {
+    font-size: 15px;
+  }
+  .hero-full .topics-line li {
+    margin-inline: 0.32em;
   }
 }
 /* small, short phones: tighter text so the whole landing still fits one screen */
