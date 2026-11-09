@@ -1669,8 +1669,12 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 .about-photo .arch {
   max-width: 420px;
 }
+/* the intro is centred in its column: title, text, quote and buttons */
 .about-intro {
   max-width: var(--measure);
+  margin-inline: auto;
+  text-align: center;
+  text-wrap: balance;
 }
 .about-intro h1 {
   margin-top: 0;
@@ -1690,15 +1694,14 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 /* the belief, as a small sage card with the rose quote badge on its left edge */
 .about-quote {
   position: relative;
-  margin: 22px 0 0 26px;
-  padding: 18px 22px 18px 40px;
+  margin: 34px 0 0;
+  padding: 30px 26px 18px;
   background: var(--sage-soft);
   border: 1px solid var(--sage);
   border-radius: var(--r-md);
 }
+/* the badge sits centred on the card's top edge */
 .about-quote .quote-icon {
-  top: 50%;
-  left: 0;
   width: 46px;
   height: 46px;
   /* green here, to match the quote (the reviews keep the rose badge) */
@@ -1717,7 +1720,7 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   font-size: clamp(18px, 1.7vw, 21px);
   line-height: 1.5;
   color: var(--sage-deep);
-  text-wrap: pretty;
+  text-wrap: balance; /* centred lines of similar length, no word left alone */
 }
 /* the three labels sit on the photo's bottom edge, half on it and half below */
 .about-photo {
@@ -1745,7 +1748,7 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 }
 .about-intro .hero-actions {
   margin-top: 24px;
-  justify-content: flex-start;
+  justify-content: center;
 }
 /* laptops and desktops: photo, intro and quote fit the first screen, close under the header;
    the photo is sized by the screen's height */
@@ -1769,8 +1772,8 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
     font-size: 19px;
   }
   .about-quote {
-    margin-top: 16px;
-    padding-block: 14px;
+    margin-top: 30px;
+    padding-block: 26px 14px;
   }
   .about-quote blockquote {
     font-size: 18px;
