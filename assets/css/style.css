@@ -1450,6 +1450,42 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   padding-top: 26px;
   border-top: 1px solid var(--line);
 }
+/* the small copy next to the reading time: icons only, after a thin divider */
+.article-meta .share-top {
+  margin: 0;
+  padding: 0 0 0 22px;
+  border: 0;
+  border-left: 1px solid var(--line);
+  gap: 0;
+}
+/* very narrow phones: the icons drop to their own line, so no divider in front of them */
+@media (max-width: 380px) {
+  .article-meta .share-top {
+    flex-basis: 100%;
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+/* the "Link copiat" bubble opens to the left so it never leaves the screen */
+.share-top [data-share='copy'] .share-copied {
+  left: auto;
+  right: 0;
+  translate: 0 4px;
+}
+.share-top [data-share='copy'].is-copied .share-copied {
+  translate: 0 0;
+}
+.share-top .share-btns {
+  gap: 8px;
+}
+.share-top .share-btn {
+  width: 36px;
+  height: 36px;
+}
+.share-top .share-btn svg {
+  width: 16px;
+  height: 16px;
+}
 .share-label {
   font-family: var(--serif);
   font-size: 18px;

@@ -189,12 +189,13 @@ export function sitemap(list) {
 }
 
 /* ---------- full pages ---------- */
-// Distribuie articolul: WhatsApp, Facebook, copiere link (main.js pune adresa paginii curente)
-const shareBar = (a) => {
+// Distribuie articolul: WhatsApp, Facebook, copiere link (main.js pune adresa paginii curente).
+// `top`: varianta mică din dreptul autorului, fără eticheta „Distribuie articolul”
+const shareBar = (a, top = false) => {
   const url = `${SITE.url}/articole/${a.slug}.html`;
   const u = encodeURIComponent(url);
-  return `<div class="share" data-share-title="${esc(a.title)}">
-<span class="share-label">Distribuie articolul</span>
+  return `<div class="share${top ? ' share-top' : ''}" data-share-title="${esc(a.title)}">
+${top ? '' : '<span class="share-label">Distribuie articolul</span>'}
 <div class="share-btns">
 <a class="share-btn" data-share="whatsapp" href="https://wa.me/?text=${encodeURIComponent(`${a.title} ${url}`)}" target="_blank" rel="noopener noreferrer" aria-label="Distribuie pe WhatsApp">${icon('whatsapp')}</a>
 <a class="share-btn" data-share="facebook" href="https://www.facebook.com/sharer/sharer.php?u=${u}" target="_blank" rel="noopener noreferrer" aria-label="Distribuie pe Facebook">${icon('facebook')}</a>
@@ -209,7 +210,7 @@ export function articlePage(a, content) {
 <header class="article-head">
 <a href="/articole.html" class="back">Înapoi la articole</a>
 <h1>${esc(a.title)}</h1>
-<p class="article-meta"><span class="article-author">${archMark()} Adrian Bălan</span><span class="article-time">${icon('book')} ${Number(a.readingMinutes) || 1} min</span></p>
+<div class="article-meta"><span class="article-author">${archMark()} Adrian Bălan</span><span class="article-time">${icon('book')} ${Number(a.readingMinutes) || 1} min</span>${shareBar(a, true)}</div>
 </header>
 ${a.thumbnail ? `<div class="article-cover"><img src="${esc(a.thumbnail)}" alt="" fetchpriority="high"></div>` : ''}
 <div class="prose">

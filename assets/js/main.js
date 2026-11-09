@@ -126,8 +126,7 @@
   }
 
   // Distribuie articolul: linkurile folosesc adresa reală a paginii, „copiază” pune linkul în clipboard
-  var share = document.querySelector('.share');
-  if (share) {
+  document.querySelectorAll('.share').forEach(function (share) {
     var here = location.origin + location.pathname;
     var shareTitle = share.getAttribute('data-share-title');
     share.querySelector('[data-share="whatsapp"]').href = 'https://wa.me/?text=' + encodeURIComponent(shareTitle + ' ' + here);
@@ -156,7 +155,7 @@
         t.remove();
       }
     });
-  }
+  });
 
   // Programare: compune mesajul din câmpuri și îl deschide în WhatsApp
   var form = document.getElementById('programare');
