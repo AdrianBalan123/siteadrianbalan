@@ -124,10 +124,10 @@ ${body}
 </main>
 ${footer ? `<footer class="site-footer">
 <div class="wrap">
-<div class="footer-grid">
-<div class="footer-brand">${logo()}<p>Terapie, evaluare psihologică și suport emoțional pentru adolescenți și adulți, în Timișoara.</p></div>
-<nav aria-label="Navigare în subsol"><h3>Navigare</h3><ul class="footer-pages">${NAV.map((n) => `<li><a href="${n.href}">${esc(n.label)}</a></li>`).join('')}</ul></nav>
-<div><h3>Contact</h3><ul class="footer-contact"><li><a href="tel:${SITE.phoneTel}">${icon('phone')} ${esc(SITE.phoneDisplay)}</a></li><li><a href="${SITE.whatsapp}" target="_blank" rel="noopener noreferrer">${icon('whatsapp')} Scrie pe WhatsApp</a></li><li><a href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(SITE.mapsQuery)}" target="_blank" rel="noopener noreferrer">${icon('pin')} ${esc(SITE.address)}</a></li></ul></div>
+<div class="footer-main">
+${logo()}
+<nav aria-label="Navigare în subsol"><ul class="footer-pages">${NAV.map((n) => `<li><a href="${n.href}">${esc(n.label)}</a></li>`).join('')}</ul></nav>
+<ul class="footer-contact" aria-label="Contact"><li><a href="tel:${SITE.phoneTel}">${icon('phone')} ${esc(SITE.phoneDisplay)}</a></li><li><a href="${SITE.whatsapp}" target="_blank" rel="noopener noreferrer">${icon('whatsapp')} Scrie pe WhatsApp</a></li><li><a href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(SITE.mapsQuery)}" target="_blank" rel="noopener noreferrer">${icon('pin')} ${esc(SITE.address)}</a></li></ul>
 </div>
 <div class="footer-bottom"><span>© ${new Date().getFullYear()} Adrian Bălan, psiholog clinician</span><span>Pentru urgențe medicale sau psihiatrice, sună la 112.</span></div>
 </div>
