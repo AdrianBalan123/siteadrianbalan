@@ -1812,6 +1812,40 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
     margin-inline: auto;
   }
 }
+/* Despre on phones and narrow tablets: the whole page is centred, section by section */
+@media (max-width: 860px) {
+  .about-how-text,
+  .about-essence {
+    text-align: center;
+    text-wrap: balance;
+  }
+  .values .value {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+  }
+  .quote-carousel .section-head {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-wrap: balance;
+  }
+  .quote-carousel .trust-note {
+    justify-content: center;
+  }
+  main:has(.about-hero) .cta-box {
+    justify-items: center;
+    text-align: center;
+  }
+  main:has(.about-hero) .cta-box p {
+    margin-inline: auto;
+    text-wrap: balance;
+  }
+  main:has(.about-hero) .cta-actions {
+    justify-content: center;
+  }
+}
 @media (prefers-reduced-motion: no-preference) {
   .revealed .about-photo .arch {
     animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s both;
