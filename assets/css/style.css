@@ -51,6 +51,15 @@ html {
 body {
   margin: 0;
   background: var(--bg);
+  /* every page except the landing (which has its own moving gradient): the same mood at the top,
+     sage in the corners and a faint rose glow, fading into the plain cream where the reading starts */
+  background-image:
+    radial-gradient(38% 52% at 0% 0%, rgba(123, 158, 137, 0.42) 0%, transparent 70%),
+    radial-gradient(34% 46% at 100% 4%, rgba(123, 158, 137, 0.34) 0%, transparent 70%),
+    radial-gradient(30% 34% at 62% 20%, rgba(221, 165, 165, 0.26) 0%, transparent 72%),
+    linear-gradient(180deg, #f1f4ef 0%, var(--bg) 100%);
+  background-size: 100% 760px;
+  background-repeat: no-repeat;
   color: var(--ink);
   font-family: var(--sans);
   font-size: 17px;
@@ -179,8 +188,19 @@ p {
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s, background-color 0.2s;
 }
-/* landing only: transparent at the top so the background shapes show through, frosted once you scroll */
-body:has(.hero-full) .site-header:not([data-scrolled='true']):not([data-open='true']) {
+/* narrow screens: the same top gradient, with wider shapes so the rose reads as a glow, not a streak */
+@media (max-width: 560px) {
+  body {
+    background-image:
+      radial-gradient(70% 40% at 0% 0%, rgba(123, 158, 137, 0.42) 0%, transparent 70%),
+      radial-gradient(60% 34% at 100% 4%, rgba(123, 158, 137, 0.34) 0%, transparent 70%),
+      radial-gradient(70% 28% at 65% 22%, rgba(221, 165, 165, 0.24) 0%, transparent 72%),
+      linear-gradient(180deg, #f1f4ef 0%, var(--bg) 100%);
+    background-size: 100% 680px;
+  }
+}
+/* transparent at the top so the background gradient shows through, frosted once you scroll */
+.site-header:not([data-scrolled='true']):not([data-open='true']) {
   background: transparent;
   backdrop-filter: none;
 }
