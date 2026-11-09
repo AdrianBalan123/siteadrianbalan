@@ -100,7 +100,8 @@
   var followX = 0, followY = 0; // turn toward the mouse
   var t = 0, dragging = false, lastX = 0, lastY = 0, raf = 0, visible = true;
   var mouse = { x: -9999, y: -9999, on: false };
-  var LENS = 90; // magnifier radius in px
+  var LENS = 70; // reach of the pointer effect, px
+  var HOLE = 22; // clear circle around the pointer, px
 
   // impulses travelling along links
   var pulses = [];
@@ -138,8 +139,11 @@
         if (md < LENS) {
           lens = 1 - md / LENS;
           lens *= lens;
-          px += mdx * lens * 0.35;
-          py += mdy * lens * 0.35;
+          // push points out of a small clear circle, squeezing them softly toward its rim
+          var nd = HOLE + md * (LENS - HOLE) / LENS;
+          var f = md > 0.01 ? nd / md : 0;
+          px = mouse.x + mdx * f;
+          py = mouse.y + mdy * f;
         }
       }
       var p = proj[i] || (proj[i] = {});
@@ -150,7 +154,14 @@
     var near = new Path2D(), mid = new Path2D(), far = new Path2D(), hot = new Path2D();
     for (var e = 0; e < edges.length; e++) {
       var A = proj[edges[e][0]], B = proj[edges[e][1]];
-      var path = A.lens > 0.15 || B.lens > 0.15 ? hot : (A.z + B.z) / 2 < -0.3 ? near : (A.z + B.z) / 2 < 0.3 ? mid : far;
+      // keep the clear circle clear: skip links that would cross it
+      if (mouse.on && (A.lens > 0 || B.lens > 0)) {
+        var sx = B.x - A.x, sy = B.y - A.y, sl = sx * sx + sy * sy || 1;
+        var u = Math.max(0, Math.min(1, ((mouse.x - A.x) * sx + (mouse.y - A.y) * sy) / sl));
+        var qx = A.x + sx * u - mouse.x, qy = A.y + sy * u - mouse.y;
+        if (qx * qx + qy * qy < (HOLE - 3) * (HOLE - 3)) continue;
+      }
+      var path = A.lens > 0.3 && B.lens > 0.3 ? hot : (A.z + B.z) / 2 < -0.3 ? near : (A.z + B.z) / 2 < 0.3 ? mid : far;
       path.moveTo(A.x, A.y);
       path.lineTo(B.x, B.y);
     }
@@ -162,7 +173,7 @@
     ctx.lineWidth = 1.5;
     ctx.strokeStyle = 'rgba(' + SAGE + ', 0.40)'; ctx.stroke(near);
     ctx.lineWidth = 1.8;
-    ctx.strokeStyle = 'rgba(' + ROSE_DEEP + ', 0.6)'; ctx.stroke(hot);
+    ctx.strokeStyle = 'rgba(' + ROSE_DEEP + ', 0.45)'; ctx.stroke(hot);
 
     // points, batched by colour and depth (4 levels, far first); lens points drawn on top
     var buckets = [[], [], [], [], [], [], [], []]; // [sage x4 depths, rose x4 depths]
@@ -184,8 +195,16 @@
       ctx.fillStyle = 'rgba(' + (rose ? ROSE : SAGE) + ',' + (0.3 + level * 0.18).toFixed(2) + ')';
       ctx.fill(dots);
     }
+    // faint ring marking the clear circle
+    if (mouse.on) {
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(' + SAGE + ', 0.28)';
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, HOLE - 4, 0, Math.PI * 2);
+      ctx.stroke();
+    }
     lensPts.forEach(function (P) {
-      var r = (nodes[P.i].blush ? 1.9 : 1.5) * (1 + P.lens * 1.8);
+      var r = (nodes[P.i].blush ? 1.9 : 1.5) * (1 + P.lens * 0.8);
       ctx.fillStyle = 'rgba(' + (nodes[P.i].blush || P.lens > 0.4 ? ROSE_DEEP : SAGE) + ',' + (0.6 + P.lens * 0.4).toFixed(2) + ')';
       ctx.beginPath();
       ctx.arc(P.x, P.y, r, 0, Math.PI * 2);

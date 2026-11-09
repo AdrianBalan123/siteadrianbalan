@@ -152,6 +152,25 @@
     });
   }
 
+  // Prima pagină: butoanele au exact lățimea celui mai lung rând din paragraful de deasupra
+  var lead = document.querySelector('.hero-full .hero-lead');
+  var actions = document.querySelector('.hero-full .hero-actions');
+  if (lead && actions && document.createRange) {
+    var fit = function () {
+      actions.style.width = '';
+      var range = document.createRange();
+      range.selectNodeContents(lead);
+      var rects = Array.prototype.slice.call(range.getClientRects());
+      if (!rects.length) return;
+      var left = Math.min.apply(null, rects.map(function (r) { return r.left; }));
+      var right = Math.max.apply(null, rects.map(function (r) { return r.right; }));
+      actions.style.width = Math.ceil(right - left) + 'px';
+    };
+    fit();
+    window.addEventListener('resize', fit);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  }
+
   // Prima pagină: primul scroll în jos (rotiță sau swipe) duce la pagina Despre
   var heroFull = document.querySelector('.hero-full');
   if (heroFull) {
