@@ -1639,13 +1639,14 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 }
 
 /* ---------- about ---------- */
+/* the first screen of Despre: photo, intro and the "Cred cu tărie" quote, all in one view on laptops and desktops */
 .about-hero {
-  padding-block: clamp(40px, 6vw, 80px) clamp(48px, 7vw, 88px);
+  padding-block: clamp(20px, 3.5vh, 44px) clamp(40px, 6vw, 72px);
 }
 .about-hero-grid {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: clamp(32px, 6vw, 88px);
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(32px, 5vw, 80px);
   align-items: center;
 }
 .about-photo .arch {
@@ -1655,30 +1656,118 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   max-width: var(--measure);
 }
 .about-intro h1 {
-  margin-top: 20px;
-  font-size: clamp(38px, 5.4vw, 60px);
+  margin-top: 16px;
+  font-size: clamp(38px, 5vw, 56px);
   letter-spacing: -0.02em;
 }
 .lead {
-  margin-top: 18px;
+  margin-top: 14px;
   font-family: var(--serif);
-  font-size: clamp(20px, 2.2vw, 24px);
+  font-size: clamp(19px, 2vw, 22px);
   line-height: 1.5;
 }
 .about-intro > p:not(.pill):not(.lead) {
   margin-top: 16px;
   color: var(--muted);
 }
-.about-intro .about-tags {
-  margin-top: 22px;
-}
-.about-intro .about-tags li {
+/* the belief, as a small sage card with the rose quote badge on its left edge */
+.about-quote {
+  position: relative;
+  margin: 22px 0 0 26px;
+  padding: 18px 22px 18px 40px;
   background: var(--sage-soft);
+  border: 1px solid var(--sage);
+  border-radius: var(--r-md);
+}
+.about-quote .quote-icon {
+  top: 50%;
+  left: 0;
+  width: 46px;
+  height: 46px;
+}
+.about-quote .quote-icon svg {
+  width: 18px;
+  height: 18px;
+}
+.about-quote blockquote {
+  margin: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 1.7vw, 21px);
+  line-height: 1.45;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+.about-quote p {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.55;
   color: var(--sage-deep);
 }
+/* the three labels sit on the photo's bottom edge, half on it and half below */
+.about-photo {
+  position: relative;
+  padding-bottom: 34px; /* room for the lower half of the labels */
+}
+.about-photo .about-tags {
+  position: absolute;
+  left: 50%;
+  bottom: 34px;
+  translate: -50% 50%;
+  width: max-content;
+  max-width: min(100%, 380px);
+  justify-content: center;
+  gap: 8px;
+  z-index: 1;
+}
+.about-photo .about-tags li {
+  padding: 7px 14px;
+  background: var(--card);
+  color: var(--sage-deep);
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 22px -10px rgba(45, 55, 72, 0.28);
+  font-size: 14px;
+}
 .about-intro .hero-actions {
-  margin-top: 28px;
+  margin-top: 24px;
   justify-content: flex-start;
+}
+/* laptops and desktops: photo, intro and quote fit the first screen, close under the header;
+   the photo is sized by the screen's height */
+@media (min-width: 861px) {
+  .about-hero {
+    padding-top: clamp(16px, 3vh, 36px);
+  }
+  .about-photo .arch {
+    width: min(420px, calc((100svh - 63px - 100px) * 0.8));
+    max-width: 100%;
+    margin-inline: auto;
+  }
+}
+/* short laptop screens: everything a step tighter */
+@media (min-width: 861px) and (max-height: 860px) {
+  .about-intro h1 {
+    margin-top: 12px;
+    font-size: clamp(36px, 4.2vw, 46px);
+  }
+  .lead {
+    margin-top: 10px;
+    font-size: 19px;
+  }
+  .about-quote {
+    margin-top: 16px;
+    padding-block: 14px;
+  }
+  .about-quote blockquote {
+    font-size: 18px;
+  }
+  .about-intro > p:not(.pill):not(.lead) {
+    margin-top: 12px;
+    font-size: 16px;
+  }
+  .about-intro .hero-actions {
+    margin-top: 18px;
+  }
 }
 @media (max-width: 860px) {
   .about-hero-grid {
@@ -1686,12 +1775,19 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   }
   .about-photo .arch {
     max-width: 280px;
+    margin-inline: auto;
   }
 }
 @media (prefers-reduced-motion: no-preference) {
   .revealed .about-photo .arch {
     animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s both;
   }
+  /* the labels settle onto the photo once it has risen */
+  .revealed .about-photo .about-tags li {
+    animation: fade-up 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.75s both;
+  }
+  .revealed .about-photo .about-tags li:nth-child(2) { animation-delay: 0.85s; }
+  .revealed .about-photo .about-tags li:nth-child(3) { animation-delay: 0.95s; }
   .revealed .about-intro > * {
     animation: fade-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   }
@@ -1700,6 +1796,7 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   .about-intro > :nth-child(4) { animation-delay: 0.24s; }
   .about-intro > :nth-child(5) { animation-delay: 0.32s; }
   .about-intro > :nth-child(6) { animation-delay: 0.4s; }
+  .about-intro > :nth-child(7) { animation-delay: 0.48s; }
   @keyframes rise {
     from {
       clip-path: inset(100% 0 0 0 round 999px 999px 16px 16px);
@@ -1708,26 +1805,6 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
       clip-path: inset(0 0 0 0 round 999px 999px 16px 16px);
     }
   }
-}
-
-.about-belief .quote-card {
-  margin-top: 26px;
-  text-align: center;
-}
-.about-belief blockquote {
-  margin: 0 auto;
-  max-width: 30ch;
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: clamp(21px, 2.5vw, 27px);
-  line-height: 1.45;
-  text-wrap: balance;
-}
-.about-belief-note {
-  max-width: 46ch;
-  margin: 22px auto 0;
-  text-align: center;
-  color: var(--muted);
 }
 
 .about-how-grid {

@@ -310,21 +310,15 @@ export function aboutPage() {
   ];
   const body = `<section class="about-hero">
 <div class="wrap about-hero-grid">
-<div class="about-photo"><div class="arch"><img src="/assets/img/adrian-balan.jpg" alt="Adrian Bălan" width="880" height="890" fetchpriority="high"></div></div>
+<div class="about-photo"><div class="arch"><img src="/assets/img/adrian-balan.jpg" alt="Adrian Bălan" width="880" height="890" fetchpriority="high"></div><ul class="tags about-tags"><li>CBT și psihoterapii experiențiale</li><li>Adolescenți și adulți</li><li>Abordare integrativă</li></ul></div>
 <div class="about-intro">
 <p class="pill">${icon('pin')} Psiholog clinician în Timișoara</p>
 <h1>Despre mine</h1>
 <p class="lead">Mă numesc Adrian Bălan și sunt psiholog clinician, dedicat înțelegerii profunde a oamenilor și a modului în care aceștia se raportează la sine, la ceilalți și la lume.</p>
+<figure class="about-quote"><span class="quote-icon">${icon('quote')}</span><blockquote>${esc(QUOTE)}</blockquote><p>Rolul meu este să creez cadrul sigur, conținător și empatic în care aceste procese pot avea loc.</p></figure>
 <p>Lucrez cu adolescenți și adulți care se confruntă cu depresie, anxietate, traume, sexualitate, relaționare și dificultăți de identitate.</p>
-<ul class="tags about-tags"><li>CBT și psihoterapii experiențiale</li><li>Adolescenți și adulți</li><li>Abordare integrativă</li></ul>
 ${contactActions()}
 </div>
-</div>
-</section>
-<section class="about-belief" aria-label="Ce cred">
-<div class="wrap">
-<figure class="quote-card"><span class="quote-icon">${icon('quote')}</span><blockquote>${esc(QUOTE)}</blockquote></figure>
-<p class="about-belief-note">Rolul meu este să creez cadrul sigur, conținător și empatic în care aceste procese pot avea loc.</p>
 </div>
 </section>
 <section class="section about-how" aria-labelledby="cum-lucrez">
