@@ -196,12 +196,33 @@ async function loadArticles() {
   articles = JSON.parse(await readText('data/articole.json'));
 }
 
+// the list shows LIST_PER_PAGE articles at a time; the search filters by title
+const LIST_PER_PAGE = 20;
+let listPage = 1;
+let listQuery = '';
+const fold = (s) => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+const debounce = (fn, ms) => {
+  let t;
+  return (...args) => {
+    clearTimeout(t);
+    t = setTimeout(() => fn(...args), ms);
+  };
+};
+
 function renderList() {
   const pub = articles.filter((a) => a.published !== false).length;
   $('#list-count').textContent = `${articles.length} articole, dintre care ${pub} publicate.`;
-  $('#list').innerHTML = articles
+  // keep each article's real index: the buttons act on articles[i]
+  const hits = articles.map((a, i) => [a, i]).filter(([a]) => !listQuery || fold(a.title).includes(fold(listQuery)));
+  const pages = Math.max(1, Math.ceil(hits.length / LIST_PER_PAGE));
+  listPage = Math.min(listPage, pages);
+  const pager = $('#list-pager');
+  pager.hidden = pages < 2;
+  pager.innerHTML = Array.from({ length: pages }, (_, k) => `<button type="button" class="page-num" data-p="${k + 1}"${k + 1 === listPage ? ' aria-current="page"' : ''} aria-label="Pagina ${k + 1}">${k + 1}</button>`).join('');
+  $('#list').innerHTML = hits
+    .slice((listPage - 1) * LIST_PER_PAGE, listPage * LIST_PER_PAGE)
     .map(
-      (a, i) => `<li>
+      ([a, i]) => `<li>
   <div class="admin-thumb">${T.thumb(a.thumbnail)}</div>
   <div class="admin-info">
     <a class="admin-title" href="#editeaza/${T.esc(a.slug)}">${T.esc(a.title)}</a>
@@ -440,6 +461,22 @@ document.addEventListener('DOMContentLoaded', () => {
     cfg = { repo: cfg.repo, branch: cfg.branch };
     location.hash = '';
     show('login');
+  });
+
+  $('#list-search').addEventListener(
+    'input',
+    debounce((e) => {
+      listQuery = e.target.value.trim();
+      listPage = 1;
+      renderList();
+    }, 180)
+  );
+  $('#list-pager').addEventListener('click', (e) => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    listPage = Number(b.dataset.p);
+    renderList();
+    $('#view-list').scrollIntoView({ behavior: 'smooth' });
   });
 
   $('#list').addEventListener('click', (e) => {

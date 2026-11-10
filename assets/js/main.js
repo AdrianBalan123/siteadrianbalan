@@ -1,4 +1,14 @@
 (function () {
+  // run `fn` only once the calls stop for `ms` (typing, resizing)
+  var debounce = function (fn, ms) {
+    var t;
+    return function () {
+      var args = arguments, self = this;
+      clearTimeout(t);
+      t = setTimeout(function () { fn.apply(self, args); }, ms);
+    };
+  };
+
   var header = document.querySelector('.site-header');
   if (header) {
     var btn = header.querySelector('.menu-btn');
@@ -118,10 +128,10 @@
         apply();
       });
     });
-    search.addEventListener('input', function () {
+    search.addEventListener('input', debounce(function () {
       page = 1;
       apply();
-    });
+    }, 180));
     apply();
   }
 
@@ -213,7 +223,7 @@
       actions.style.width = Math.ceil(right - left) + 'px';
     };
     fit();
-    window.addEventListener('resize', fit);
+    window.addEventListener('resize', debounce(fit, 120));
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
   }
 
@@ -339,7 +349,7 @@
     };
     controls.hidden = false;
     fit();
-    window.addEventListener('resize', fit);
+    window.addEventListener('resize', debounce(fit, 120));
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
 
     // Schimbare automată la 7 s; se oprește cât timp mouse-ul/focusul e pe carusel,

@@ -244,7 +244,12 @@
 
   size();
   start();
-  window.addEventListener('resize', function () { size(); if (still) draw(); });
+  // resize once the window has settled, not on every frame of the drag
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () { size(); if (still) draw(); }, 120);
+  });
   document.addEventListener('visibilitychange', start);
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (en) {

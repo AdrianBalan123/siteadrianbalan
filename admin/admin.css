@@ -358,3 +358,9 @@
   opacity: 0.6;
   cursor: progress;
 }
+
+/* search above the article list */
+.admin-search {
+  max-width: 420px;
+  margin-bottom: 14px;
+}
