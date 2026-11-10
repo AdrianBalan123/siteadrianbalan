@@ -81,9 +81,19 @@ export const contactActions = (cls = 'hero-actions') =>
 export const ctaBox = () =>
   `<aside class="cta-box"><div><h2>Vrei să vorbim?</h2><p>Pentru o discuție preliminară sau o programare, lasă-mi un mesaj sau sună-mă la ${esc(SITE.phoneDisplay)}.</p></div>${contactActions('cta-actions')}</aside>`;
 
+// Images go through Vercel's image CDN: it serves WebP/AVIF at the width each screen needs.
+// If that fails (local preview, limits reached), the browser drops srcset and loads the original.
+const IMG_WIDTHS = [384, 640, 828, 1200, 1600];
+export const cdnImg = (src, { sizes = '100vw', alt = '', eager = false, attrs = '' } = {}) => {
+  const ok = /^\/(uploads|assets\/img)\//.test(src) && !src.endsWith('.svg');
+  const set = ok ? ` srcset="${IMG_WIDTHS.map((w) => `/_vercel/image?url=${encodeURIComponent(src)}&amp;w=${w}&amp;q=75 ${w}w`).join(', ')}" sizes="${sizes}" onerror="this.onerror=null;this.removeAttribute('srcset')"` : '';
+  const load = eager ? ' fetchpriority="high"' : ' loading="lazy"';
+  return `<img src="${esc(src)}"${set} alt="${esc(alt)}"${load} decoding="async"${attrs}>`;
+};
+
 export function thumb(src) {
   return src
-    ? `<img src="${esc(src)}" alt="" loading="lazy" decoding="async">`
+    ? cdnImg(src, { sizes: '(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 620px' })
     : `<div class="thumb-fallback">${archMark()}</div>`;
 }
 
@@ -245,9 +255,9 @@ export function articlePage(a, content) {
 <h1>${esc(a.title)}</h1>
 <div class="article-meta"><span class="article-author">${archMark()} Adrian Bălan</span><span class="article-time">${icon('book')} ${Number(a.readingMinutes) || 1} min</span>${shareBar(a, true)}</div>
 </header>
-${a.thumbnail ? `<div class="article-cover"><img src="${esc(a.thumbnail)}" alt="" fetchpriority="high"></div>` : ''}
+${a.thumbnail ? `<div class="article-cover">${cdnImg(a.thumbnail, { sizes: '(max-width: 1060px) 100vw, 1000px', eager: true })}</div>` : ''}
 <div class="prose">
-${content}
+${content.replace(/<img (?![^>]*loading=)/g, '<img loading="lazy" decoding="async" ')}
 </div>
 ${shareBar(a)}
 <div style="max-width:1000px">${ctaBox()}</div>
@@ -341,7 +351,7 @@ export function aboutPage() {
   ];
   const body = `<section class="about-hero">
 <div class="wrap about-hero-grid">
-<div class="about-photo"><div class="arch"><img src="/assets/img/adrian-balan.jpg" alt="Adrian Bălan" width="880" height="890" fetchpriority="high"></div><ul class="tags about-tags"><li>CBT și psihoterapii experiențiale</li><li>Adolescenți și adulți</li><li>Abordare integrativă</li></ul></div>
+<div class="about-photo"><div class="arch">${cdnImg('/assets/img/adrian-balan.jpg', { sizes: '(max-width: 860px) 280px, 420px', alt: 'Adrian Bălan', eager: true, attrs: ' width="880" height="890"' })}</div><ul class="tags about-tags"><li>CBT și psihoterapii experiențiale</li><li>Adolescenți și adulți</li><li>Abordare integrativă</li></ul></div>
 <div class="about-intro">
 <h1>Despre mine</h1>
 <p class="lead">Mă numesc Adrian Bălan și sunt psiholog clinician, dedicat înțelegerii profunde a oamenilor și a modului în care aceștia se raportează la sine, la ceilalți și la lume.</p>
