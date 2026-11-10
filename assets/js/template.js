@@ -364,7 +364,7 @@ ${reviews()}
 }
 
 export function servicesPage() {
-  // each service is a closed card (icon, title, one line, duration) that opens to the full details
+  // each service is a closed card (icon, title, one line) that opens to the full details
   const item = (it) => {
     const [ic, text] = Array.isArray(it) ? it : ['check', it];
     return `<li><span class="item-icon">${icon(ic)}</span><span>${esc(text)}</span></li>`;
@@ -376,8 +376,8 @@ export function servicesPage() {
 <div class="wrap">
 <div class="services">
 ${SERVICES.map((s) => `<details class="service" id="${s.id}">
-<summary><span class="svc-icon">${icon(s.icon || 'check')}</span><span class="svc-head"><h2>${esc(s.title)}</h2><span class="svc-summary">${esc(s.summary || '')}</span></span>${s.duration ? `<span class="svc-meta">${icon('clock')} ${esc(s.duration)}</span>` : ''}<span class="svc-toggle">${icon('chevronDown')}</span></summary>
-<div class="service-body"><div>${s.duration ? `<p class="svc-meta">${icon('clock')} ${esc(s.duration)}</p>` : ''}<p class="intro">${esc(s.intro)}</p><ul class="tags">${s.tags.map((tag) => `<li>${esc(tag)}</li>`).join('')}</ul></div><div><ul class="checklist">${s.items.map(item).join('')}</ul>${s.note ? `<p class="note">${esc(s.note)}</p>` : ''}</div></div>
+<summary><span class="svc-icon">${icon(s.icon || 'check')}</span><span class="svc-head"><h2>${esc(s.title)}</h2><span class="svc-summary">${esc(s.summary || '')}</span></span><span class="svc-toggle">${icon('chevronDown')}</span></summary>
+<div class="service-body"><div><p class="intro">${esc(s.intro)}</p><ul class="tags">${s.tags.map((tag) => `<li>${esc(tag)}</li>`).join('')}</ul></div><div><ul class="checklist">${s.items.map(item).join('')}</ul>${s.note ? `<p class="note">${esc(s.note)}</p>` : ''}</div></div>
 </details>`).join('\n')}
 </div>
 ${ctaBox()}

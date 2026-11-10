@@ -2110,10 +2110,6 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   font-size: 15px;
   line-height: 1.5;
 }
-.service summary .svc-meta {
-  flex: none;
-  white-space: nowrap;
-}
 .svc-toggle {
   flex: none;
   display: grid;
@@ -2140,10 +2136,6 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 }
 .service .intro {
   color: var(--muted);
-}
-/* the duration repeated inside the card: only shown on phones, where the closed card hides it */
-.service-body .svc-meta {
-  display: none;
 }
 .service .tags {
   margin-top: 14px;
@@ -2210,8 +2202,7 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
     grid-template-columns: 1fr;
   }
 }
-/* phones: compact cards (smaller icons, the one-liner capped at two lines, a tighter list inside);
-   the duration moves inside the open card */
+/* phones: compact cards (smaller icons, the one-liner capped at two lines, a tighter list inside) */
 @media (max-width: 560px) {
   .service summary {
     gap: 10px;
@@ -2270,16 +2261,62 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
     padding: 12px 14px;
     font-size: 14.5px;
   }
-  .service summary .svc-meta {
-    display: none;
-  }
-  .service-body .svc-meta {
-    display: flex;
-    margin-bottom: 10px;
-  }
   .svc-summary {
     font-size: 14px;
     line-height: 1.45;
+  }
+}
+
+/* Servicii on phones: centred like Despre — icon on top of each card, the arrow under the text,
+   and the open card's text, tags, list points and note all centred */
+@media (max-width: 560px) {
+  main:has(.services) .page-head {
+    text-align: center;
+  }
+  .service summary {
+    flex-direction: column;
+    text-align: center;
+    gap: 6px;
+  }
+  .service summary .svc-icon {
+    align-self: center;
+  }
+  .svc-head {
+    width: 100%;
+  }
+  .svc-summary {
+    margin-inline: auto;
+    max-width: 30ch;
+  }
+  .service-body {
+    text-align: center;
+  }
+  .service .tags {
+    justify-content: center;
+  }
+  .service .checklist li {
+    display: block;
+    text-align: center;
+    text-wrap: balance;
+  }
+  .service .checklist .item-icon {
+    display: grid;
+    margin: 0 auto 6px;
+  }
+  .service .note {
+    text-wrap: balance;
+  }
+  main:has(.services) .cta-box {
+    justify-items: center;
+    text-align: center;
+  }
+  main:has(.services) .cta-box p {
+    margin-inline: auto;
+    text-wrap: balance;
+  }
+  main:has(.services) .cta-actions,
+  main:has(.services) .cta-actions .contact-pair {
+    justify-content: center;
   }
 }
 
@@ -2389,19 +2426,6 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   color: #8a4b4b;
   font-size: 13.5px;
   font-weight: 500;
-}
-.svc-meta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--muted);
-  font-size: 14.5px;
-  font-weight: 500;
-}
-.svc-meta svg {
-  width: 17px;
-  height: 17px;
-  color: var(--sage);
 }
 .trust-note {
   display: flex;
