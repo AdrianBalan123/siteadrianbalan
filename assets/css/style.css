@@ -1276,13 +1276,14 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   .article-list:not(.is-filtered) > .card:first-child .thumb {
     flex: 0 0 56%;
     aspect-ratio: auto;
-    height: clamp(240px, calc(100vh - 400px), 360px);
-    height: clamp(240px, calc(100svh - 400px), 360px);
+    align-self: stretch; /* the image always fills the card's full height, no empty band under it */
+    min-height: clamp(220px, calc(100vh - 360px), 360px);
+    min-height: clamp(220px, calc(100svh - 360px), 360px);
   }
   .article-list:not(.is-filtered) > .card:first-child .card-body {
     justify-content: center;
-    padding: clamp(24px, 3.5vw, 44px);
-    gap: 16px;
+    padding: clamp(20px, 3vh, 36px) clamp(24px, 3.5vw, 44px);
+    gap: 14px;
   }
   .article-list:not(.is-filtered) > .card:first-child .meta {
     margin-top: 0;
@@ -1290,19 +1291,19 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 }
 
 .page-head-compact {
-  padding-block: clamp(20px, 3vw, 36px) clamp(14px, 1.6vw, 20px);
+  padding-block: clamp(12px, 2.2vh, 26px) clamp(12px, 1.6vh, 18px);
 }
 .page-head-compact h1 {
-  font-size: clamp(32px, 4.4vw, 48px);
+  font-size: clamp(30px, 3.8vw, 42px);
 }
 .page-head-compact p {
-  margin-top: 8px;
-  font-size: clamp(15.5px, 1.4vw, 17px);
+  margin-top: 4px;
+  font-size: clamp(15px, 1.3vw, 16.5px);
 }
 .article-tools {
   display: grid;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 @media (max-width: 560px) {
   /* phones: keep the newest article in the first screen */
