@@ -2626,18 +2626,82 @@ fieldset.field {
   vertical-align: -3px;
 }
 
-/* the map sits inside the contact card, filling its lower part edge to edge */
+/* the map inside the contact card: an inset rounded map, then a row with a pin, the address and an "open" button */
+.map-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--bg);
+}
 .contact-card .map-in-card {
   flex: 1;
-  min-height: 220px;
-  margin: 4px calc(-1 * clamp(26px, 4vw, 40px)) calc(-1 * clamp(26px, 4vw, 40px));
+  min-height: 200px;
   border: 0;
-  border-top: 1px solid var(--line);
-  border-radius: 0 0 var(--r-md) var(--r-md);
+  border-radius: 12px;
   box-shadow: none;
 }
 .contact-card .map-in-card iframe {
-  min-height: 220px;
+  min-height: 200px;
+}
+.map-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 4px 2px;
+}
+.map-meta > div {
+  flex: 1;
+  min-width: 0;
+}
+.map-pin {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: #a85a5a;
+}
+.map-pin svg {
+  width: 18px;
+  height: 18px;
+}
+.map-title {
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+.contact-card .map-meta address {
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+/* round icon button that opens the address in Google Maps */
+.map-open {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid var(--sage);
+  background: var(--card);
+  color: var(--sage-deep);
+  transition: background-color 0.2s, color 0.2s;
+}
+.map-open:hover {
+  background: var(--sage);
+  color: #fff;
+}
+.map-open svg {
+  width: 19px;
+  height: 19px;
 }
 .choices-format {
   grid-template-columns: 1fr 1fr;
@@ -2727,9 +2791,6 @@ main:has(.contact-grid) .page-head p {
   }
   .contact-card .actions .btn {
     min-height: 44px;
-  }
-  .contact-card .map-in-card {
-    margin: 4px -26px -22px;
   }
   .contact-card .phone-big {
     font-size: clamp(26px, 2.4vw, 34px);
