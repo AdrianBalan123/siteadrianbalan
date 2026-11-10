@@ -192,7 +192,7 @@ export const bookingForm = () =>
 
 const contactInfo = (map = '') =>
   `<div class="contact-card">
-<div><p class="label">Telefon și WhatsApp</p><a class="phone-big" href="tel:${SITE.phoneTel}">${esc(SITE.phoneDisplay)}</a></div>
+<div><p class="label">Contact</p><a class="phone-big" href="tel:${SITE.phoneTel}">${esc(SITE.phoneDisplay)}</a></div>
 <div class="actions"><a class="btn btn-primary" href="tel:${SITE.phoneTel}">${icon('phone')} Sună acum</a><a class="btn btn-ghost" href="${SITE.whatsapp}" target="_blank" rel="noopener noreferrer">${icon('whatsapp')} WhatsApp</a></div>
 ${map ? `<div class="map-block">${map}<div class="map-meta"><span class="map-pin">${icon('pin')}</span><div><p class="map-title">Cabinet psihologic</p><address>${esc(SITE.address)}</address></div><a class="map-open" href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(SITE.mapsQuery)}" target="_blank" rel="noopener noreferrer" aria-label="Deschide în Google Maps" title="Deschide în Google Maps">${icon('map')}</a></div></div>` : `<div><p class="label">Adresa cabinetului</p><address>${esc(SITE.address)}</address><p style="margin-top:4px"><a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(SITE.mapsQuery)}" target="_blank" rel="noopener noreferrer">Deschide în Google Maps</a></p></div>`}
 </div>`;
