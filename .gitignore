@@ -7,3 +7,6 @@ _versiune-php/
 
 # setări personale de editor
 .vscode/
+
+# capturi de test locale
+qa/

@@ -1,0 +1,7 @@
+# not part of the public site
+_versiune-php/
+scripts/
+qa/
+CITESTE-MA.md
+package.json
+.vscode/

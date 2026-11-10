@@ -82,11 +82,11 @@ export const ctaBox = () =>
   `<aside class="cta-box"><div><h2>Vrei să vorbim?</h2><p>Pentru o discuție preliminară sau o programare, lasă-mi un mesaj sau sună-mă la ${esc(SITE.phoneDisplay)}.</p></div>${contactActions('cta-actions')}</aside>`;
 
 // Images go through Vercel's image CDN: it serves WebP/AVIF at the width each screen needs.
-// If that fails (local preview, limits reached), the browser drops srcset and loads the original.
+// If that fails (local preview, limits reached), main.js drops srcset and the original loads.
 const IMG_WIDTHS = [384, 640, 828, 1200, 1600];
 export const cdnImg = (src, { sizes = '100vw', alt = '', eager = false, attrs = '' } = {}) => {
   const ok = /^\/(uploads|assets\/img)\//.test(src) && !src.endsWith('.svg');
-  const set = ok ? ` srcset="${IMG_WIDTHS.map((w) => `/_vercel/image?url=${encodeURIComponent(src)}&amp;w=${w}&amp;q=75 ${w}w`).join(', ')}" sizes="${sizes}" onerror="this.onerror=null;this.removeAttribute('srcset')"` : '';
+  const set = ok ? ` srcset="${IMG_WIDTHS.map((w) => `/_vercel/image?url=${encodeURIComponent(src)}&amp;w=${w}&amp;q=75 ${w}w`).join(', ')}" sizes="${sizes}"` : '';
   const load = eager ? ' fetchpriority="high"' : ' loading="lazy"';
   return `<img src="${esc(src)}"${set} alt="${esc(alt)}"${load} decoding="async"${attrs}>`;
 };
@@ -122,26 +122,7 @@ export function layout({ title, description, path = '/', current = '', ogImage =
 <link rel="preload" href="/assets/fonts/lexend-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css">
 <script src="/assets/js/main.js" defer blocking="render"></script>
-<script>
-// Intro animations start when the page is actually shown (not while it is prerendered in the background),
-// and Acasă ⇄ Despre navigations get their own "scroll" transitions.
-(function (d) {
-  var show = function () { d.documentElement.classList.add('revealed'); };
-  if (d.prerendering) d.addEventListener('prerenderingchange', show, { once: true });
-  else show();
-  addEventListener('pagereveal', function (e) {
-    var a = window.navigation && navigation.activation;
-    var from = a && a.from && a.from.url ? new URL(a.from.url).pathname : '';
-    var home = function (p) { return p === '/' || p === '/index.html'; };
-    if (!e.viewTransition) return;
-    if (home(from) && location.pathname === '/despre.html') e.viewTransition.types.add('to-about');
-    if (from === '/despre.html' && home(location.pathname)) {
-      e.viewTransition.types.add('to-landing');
-      d.documentElement.classList.add('no-intro');
-    }
-  });
-})(document);
-</script>${head}
+<script src="/assets/js/early.js"></script>${head}
 </head>
 <body>
 <a href="#continut" class="skip">Sari la conținut</a>

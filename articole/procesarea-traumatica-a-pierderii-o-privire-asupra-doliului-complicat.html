@@ -17,26 +17,7 @@
 <link rel="preload" href="/assets/fonts/lexend-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css">
 <script src="/assets/js/main.js" defer blocking="render"></script>
-<script>
-// Intro animations start when the page is actually shown (not while it is prerendered in the background),
-// and Acasă ⇄ Despre navigations get their own "scroll" transitions.
-(function (d) {
-  var show = function () { d.documentElement.classList.add('revealed'); };
-  if (d.prerendering) d.addEventListener('prerenderingchange', show, { once: true });
-  else show();
-  addEventListener('pagereveal', function (e) {
-    var a = window.navigation && navigation.activation;
-    var from = a && a.from && a.from.url ? new URL(a.from.url).pathname : '';
-    var home = function (p) { return p === '/' || p === '/index.html'; };
-    if (!e.viewTransition) return;
-    if (home(from) && location.pathname === '/despre.html') e.viewTransition.types.add('to-about');
-    if (from === '/despre.html' && home(location.pathname)) {
-      e.viewTransition.types.add('to-landing');
-      d.documentElement.classList.add('no-intro');
-    }
-  });
-})(document);
-</script>
+<script src="/assets/js/early.js"></script>
 </head>
 <body>
 <a href="#continut" class="skip">Sari la conținut</a>
@@ -62,7 +43,7 @@
 </div>
 </div></div>
 </header>
-<div class="article-cover"><img src="/uploads/articole/procesarea-traumatica-a-pierderii-o-privire-asupra-doliului-complicat.jpg" srcset="/_vercel/image?url=%2Fuploads%2Farticole%2Fprocesarea-traumatica-a-pierderii-o-privire-asupra-doliului-complicat.jpg&amp;w=384&amp;q=75 384w, /_vercel/image?url=%2Fuploads%2Farticole%2Fprocesarea-traumatica-a-pierderii-o-privire-asupra-doliului-complicat.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=%2Fuploads%2Farticole%2Fprocesarea-traumatica-a-pierderii-o-privire-asupra-doliului-complicat.jpg&amp;w=828&amp;q=75 828w, /_vercel/image?url=%2Fuploads%2Farticole%2Fprocesarea-traumatica-a-pierderii-o-privire-asupra-doliului-complicat.jpg&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fuploads%2Farticole%2Fprocesarea-traumatica-a-pierderii-o-privire-asupra-doliului-complicat.jpg&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 1060px) 100vw, 1000px" onerror="this.onerror=null;this.removeAttribute('srcset')" alt="" fetchpriority="high" decoding="async"></div>
+<div class="article-cover"><img src="/uploads/articole/procesarea-traumatica-a-pierderii-o-privire-asupra-doliului-complicat.jpg" srcset="/_vercel/image?url=%2Fuploads%2Farticole%2Fprocesarea-traumatica-a-pierderii-o-privire-asupra-doliului-complicat.jpg&amp;w=384&amp;q=75 384w, /_vercel/image?url=%2Fuploads%2Farticole%2Fprocesarea-traumatica-a-pierderii-o-privire-asupra-doliului-complicat.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=%2Fuploads%2Farticole%2Fprocesarea-traumatica-a-pierderii-o-privire-asupra-doliului-complicat.jpg&amp;w=828&amp;q=75 828w, /_vercel/image?url=%2Fuploads%2Farticole%2Fprocesarea-traumatica-a-pierderii-o-privire-asupra-doliului-complicat.jpg&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fuploads%2Farticole%2Fprocesarea-traumatica-a-pierderii-o-privire-asupra-doliului-complicat.jpg&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 1060px) 100vw, 1000px" alt="" fetchpriority="high" decoding="async"></div>
 <div class="prose">
 <h2>1. Introducere: când pierderea devine traumă</h2>
 <p>Există pierderi care intră în viața noastră ca o ruptură. Nu ca un eveniment, ci ca o fractură în structura interioară. Sunt pierderi care nu se așază în timp, nu se estompează, nu se transformă în amintire liniștită. Sunt pierderi care rămân vii, tăioase, prezente, ca și cum s-ar fi întâmplat ieri, chiar dacă au trecut luni sau ani. În astfel de momente, doliul nu mai este doar un proces natural al sufletului, ci devine o traumă. O traumă care nu se vede, dar care se simte în fiecare respirație.</p>

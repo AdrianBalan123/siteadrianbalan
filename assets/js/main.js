@@ -1,4 +1,14 @@
 (function () {
+  // Imagini prin CDN: dacă o variantă din srcset nu se încarcă, se folosește originalul (src).
+  // Fără atribute onerror în HTML, ca politica de securitate (CSP) să poată interzice scripturile inline.
+  var dropSrcset = function (img) {
+    if (img.tagName === 'IMG' && img.hasAttribute('srcset')) img.removeAttribute('srcset');
+  };
+  document.addEventListener('error', function (e) { dropSrcset(e.target); }, true);
+  document.querySelectorAll('img[srcset]').forEach(function (img) {
+    if (img.complete && !img.naturalWidth) dropSrcset(img);
+  });
+
   // run `fn` only once the calls stop for `ms` (typing, resizing)
   var debounce = function (fn, ms) {
     var t;
@@ -432,7 +442,7 @@
       if (!out.length) return;
       box.querySelector('.cards').innerHTML = out.map(function (a) {
         var t = a.thumbnail
-          ? '<img src="' + esc(a.thumbnail) + '" srcset="' + [384, 640, 828].map(function (w) { return '/_vercel/image?url=' + encodeURIComponent(a.thumbnail) + '&w=' + w + '&q=75 ' + w + 'w'; }).join(', ') + '" sizes="(max-width: 760px) 100vw, 380px" onerror="this.onerror=null;this.removeAttribute(&quot;srcset&quot;)" alt="" loading="lazy" decoding="async">'
+          ? '<img src="' + esc(a.thumbnail) + '" srcset="' + [384, 640, 828].map(function (w) { return '/_vercel/image?url=' + encodeURIComponent(a.thumbnail) + '&w=' + w + '&q=75 ' + w + 'w'; }).join(', ') + '" sizes="(max-width: 760px) 100vw, 380px" alt=" loading="lazy" decoding="async">'
           : '<div class="thumb-fallback"><svg viewBox="200 15 570 925" aria-hidden="true"><path d="M444 22 583 403h-27L444 90 268 580h-26zM207 432h214v20H207z" fill="currentColor"/><path d="M467 442h88c105 0 165 58 165 126 0 47-20 72-70 102 60 20 100 60 100 125 0 80-60 125-175 125H467z" fill="none" stroke="currentColor" stroke-width="20"/></svg></div>';
         return '<a href="/articole/' + esc(a.slug) + '.html" class="card"><div class="thumb">' + t + '<span class="card-arrow" aria-hidden="true">' + arrow + '</span></div><div class="card-body"><h3>' + esc(a.title) + '</h3><span class="meta">' + book + ' ' + (a.readingMinutes || 1) + ' min de citit</span></div></a>';
       }).join('');

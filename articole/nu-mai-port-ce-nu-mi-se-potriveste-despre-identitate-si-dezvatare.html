@@ -17,26 +17,7 @@
 <link rel="preload" href="/assets/fonts/lexend-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css">
 <script src="/assets/js/main.js" defer blocking="render"></script>
-<script>
-// Intro animations start when the page is actually shown (not while it is prerendered in the background),
-// and Acasă ⇄ Despre navigations get their own "scroll" transitions.
-(function (d) {
-  var show = function () { d.documentElement.classList.add('revealed'); };
-  if (d.prerendering) d.addEventListener('prerenderingchange', show, { once: true });
-  else show();
-  addEventListener('pagereveal', function (e) {
-    var a = window.navigation && navigation.activation;
-    var from = a && a.from && a.from.url ? new URL(a.from.url).pathname : '';
-    var home = function (p) { return p === '/' || p === '/index.html'; };
-    if (!e.viewTransition) return;
-    if (home(from) && location.pathname === '/despre.html') e.viewTransition.types.add('to-about');
-    if (from === '/despre.html' && home(location.pathname)) {
-      e.viewTransition.types.add('to-landing');
-      d.documentElement.classList.add('no-intro');
-    }
-  });
-})(document);
-</script>
+<script src="/assets/js/early.js"></script>
 </head>
 <body>
 <a href="#continut" class="skip">Sari la conținut</a>
@@ -62,7 +43,7 @@
 </div>
 </div></div>
 </header>
-<div class="article-cover"><img src="/uploads/articole/nu-mai-port-ce-nu-mi-se-potriveste-despre-identitate-si-dezvatare.jpg" srcset="/_vercel/image?url=%2Fuploads%2Farticole%2Fnu-mai-port-ce-nu-mi-se-potriveste-despre-identitate-si-dezvatare.jpg&amp;w=384&amp;q=75 384w, /_vercel/image?url=%2Fuploads%2Farticole%2Fnu-mai-port-ce-nu-mi-se-potriveste-despre-identitate-si-dezvatare.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=%2Fuploads%2Farticole%2Fnu-mai-port-ce-nu-mi-se-potriveste-despre-identitate-si-dezvatare.jpg&amp;w=828&amp;q=75 828w, /_vercel/image?url=%2Fuploads%2Farticole%2Fnu-mai-port-ce-nu-mi-se-potriveste-despre-identitate-si-dezvatare.jpg&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fuploads%2Farticole%2Fnu-mai-port-ce-nu-mi-se-potriveste-despre-identitate-si-dezvatare.jpg&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 1060px) 100vw, 1000px" onerror="this.onerror=null;this.removeAttribute('srcset')" alt="" fetchpriority="high" decoding="async"></div>
+<div class="article-cover"><img src="/uploads/articole/nu-mai-port-ce-nu-mi-se-potriveste-despre-identitate-si-dezvatare.jpg" srcset="/_vercel/image?url=%2Fuploads%2Farticole%2Fnu-mai-port-ce-nu-mi-se-potriveste-despre-identitate-si-dezvatare.jpg&amp;w=384&amp;q=75 384w, /_vercel/image?url=%2Fuploads%2Farticole%2Fnu-mai-port-ce-nu-mi-se-potriveste-despre-identitate-si-dezvatare.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=%2Fuploads%2Farticole%2Fnu-mai-port-ce-nu-mi-se-potriveste-despre-identitate-si-dezvatare.jpg&amp;w=828&amp;q=75 828w, /_vercel/image?url=%2Fuploads%2Farticole%2Fnu-mai-port-ce-nu-mi-se-potriveste-despre-identitate-si-dezvatare.jpg&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fuploads%2Farticole%2Fnu-mai-port-ce-nu-mi-se-potriveste-despre-identitate-si-dezvatare.jpg&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 1060px) 100vw, 1000px" alt="" fetchpriority="high" decoding="async"></div>
 <div class="prose">
 <h2>1. Când viața devine un costum strâmt</h2>
 <p>Există momente în care ne privim în oglindă și nu ne mai recunoaștem. Nu pentru că ne-am schimbat fizic, ci pentru că ceea ce purtăm în interior nu ne mai reflectă. Valorile, convingerile, rolurile, așteptările – toate par să fi fost croite pentru altcineva. Și totuși, le purtăm. Din obișnuință. Din loialitate. Din frică. Din nevoia de apartenență.</p>
