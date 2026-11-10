@@ -57,7 +57,7 @@ export const SERVICES = [
     tags: ['Depresie', 'Anxietate', 'ADHD', 'Traumă'],
     title: 'Intervenție psihologică și suport emoțional',
     intro:
-      'Ofer intervenții bazate pe dovezi științifice pentru depresie, anxietate, ADHD, traumă și dificultăți de reglare emoțională, sprijinind clienții în procesul de reconectare cu sine și de redescoperire a sensului personal.',
+      'Ofer intervenții bazate pe dovezi științifice pentru depresie, anxietate, ADHD, traumă și dificultăți de reglare emoțională, sprijinind pacienții în procesul de reconectare cu sine și de redescoperire a sensului personal.',
     items: [
       ['cloudRain', 'Depresie și anxietate'],
       ['zap', 'Gestionarea ADHD-ului'],
@@ -75,7 +75,7 @@ export const SERVICES = [
     tags: ['Coping', 'Burnout', 'Familie'],
     title: 'Psihoeducație și strategii de coping',
     intro:
-      'Consider că înțelegerea propriilor mecanisme emoționale este primul pas către schimbare. Prin psihoeducație, ofer clienților și familiilor lor informații clare și instrumente practice pentru gestionarea stresului, prevenirea burnout-ului, reglarea emoțiilor și dezvoltarea unei relații mai blânde cu sine.',
+      'Consider că înțelegerea propriilor mecanisme emoționale este primul pas către schimbare. Prin psihoeducație, ofer pacienților și familiilor lor informații clare și instrumente practice pentru gestionarea stresului, prevenirea burnout-ului, reglarea emoțiilor și dezvoltarea unei relații mai blânde cu sine.',
     items: [
       ['book', 'Educație privind gestionarea ADHD-ului, anxietății, depresiei și traumelor'],
       ['info', 'Informare despre sănătatea mentală pentru persoane LGBTQIA+'],
@@ -108,7 +108,7 @@ export const SERVICES = [
     tags: ['LGBTQIA+', 'Tranziție de gen'],
     title: 'Consiliere și evaluare pentru afirmarea identității',
     intro:
-      'Persoanele LGBTQIA+ care se află în procesul de afirmare a identității pot beneficia de consiliere emoțională, psihoeducație, evaluare și raport psihologic în vederea începerii procesului de tranziție de gen. Abordez aceste demersuri cu respect profund față de autenticitatea fiecărui parcurs personal, însoțind clienții cu empatie, discreție și sprijin constant.',
+      'Persoanele LGBTQIA+ care se află în procesul de afirmare a identității pot beneficia de consiliere emoțională, psihoeducație, evaluare și raport psihologic în vederea începerii procesului de tranziție de gen. Abordez aceste demersuri cu respect profund față de autenticitatea fiecărui parcurs personal, însoțind pacienții cu empatie, discreție și sprijin constant.',
     items: [
       ['compass', 'Suport emoțional și psihoeducație în procesul de afirmare a identității'],
       ['fileCheck', 'Evaluare și raport psihologic pentru începerea tranziției de gen'],

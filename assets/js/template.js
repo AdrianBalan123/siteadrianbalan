@@ -279,7 +279,7 @@ ${shareBar(a)}
 const reviews = () =>
   `<section class="section quote-carousel" aria-labelledby="recenzii" aria-roledescription="carusel">
 <div class="wrap">
-<div class="section-head"><div><h2 id="recenzii">Ce spun cei cu care am lucrat</h2><p>Câteva gânduri primite de la clienți după ședințe.</p></div></div>
+<div class="section-head"><div><h2 id="recenzii">Ce spun cei cu care am lucrat</h2><p>Câteva gânduri primite de la pacienți după ședințe.</p></div></div>
 <div class="quote-card"><span class="quote-icon">${icon('quote')}</span><div class="quote-stage" aria-live="polite">${TESTIMONIALS.map((t, i) => `<figure class="quote-slide${i ? '' : ' is-active'}" role="group" aria-roledescription="recenzie" aria-label="${i + 1} din ${TESTIMONIALS.length}"${i ? ' aria-hidden="true"' : ''}><blockquote>${esc(t.text)}</blockquote></figure>`).join('')}</div></div>
 <div class="quote-controls" hidden><button type="button" class="quote-arrow" data-dir="-1" aria-label="Recenzia precedentă">${icon('chevronLeft')}</button><div class="quote-dots">${TESTIMONIALS.map((t, i) => `<button type="button" data-i="${i}" aria-label="Recenzia ${i + 1}"${i ? '' : ' aria-current="true"'}></button>`).join('')}</div><button type="button" class="quote-arrow" data-dir="1" aria-label="Recenzia următoare">${icon('chevronRight')}</button></div>
 <p class="trust-note">${icon('lock')} Pentru confidențialitate, recenziile sunt anonime.</p>
@@ -346,7 +346,7 @@ ${MARK.listEnd}
 export function aboutPage() {
   const values = [
     ['heart', 'Relația terapeutică', 'Bazată pe empatie, încredere și respect profund pentru experiența fiecărui om.'],
-    ['clock', 'Ritmul tău', 'Abordarea se adaptează nevoilor și ritmului fiecărui client, fără presiune.'],
+    ['clock', 'Ritmul tău', 'Abordarea se adaptează nevoilor și ritmului fiecărui pacient, fără presiune.'],
     ['shield', 'Fără judecată', 'Indiferent de orientare, identitate de gen, istoric personal sau stil de viață.'],
   ];
   const body = `<section class="about-hero">
@@ -366,7 +366,7 @@ export function aboutPage() {
 <div class="about-how-grid">
 <div class="about-how-text">
 <h2 id="cum-lucrez">Cum lucrez</h2>
-<p>Abordarea mea este integrativă, îmbinând elemente din terapia cognitiv-comportamentală (CBT) cu elemente din psihoterapii experiențiale, adaptată nevoilor și ritmului fiecărui client. În centrul practicii mele se află relația terapeutică autentică, bazată pe empatie, încredere și respect profund pentru experiența unică a fiecărui om.</p>
+<p>Abordarea mea este integrativă, îmbinând elemente din terapia cognitiv-comportamentală (CBT) cu elemente din psihoterapii experiențiale, adaptată nevoilor și ritmului fiecărui pacient. În centrul practicii mele se află relația terapeutică autentică, bazată pe empatie, încredere și respect profund pentru experiența unică a fiecărui om.</p>
 <p>Cred într-un demers terapeutic care respectă diversitatea și individualitatea, indiferent de orientare, identitate de gen, istoric personal sau stil de viață. În cabinetul meu, creez un spațiu sigur, incluziv și lipsit de judecată, în care oricine poate explora, cu blândețe și curaj, propriile emoții, frici, dorințe și limite.</p>
 </div>
 <ul class="values">${values.map(([ic, h, d]) => `<li class="value"><span class="value-icon">${icon(ic)}</span><div><h3>${esc(h)}</h3><p>${esc(d)}</p></div></li>`).join('')}</ul>
