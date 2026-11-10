@@ -16,10 +16,10 @@ export const SITE = {
 
 export const NAV = [
   { href: '/', label: 'Acasă' },
-  { href: '/articole.html', label: 'Articole' },
-  { href: '/despre.html', label: 'Despre mine' },
-  { href: '/servicii.html', label: 'Servicii' },
-  { href: '/contact.html', label: 'Contact' },
+  { href: '/articole', label: 'Articole' },
+  { href: '/despre', label: 'Despre mine' },
+  { href: '/servicii', label: 'Servicii' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export const TESTIMONIALS = [

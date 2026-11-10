@@ -230,7 +230,7 @@ function renderList() {
   </div>
   <div class="admin-actions">
     <a class="btn btn-ghost btn-sm" href="#editeaza/${T.esc(a.slug)}">Editează</a>
-    ${a.published !== false ? `<a class="btn btn-ghost btn-sm" href="/articole/${T.esc(a.slug)}.html" target="_blank" rel="noopener">Vezi</a>` : ''}
+    ${a.published !== false ? `<a class="btn btn-ghost btn-sm" href="/articole/${T.esc(a.slug)}" target="_blank" rel="noopener">Vezi</a>` : ''}
     <button class="btn btn-ghost btn-sm" data-toggle="${i}">${a.published !== false ? 'Ascunde' : 'Publică'}</button>
     <button class="btn btn-danger btn-sm" data-delete="${i}">Șterge</button>
   </div>

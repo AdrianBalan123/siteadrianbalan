@@ -73,7 +73,7 @@ export const archMark = () =>
 const logo = () =>
   `<a href="/" class="logo" aria-label="Adrian Bălan, psiholog clinician: pagina principală">${archMark()}<span><span class="logo-name">${esc(SITE.name)}</span><span class="logo-role">${esc(SITE.role)}</span></span></a>`;
 
-const BOOK = '/contact.html#programare';
+const BOOK = '/contact#programare';
 
 export const contactActions = (cls = 'hero-actions') =>
   `<div class="${cls}"><a class="btn btn-primary" href="${BOOK}">${icon('calendar')} Programează o ședință</a><span class="contact-pair"><a class="btn btn-ghost" href="tel:${SITE.phoneTel}" aria-label="Sună la ${esc(SITE.phoneDisplay)}">${icon('phone')} Sună</a><a class="btn btn-ghost" href="${SITE.whatsapp}" target="_blank" rel="noopener noreferrer">${icon('whatsapp')} WhatsApp</a></span></div>`;
@@ -98,7 +98,7 @@ export function thumb(src) {
 }
 
 export function card(a) {
-  return `<a href="/articole/${esc(a.slug)}.html" class="card" data-search="${esc(`${a.title} ${a.excerpt}`.toLowerCase())}"><div class="thumb">${thumb(a.thumbnail)}<span class="card-arrow" aria-hidden="true">${icon('arrowUpRight')}</span></div><div class="card-body"><h3>${esc(a.title)}</h3><span class="meta">${icon('book')} ${Number(a.readingMinutes) || 1} min de citit</span></div></a>`;
+  return `<a href="/articole/${esc(a.slug)}" class="card" data-search="${esc(`${a.title} ${a.excerpt}`.toLowerCase())}"><div class="thumb">${thumb(a.thumbnail)}<span class="card-arrow" aria-hidden="true">${icon('arrowUpRight')}</span></div><div class="card-body"><h3>${esc(a.title)}</h3><span class="meta">${icon('book')} ${Number(a.readingMinutes) || 1} min de citit</span></div></a>`;
 }
 
 export function layout({ title, description, path = '/', current = '', ogImage = '/assets/img/adrian-balan.jpg', body, type = 'website', head = '', footer = true }) {
@@ -147,7 +147,7 @@ ${logo()}
 <li><a href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(SITE.mapsQuery)}" target="_blank" rel="noopener noreferrer" aria-label="Cabinet: ${esc(SITE.address)} (hartă)" data-tip="${esc(SITE.address)}">${icon('pin')}</a></li>
 </ul>
 </div>
-<div class="footer-bottom"><span>© ${new Date().getFullYear()} Adrian Bălan, psiholog clinician · <a href="/confidentialitate.html">Confidențialitate</a></span><span>Pentru urgențe medicale sau psihiatrice, sună la 112.</span></div>
+<div class="footer-bottom"><span>© ${new Date().getFullYear()} Adrian Bălan, psiholog clinician · <a href="/confidentialitate">Confidențialitate</a></span><span>Pentru urgențe medicale sau psihiatrice, sună la 112.</span></div>
 </div>
 </footer>` : ''}
 <a class="fab" href="${SITE.whatsapp}" target="_blank" rel="noopener noreferrer" aria-label="Scrie pe WhatsApp">${icon('whatsapp')}</a>
@@ -208,7 +208,7 @@ export function replaceBetween(html, start, end, inner) {
 }
 
 export function sitemap(list) {
-  const urls = ['/', '/articole.html', '/despre.html', '/servicii.html', '/contact.html', '/confidentialitate.html', ...published(list).map((a) => `/articole/${a.slug}.html`)];
+  const urls = ['/', '/articole', '/despre', '/servicii', '/contact', '/confidentialitate', ...published(list).map((a) => `/articole/${a.slug}`)];
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${esc(SITE.url + u)}</loc></url>`).join('\n')}\n</urlset>\n`;
 }
 
@@ -216,7 +216,7 @@ export function sitemap(list) {
 // Distribuie articolul: WhatsApp, Facebook, copiere link (main.js pune adresa paginii curente).
 // `top`: varianta mică din dreptul autorului, fără eticheta „Distribuie articolul”
 const shareBar = (a, top = false) => {
-  const url = `${SITE.url}/articole/${a.slug}.html`;
+  const url = `${SITE.url}/articole/${a.slug}`;
   const u = encodeURIComponent(url);
   return `<div class="share${top ? ' share-top' : ''}" data-share-title="${esc(a.title)}">
 ${top ? '' : '<span class="share-label">Distribuie articolul</span>'}
@@ -232,7 +232,7 @@ export function articlePage(a, content) {
   const body = `<article>
 <div class="wrap">
 <header class="article-head">
-<a href="/articole.html" class="back">Înapoi la articole</a>
+<a href="/articole" class="back">Înapoi la articole</a>
 <h1>${esc(a.title)}</h1>
 <div class="article-meta"><span class="article-author">${archMark()} Adrian Bălan</span><span class="article-time">${icon('book')} ${Number(a.readingMinutes) || 1} min</span>${shareBar(a, true)}</div>
 </header>
@@ -243,13 +243,13 @@ ${content.replace(/<img (?![^>]*loading=)/g, '<img loading="lazy" decoding="asyn
 ${shareBar(a)}
 <div style="max-width:1000px">${ctaBox()}</div>
 </div>
-<section class="section" id="alte-articole" data-slug="${esc(a.slug)}" hidden aria-labelledby="alte-articole-t"><div class="wrap"><div class="section-head"><h2 id="alte-articole-t">Alte articole</h2><a href="/articole.html" class="text-link">Toate articolele</a></div><div class="cards"></div></div></section>
+<section class="section" id="alte-articole" data-slug="${esc(a.slug)}" hidden aria-labelledby="alte-articole-t"><div class="wrap"><div class="section-head"><h2 id="alte-articole-t">Alte articole</h2><a href="/articole" class="text-link">Toate articolele</a></div><div class="cards"></div></div></section>
 </article>`;
   return layout({
     title: `${a.title} | Adrian Bălan, psiholog Timișoara`,
     description: a.excerpt,
-    path: `/articole/${a.slug}.html`,
-    current: '/articole.html',
+    path: `/articole/${a.slug}`,
+    current: '/articole',
     ogImage: a.thumbnail || undefined,
     type: 'article',
     body,
@@ -269,7 +269,7 @@ const reviews = () =>
 
 // Prima pagină: doar hero-ul, pe tot ecranul. Scroll în jos (sau săgeata) duce la Despre.
 export function homePage() {
-  const body = `<section class="hero hero-full" data-next="/despre.html">
+  const body = `<section class="hero hero-full" data-next="/despre">
 <div class="hero-bg" aria-hidden="true"><div class="hero-bg-layer"></div></div>
 <div class="wrap hero-center">
 <h1 class="sr-only">De la simptom la soluție. Psihologie clinică explicată pe înțelesul tău.</h1>
@@ -281,17 +281,17 @@ export function homePage() {
 <div class="hero-copy">
 <p class="hero-sub" aria-hidden="true">Psihologie clinică explicată pe înțelesul tău.</p>
 <p class="hero-lead">Evaluări clinice riguroase și ghidaj psihoterapeutic specializat pentru parcursul tău personal sau de cuplu. Fără jargon inutil, doar pași clari spre binele tău.</p>
-<div class="hero-actions"><a class="btn btn-primary" href="${BOOK}">${icon('calendar')} Programează o ședință</a><a class="btn btn-ghost" href="/servicii.html">Cum te pot ajuta</a></div>
+<div class="hero-actions"><a class="btn btn-primary" href="${BOOK}">${icon('calendar')} Programează o ședință</a><a class="btn btn-ghost" href="/servicii">Cum te pot ajuta</a></div>
 <ul class="topics-line" aria-label="Teme frecvente">${TOPICS.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
 </div>
 </div>
-<a class="scroll-cue" href="/despre.html">Află mai multe despre mine ${icon('chevronDown')}</a>
+<a class="scroll-cue" href="/despre">Află mai multe despre mine ${icon('chevronDown')}</a>
 </section>`;
   // Despre is loaded ahead of time so the scroll transition is instant:
   // prerendered in Chrome/Edge, otherwise just downloaded (page + photo).
   const head = `
-<script type="speculationrules">{"prerender":[{"source":"list","urls":["/despre.html"],"eagerness":"immediate"}]}</script>
-<link rel="prefetch" href="/despre.html">
+<script type="speculationrules">{"prerender":[{"source":"list","urls":["/despre"],"eagerness":"immediate"}]}</script>
+<link rel="prefetch" href="/despre">
 <link rel="prefetch" href="/assets/img/adrian-balan.jpg" as="image">
 <script src="/assets/js/brain.js" defer></script>`;
   return layout({ title: 'Adrian Bălan, psiholog clinician în Timișoara', description: 'Psiholog clinician în Timișoara: terapie pentru depresie, anxietate, ADHD și traumă, evaluări psihologice, suport pentru persoane LGBTQIA+. Programări la 0720 754 920.', path: '/', current: '/', body, head, footer: false }); // no footer: the landing is one screen, scrolling opens Despre
@@ -321,7 +321,7 @@ ${MARK.listEnd}
 <nav class="pagination" id="paginare" aria-label="Pagini cu articole" hidden></nav>
 <p id="fara-rezultate" class="empty" hidden>Niciun articol nu se potrivește. Încearcă un alt cuvânt sau alege „Toate”.</p>
 </div>`;
-  return layout({ title: 'Articole | Adrian Bălan, psiholog Timișoara', description: 'Articole despre depresie, anxietate, ADHD, traumă, relații, identitate și sexualitate, scrise de psihologul Adrian Bălan.', path: '/articole.html', current: '/articole.html', body });
+  return layout({ title: 'Articole | Adrian Bălan, psiholog Timișoara', description: 'Articole despre depresie, anxietate, ADHD, traumă, relații, identitate și sexualitate, scrise de psihologul Adrian Bălan.', path: '/articole', current: '/articole', body });
 }
 
 export function aboutPage() {
@@ -357,7 +357,7 @@ export function aboutPage() {
 </section>
 ${reviews()}
 <div class="wrap">${ctaBox()}</div>`;
-  return layout({ title: 'Despre mine | Adrian Bălan, psiholog Timișoara', description: 'Adrian Bălan, psiholog clinician în Timișoara. Abordare integrativă (CBT și psihoterapii experiențiale), într-un spațiu sigur, incluziv și lipsit de judecată.', path: '/despre.html', current: '/despre.html', body });
+  return layout({ title: 'Despre mine | Adrian Bălan, psiholog Timișoara', description: 'Adrian Bălan, psiholog clinician în Timișoara. Abordare integrativă (CBT și psihoterapii experiențiale), într-un spațiu sigur, incluziv și lipsit de judecată.', path: '/despre', current: '/despre', body });
 }
 
 export function servicesPage() {
@@ -373,12 +373,12 @@ export function servicesPage() {
 <div class="services">
 ${SERVICES.map((s) => `<details class="service" id="${s.id}">
 <summary><span class="svc-icon">${icon(s.icon || 'check')}</span><span class="svc-head"><h2>${esc(s.title)}</h2><span class="svc-summary">${esc(s.summary || '')}</span></span><span class="svc-toggle">${icon('chevronDown')}</span></summary>
-<div class="service-body"><div class="svc-left"><p class="intro">${esc(s.intro)}</p><ul class="tags">${s.tags.map((tag) => `<li>${esc(tag)}</li>`).join('')}</ul>${s.note ? `<p class="note">${esc(s.note)}</p>` : ''}</div><div class="svc-right"><ul class="checklist">${s.items.map(item).join('')}</ul><a class="btn btn-primary svc-book" href="/contact.html?tema=${encodeURIComponent(s.title)}#programare">${icon('calendar')} Programează pentru acest serviciu</a></div></div>
+<div class="service-body"><div class="svc-left"><p class="intro">${esc(s.intro)}</p><ul class="tags">${s.tags.map((tag) => `<li>${esc(tag)}</li>`).join('')}</ul>${s.note ? `<p class="note">${esc(s.note)}</p>` : ''}</div><div class="svc-right"><ul class="checklist">${s.items.map(item).join('')}</ul><a class="btn btn-primary svc-book" href="/contact?tema=${encodeURIComponent(s.title)}#programare">${icon('calendar')} Programează pentru acest serviciu</a></div></div>
 </details>`).join('\n')}
 </div>
 ${ctaBox()}
 </div>`;
-  return layout({ title: 'Servicii | Adrian Bălan, psiholog Timișoara', description: 'Terapie pentru depresie, anxietate, ADHD și traumă, evaluări psihologice, consiliere pentru afirmarea identității, psihoeducație și intervenție în criză, în Timișoara.', path: '/servicii.html', current: '/servicii.html', body });
+  return layout({ title: 'Servicii | Adrian Bălan, psiholog Timișoara', description: 'Terapie pentru depresie, anxietate, ADHD și traumă, evaluări psihologice, consiliere pentru afirmarea identității, psihoeducație și intervenție în criză, în Timișoara.', path: '/servicii', current: '/servicii', body });
 }
 
 export function contactPage() {
@@ -387,7 +387,7 @@ export function contactPage() {
   const mapSrc = `https://www.google.com/maps/embed?origin=mfe&amp;pb=!1m3!2m1!1s${encodeURIComponent(SITE.mapsQuery).replace(/%20/g, '+')}!6i16`;
   const body = `<h1 class="sr-only">Contact și programări</h1>
 <div class="wrap contact-grid">${bookingForm()}${contactInfo(`<div class="map map-in-card"><iframe src="${mapSrc}" title="Harta: cabinetul de pe strada Aristide Demetriade 1/3, Timișoara" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>`)}</div>`;
-  return layout({ title: 'Contact și programări | Adrian Bălan, psiholog Timișoara', description: 'Programări la 0720 754 920, telefonic, pe WhatsApp sau prin formular. Cabinet pe strada Aristide Demetriade nr. 1/3, Timișoara.', path: '/contact.html', current: '/contact.html', body, head: `<link rel="preconnect" href="https://www.google.com">
+  return layout({ title: 'Contact și programări | Adrian Bălan, psiholog Timișoara', description: 'Programări la 0720 754 920, telefonic, pe WhatsApp sau prin formular. Cabinet pe strada Aristide Demetriade nr. 1/3, Timișoara.', path: '/contact', current: '/contact', body, head: `<link rel="preconnect" href="https://www.google.com">
 <link rel="preconnect" href="https://maps.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://maps.googleapis.com" crossorigin>` });
 }
@@ -413,14 +413,14 @@ export function privacyPage() {
 <p>Conform Regulamentului general privind protecția datelor (GDPR), ai dreptul să ceri acces la datele tale, corectarea sau ștergerea lor, restricționarea prelucrării, să te opui prelucrării și să le primești într-un format portabil. Dacă ai o nemulțumire, te poți adresa Autorității Naționale de Supraveghere a Prelucrării Datelor cu Caracter Personal (<a href="https://www.dataprotection.ro" target="_blank" rel="noopener noreferrer">dataprotection.ro</a>).</p>
 <p>Pentru orice întrebare sau cerere legată de datele tale, sună-mă la <a href="tel:${SITE.phoneTel}">${esc(SITE.phoneDisplay)}</a> sau scrie-mi pe <a href="${SITE.whatsapp}" target="_blank" rel="noopener noreferrer">WhatsApp</a>.</p>
 </div></div>`;
-  return layout({ title: 'Confidențialitate | Adrian Bălan, psiholog Timișoara', description: 'Cum sunt tratate datele tale pe site și în cabinet: secret profesional, fără cookie-uri de urmărire, drepturile tale conform GDPR.', path: '/confidentialitate.html', body });
+  return layout({ title: 'Confidențialitate | Adrian Bălan, psiholog Timișoara', description: 'Cum sunt tratate datele tale pe site și în cabinet: secret profesional, fără cookie-uri de urmărire, drepturile tale conform GDPR.', path: '/confidentialitate', body });
 }
 
 export function notFoundPage() {
   return layout({
     title: 'Pagina nu există | Adrian Bălan, psiholog Timișoara',
     description: 'Pagina căutată nu există.',
-    path: '/404.html',
-    body: '<div class="wrap page-head"><h1>Pagina nu există</h1><p>Linkul poate fi greșit sau articolul a fost mutat. Poți merge la <a class="text-link" href="/articole.html">articole</a> sau la <a class="text-link" href="/">pagina principală</a>.</p></div>',
+    path: '/404',
+    body: '<div class="wrap page-head"><h1>Pagina nu există</h1><p>Linkul poate fi greșit sau articolul a fost mutat. Poți merge la <a class="text-link" href="/articole">articole</a> sau la <a class="text-link" href="/">pagina principală</a>.</p></div>',
   });
 }

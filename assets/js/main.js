@@ -9,6 +9,12 @@
     if (img.complete && !img.naturalWidth) dropSrcset(img);
   });
 
+  // the site uses clean addresses (/despre); a local preview serves /despre.html — both count
+  var isPage = function (path, page) {
+    var p = path.replace(/\.html$/, '').replace(/\/index$/, '/');
+    return p === page || (page === '/' && p === '');
+  };
+
   // run `fn` only once the calls stop for `ms` (typing, resizing)
   var debounce = function (fn, ms) {
     var t;
@@ -270,7 +276,7 @@
     };
     // mark this navigation so the CSS can use the "scroll up" animation
     window.addEventListener('pageswap', function (e) {
-      if (e.viewTransition && e.activation && new URL(e.activation.entry.url).pathname === '/despre.html') {
+      if (e.viewTransition && e.activation && isPage(new URL(e.activation.entry.url).pathname, '/despre')) {
         e.viewTransition.types.add('to-about');
       }
     });
@@ -293,10 +299,10 @@
   // Despre: dacă ai venit de pe prima pagină, scroll în sus (sau glisare în jos) când ești sus
   // de tot te duce înapoi. Doar dacă pagina stătea deja sus, nu când ajungi sus din inerție.
   (function () {
-    if (location.pathname !== '/despre.html') return;
+    if (!isPage(location.pathname, '/despre')) return;
     var ref = '';
     try { ref = document.referrer ? new URL(document.referrer).pathname : ''; } catch (err) {}
-    var cameFromHome = (ref === '/' || ref === '/index.html') && document.referrer.indexOf(location.origin) === 0;
+    var cameFromHome = isPage(ref, '/') && document.referrer.indexOf(location.origin) === 0;
     if (!cameFromHome) return;
     var supportsCrossDoc = 'onpagereveal' in window;
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -325,7 +331,7 @@
     window.addEventListener('pageswap', function (e) {
       if (!e.viewTransition || !e.activation) return;
       var to = new URL(e.activation.entry.url).pathname;
-      if (to === '/' || to === '/index.html') e.viewTransition.types.add('to-landing');
+      if (isPage(to, '/')) e.viewTransition.types.add('to-landing');
     });
     window.addEventListener('pageshow', function () {
       going = false;
@@ -444,7 +450,7 @@
         var t = a.thumbnail
           ? '<img src="' + esc(a.thumbnail) + '" srcset="' + [384, 640, 828].map(function (w) { return '/_vercel/image?url=' + encodeURIComponent(a.thumbnail) + '&w=' + w + '&q=75 ' + w + 'w'; }).join(', ') + '" sizes="(max-width: 760px) 100vw, 380px" alt=" loading="lazy" decoding="async">'
           : '<div class="thumb-fallback"><svg viewBox="200 15 570 925" aria-hidden="true"><path d="M444 22 583 403h-27L444 90 268 580h-26zM207 432h214v20H207z" fill="currentColor"/><path d="M467 442h88c105 0 165 58 165 126 0 47-20 72-70 102 60 20 100 60 100 125 0 80-60 125-175 125H467z" fill="none" stroke="currentColor" stroke-width="20"/></svg></div>';
-        return '<a href="/articole/' + esc(a.slug) + '.html" class="card"><div class="thumb">' + t + '<span class="card-arrow" aria-hidden="true">' + arrow + '</span></div><div class="card-body"><h3>' + esc(a.title) + '</h3><span class="meta">' + book + ' ' + (a.readingMinutes || 1) + ' min de citit</span></div></a>';
+        return '<a href="/articole/' + esc(a.slug) + '" class="card"><div class="thumb">' + t + '<span class="card-arrow" aria-hidden="true">' + arrow + '</span></div><div class="card-body"><h3>' + esc(a.title) + '</h3><span class="meta">' + book + ' ' + (a.readingMinutes || 1) + ' min de citit</span></div></a>';
       }).join('');
       box.hidden = false;
     })
