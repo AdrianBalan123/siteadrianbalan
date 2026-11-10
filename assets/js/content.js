@@ -6,7 +6,7 @@
 export const SITE = {
   name: 'Adrian Bălan',
   role: 'Psiholog clinician',
-  url: 'https://www.adrianbalan.ro', // adresa publică, folosită în sitemap și Open Graph
+  url: 'https://www.balanadrian.ro', // adresa publică, folosită în sitemap și Open Graph
   phoneDisplay: '0720 754 920',
   phoneTel: '+40720754920',
   whatsapp: 'https://wa.me/40720754920',
