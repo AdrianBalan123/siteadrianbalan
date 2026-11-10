@@ -1,5 +1,5 @@
 // Conținutul editabil al site-ului: date de contact, meniu, recenzii, servicii.
-// La servicii: `duration` și `tags` apar pe pagina Servicii.
+// La servicii: `duration` și `tags` apar pe pagina Servicii; fiecare punct din `items` e [iconiță, text].
 // După o modificare aici, rulează: node scripts/genereaza.mjs
 
 export const SITE = {
@@ -57,11 +57,11 @@ export const SERVICES = [
     intro:
       'Ofer intervenții bazate pe dovezi științifice pentru depresie, anxietate, ADHD, traumă și dificultăți de reglare emoțională, sprijinind clienții în procesul de reconectare cu sine și de redescoperire a sensului personal.',
     items: [
-      'Depresie și anxietate',
-      'Gestionarea ADHD-ului',
-      'Gestionarea traumei și a stresului post-traumatic',
-      'Suport emoțional pentru persoane LGBTQIA+',
-      'Gestionarea disfuncțiilor sexuale',
+      ['cloudRain', 'Depresie și anxietate'],
+      ['zap', 'Gestionarea ADHD-ului'],
+      ['shield', 'Gestionarea traumei și a stresului post-traumatic'],
+      ['heart', 'Suport emoțional pentru persoane LGBTQIA+'],
+      ['heartPulse', 'Gestionarea disfuncțiilor sexuale'],
     ],
     note:
       'De asemenea, lucrez cu persoane care se confruntă cu probleme din sfera sexualității, de la întrebări legate de identitatea de gen sau orientarea sexuală, până la disfuncții sexuale, blocaje emoționale sau dificultăți în viața intimă. Fiecare dintre aceste teme este abordată cu respect, delicatețe și profesionalism, într-un cadru sigur și confidențial.',
@@ -74,11 +74,11 @@ export const SERVICES = [
     intro:
       'Consider că înțelegerea propriilor mecanisme emoționale este primul pas către schimbare. Prin psihoeducație, ofer clienților și familiilor lor informații clare și instrumente practice pentru gestionarea stresului, prevenirea burnout-ului, reglarea emoțiilor și dezvoltarea unei relații mai blânde cu sine.',
     items: [
-      'Educație privind gestionarea ADHD-ului, anxietății, depresiei și traumelor',
-      'Informare despre sănătatea mentală pentru persoane LGBTQIA+',
-      'Strategii de adaptare și coping pentru stres și burnout',
-      'Educație pentru familii și parteneri în susținerea persoanelor cu ADHD',
-      'Informarea partenerilor sau familiilor despre impactul depresiei, anxietății sau traumelor asupra relațiilor',
+      ['book', 'Educație privind gestionarea ADHD-ului, anxietății, depresiei și traumelor'],
+      ['info', 'Informare despre sănătatea mentală pentru persoane LGBTQIA+'],
+      ['leaf', 'Strategii de adaptare și coping pentru stres și burnout'],
+      ['users', 'Educație pentru familii și parteneri în susținerea persoanelor cu ADHD'],
+      ['message', 'Informarea partenerilor sau familiilor despre impactul depresiei, anxietății sau traumelor asupra relațiilor'],
     ],
   },
   {
@@ -89,12 +89,12 @@ export const SERVICES = [
     intro:
       'Realizez evaluări clinice și psihodiagnostic cu instrumente standardizate și validate științific, pentru identificarea și clarificarea tulburărilor de tip ADHD, depresiv, anxios sau traumatic, pentru explorarea structurii de personalitate, precum și evaluări și rapoarte psihologice pentru Comisia de Evaluare a Persoanelor Adulte cu Handicap. Evaluarea este un proces atent și empatic, menit nu doar să pună un diagnostic, ci să ofere înțelegere și direcție.',
     items: [
-      'Evaluare ADHD: teste de atenție și concentrare, chestionare de autoevaluare și observații clinice',
-      'Evaluare pentru depresie și anxietate: teste standardizate, chestionare clinice și interviuri semi-structurate',
-      'Evaluare pentru traume psihice: chestionare și interviuri pentru identificarea stresului post-traumatic și a altor efecte ale traumei',
-      'Evaluarea sănătății mentale generale: inventare și teste psihometrice pentru tulburările de dispoziție și anxietate',
-      'Explorarea structurii de personalitate',
-      'Evaluare și raport psihologic pentru Comisia de Evaluare a Persoanelor Adulte cu Handicap',
+      ['target', 'Evaluare ADHD: teste de atenție și concentrare, chestionare de autoevaluare și observații clinice'],
+      ['clipboard', 'Evaluare pentru depresie și anxietate: teste standardizate, chestionare clinice și interviuri semi-structurate'],
+      ['shield', 'Evaluare pentru traume psihice: chestionare și interviuri pentru identificarea stresului post-traumatic și a altor efecte ale traumei'],
+      ['activity', 'Evaluarea sănătății mentale generale: inventare și teste psihometrice pentru tulburările de dispoziție și anxietate'],
+      ['user', 'Explorarea structurii de personalitate'],
+      ['fileText', 'Evaluare și raport psihologic pentru Comisia de Evaluare a Persoanelor Adulte cu Handicap'],
     ],
   },
   {
@@ -105,8 +105,8 @@ export const SERVICES = [
     intro:
       'Persoanele LGBTQIA+ care se află în procesul de afirmare a identității pot beneficia de consiliere emoțională, psihoeducație, evaluare și raport psihologic în vederea începerii procesului de tranziție de gen. Abordez aceste demersuri cu respect profund față de autenticitatea fiecărui parcurs personal, însoțind clienții cu empatie, discreție și sprijin constant.',
     items: [
-      'Suport emoțional și psihoeducație în procesul de afirmare a identității',
-      'Evaluare și raport psihologic pentru începerea tranziției de gen',
+      ['compass', 'Suport emoțional și psihoeducație în procesul de afirmare a identității'],
+      ['fileCheck', 'Evaluare și raport psihologic pentru începerea tranziției de gen'],
     ],
   },
   {
@@ -116,7 +116,7 @@ export const SERVICES = [
     title: 'Intervenție în criză și prevenirea suicidului',
     intro:
       'În situațiile de criză emoțională, ofer suport imediat pentru stabilizarea emoțională și reducerea riscului suicidar, creând un spațiu de siguranță în care persoana poate fi ascultată, înțeleasă și conținută. Intervenția în astfel de momente vizează nu doar diminuarea suferinței, ci și reconectarea cu resursele personale și accesul la sprijinul terapeutic continuu.',
-    items: ['Suport pentru prevenirea suicidului', 'Gestionarea episoadelor de criză emoțională'],
+    items: [['lifeBuoy', 'Suport pentru prevenirea suicidului'], ['anchor', 'Gestionarea episoadelor de criză emoțională']],
     note: 'Dacă viața ta sau a altcuiva este în pericol imediat, sună la 112.',
   },
 ];

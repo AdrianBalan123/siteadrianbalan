@@ -2102,12 +2102,21 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   background: var(--bg);
   border-radius: var(--r-sm);
 }
-.service .checklist li svg {
+/* each point gets its own icon in a small sage circle */
+.service .checklist .item-icon {
   flex: none;
-  width: 20px;
-  height: 20px;
-  margin-top: 3px;
-  color: var(--sage);
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: var(--sage-soft);
+  color: var(--sage-deep);
+}
+.service .checklist .item-icon svg {
+  width: 17px;
+  height: 17px;
 }
 .service .note {
   margin-top: 16px;
