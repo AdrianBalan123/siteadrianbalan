@@ -364,13 +364,22 @@ ${reviews()}
 }
 
 export function servicesPage() {
-  const body = `<div class="wrap page-head">
+  // each service is a closed card (icon, title, one line, duration) that opens to the full details
+  const item = (it) => {
+    const [ic, text] = Array.isArray(it) ? it : ['check', it];
+    return `<li><span class="item-icon">${icon(ic)}</span><span>${esc(text)}</span></li>`;
+  };
+  const body = `<div class="wrap page-head page-head-compact">
 <h1>Servicii</h1>
 <p>Intervenții bazate pe dovezi științifice, evaluări cu instrumente validate și sprijin pentru tine și pentru cei apropiați. Dacă nu ești sigur de ce ai nevoie, sună-mă și lămurim împreună.</p>
-<nav class="service-index" aria-label="Servicii">${SERVICES.map((s) => `<a href="#${s.id}">${esc(s.title)}</a>`).join('')}</nav>
 </div>
 <div class="wrap">
-${SERVICES.map((s) => `<section class="service" id="${s.id}" aria-labelledby="${s.id}-t"><div><h2 id="${s.id}-t">${esc(s.title)}</h2><p class="intro">${esc(s.intro)}</p>${s.duration ? `<p class="svc-meta">${icon('clock')} ${esc(s.duration)}</p>` : ''}<ul class="tags">${s.tags.map((t) => `<li>${esc(t)}</li>`).join('')}</ul></div><div><ul class="checklist">${s.items.map((it) => { const [ic, text] = Array.isArray(it) ? it : ['check', it]; return `<li><span class="item-icon">${icon(ic)}</span><span>${esc(text)}</span></li>`; }).join('')}</ul>${s.note ? `<p class="note">${esc(s.note)}</p>` : ''}</div></section>`).join('\n')}
+<div class="services">
+${SERVICES.map((s) => `<details class="service" id="${s.id}">
+<summary><span class="svc-icon">${icon(s.icon || 'check')}</span><span class="svc-head"><h2>${esc(s.title)}</h2><span class="svc-summary">${esc(s.summary || '')}</span></span>${s.duration ? `<span class="svc-meta">${icon('clock')} ${esc(s.duration)}</span>` : ''}<span class="svc-toggle">${icon('chevronDown')}</span></summary>
+<div class="service-body"><div>${s.duration ? `<p class="svc-meta">${icon('clock')} ${esc(s.duration)}</p>` : ''}<p class="intro">${esc(s.intro)}</p><ul class="tags">${s.tags.map((tag) => `<li>${esc(tag)}</li>`).join('')}</ul></div><div><ul class="checklist">${s.items.map(item).join('')}</ul>${s.note ? `<p class="note">${esc(s.note)}</p>` : ''}</div></div>
+</details>`).join('\n')}
+</div>
 ${ctaBox()}
 </div>`;
   return layout({ title: 'Servicii | Adrian Bălan, psiholog Timișoara', description: 'Terapie pentru depresie, anxietate, ADHD și traumă, evaluări psihologice, consiliere pentru afirmarea identității, psihoeducație și intervenție în criză, în Timișoara.', path: '/servicii.html', current: '/servicii.html', body });

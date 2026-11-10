@@ -2049,43 +2049,104 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 }
 
 /* ---------- services ---------- */
-.service-index {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 30px;
-}
-.service-index a {
-  padding: 9px 16px;
-  border-radius: 999px;
-  border: 1.5px solid var(--line);
-  background: var(--card);
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 500;
-}
-.service-index a:hover {
-  border-color: var(--sage);
-  color: var(--sage-deep);
+/* an accordion: every service is a closed card that opens to its details (native <details>) */
+.services {
+  display: grid;
+  gap: 12px;
 }
 .service {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: clamp(24px, 5vw, 72px);
-  padding: clamp(24px, 4vw, 44px);
-  margin-bottom: 24px;
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--r-md);
   box-shadow: var(--shadow);
-  scroll-margin-top: 96px;
+  scroll-margin-top: 80px;
+  transition: border-color 0.2s;
+}
+.service[open] {
+  border-color: var(--sage);
+}
+.service summary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: clamp(16px, 2.4vw, 22px) clamp(16px, 3vw, 28px);
+  list-style: none;
+  cursor: pointer;
+  border-radius: inherit;
+}
+.service summary::-webkit-details-marker {
+  display: none;
+}
+.service summary:hover .svc-toggle {
+  background: var(--sage);
+  color: #fff;
+}
+.svc-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--sage-soft);
+  color: var(--sage-deep);
+}
+.svc-icon svg {
+  width: 22px;
+  height: 22px;
+}
+.svc-head {
+  flex: 1;
+  min-width: 0;
 }
 .service h2 {
-  font-size: clamp(26px, 3vw, 34px);
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.3;
+}
+.svc-summary {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.service summary .svc-meta {
+  flex: none;
+  white-space: nowrap;
+}
+.svc-toggle {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--sage-soft);
+  color: var(--sage-deep);
+  transition: background-color 0.2s, color 0.2s, transform 0.3s;
+}
+.svc-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+.service[open] .svc-toggle {
+  transform: rotate(180deg);
+}
+.service-body {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(20px, 4vw, 56px);
+  padding: 4px clamp(16px, 3vw, 28px) clamp(20px, 3vw, 28px);
 }
 .service .intro {
-  margin-top: 14px;
   color: var(--muted);
+}
+/* the duration repeated inside the card: only shown on phones, where the closed card hides it */
+.service-body .svc-meta {
+  display: none;
+}
+.service .tags {
+  margin-top: 14px;
 }
 .service .checklist {
   list-style: none;
@@ -2098,7 +2159,7 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   display: flex;
   gap: 14px;
   align-items: flex-start;
-  padding: 14px 16px;
+  padding: 12px 14px;
   background: var(--bg);
   border-radius: var(--r-sm);
 }
@@ -2125,9 +2186,100 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   background: var(--rose-soft);
   font-size: 15.5px;
 }
+/* smooth opening where the browser can animate to auto height */
+@supports (interpolate-size: allow-keywords) {
+  .services {
+    interpolate-size: allow-keywords;
+  }
+  .service::details-content {
+    height: 0;
+    overflow: clip;
+    transition: height 0.35s ease, content-visibility 0.35s allow-discrete;
+  }
+  .service[open]::details-content {
+    height: auto;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .service::details-content {
+      transition: none;
+    }
+  }
+}
 @media (max-width: 860px) {
-  .service {
+  .service-body {
     grid-template-columns: 1fr;
+  }
+}
+/* phones: compact cards (smaller icons, the one-liner capped at two lines, a tighter list inside);
+   the duration moves inside the open card */
+@media (max-width: 560px) {
+  .service summary {
+    gap: 10px;
+    padding: 14px;
+  }
+  .svc-icon {
+    width: 34px;
+    height: 34px;
+    align-self: flex-start;
+  }
+  .svc-icon svg {
+    width: 17px;
+    height: 17px;
+  }
+  .service h2 {
+    font-size: 17px;
+  }
+  .svc-summary {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+  .svc-toggle {
+    width: 30px;
+    height: 30px;
+  }
+  .service-body {
+    gap: 16px;
+    padding: 0 14px 16px;
+  }
+  .service .intro {
+    font-size: 15.5px;
+    line-height: 1.6;
+  }
+  .service .checklist {
+    gap: 6px;
+  }
+  .service .checklist li {
+    gap: 10px;
+    padding: 9px 12px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .service .checklist .item-icon {
+    width: 28px;
+    height: 28px;
+    margin-top: -2px;
+  }
+  .service .checklist .item-icon svg {
+    width: 15px;
+    height: 15px;
+  }
+  .service .note {
+    padding: 12px 14px;
+    font-size: 14.5px;
+  }
+  .service summary .svc-meta {
+    display: none;
+  }
+  .service-body .svc-meta {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  .svc-summary {
+    font-size: 14px;
+    line-height: 1.45;
   }
 }
 
@@ -2250,13 +2402,6 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   width: 17px;
   height: 17px;
   color: var(--sage);
-}
-.service .svc-meta {
-  margin-top: 18px;
-  display: flex;
-}
-.service .tags {
-  margin-top: 14px;
 }
 .trust-note {
   display: flex;

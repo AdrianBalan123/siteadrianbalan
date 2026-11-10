@@ -1,5 +1,6 @@
 // Conținutul editabil al site-ului: date de contact, meniu, recenzii, servicii.
-// La servicii: `duration` și `tags` apar pe pagina Servicii; fiecare punct din `items` e [iconiță, text].
+// La servicii: `icon` și `summary` apar pe cardul închis, `duration` și `tags` pe pagina Servicii;
+// fiecare punct din `items` e [iconiță, text].
 // După o modificare aici, rulează: node scripts/genereaza.mjs
 
 export const SITE = {
@@ -51,6 +52,8 @@ export const TESTIMONIALS = [
 export const SERVICES = [
   {
     id: 'interventie',
+    icon: 'heart',
+    summary: 'Depresie, anxietate, ADHD, traumă, reglare emoțională și sexualitate.', // apare pe cardul închis
     duration: '50 min / ședință',
     tags: ['Depresie', 'Anxietate', 'ADHD', 'Traumă'],
     title: 'Intervenție psihologică și suport emoțional',
@@ -68,6 +71,8 @@ export const SERVICES = [
   },
   {
     id: 'psihoeducatie',
+    icon: 'book',
+    summary: 'Instrumente practice pentru stres, burnout și emoții.', // apare pe cardul închis
     duration: '50 min / ședință',
     tags: ['Coping', 'Burnout', 'Familie'],
     title: 'Psihoeducație și strategii de coping',
@@ -83,6 +88,8 @@ export const SERVICES = [
   },
   {
     id: 'evaluari',
+    icon: 'clipboard',
+    summary: 'ADHD, depresie, anxietate, traumă și personalitate.', // apare pe cardul închis
     duration: '', // lasă gol dacă durata variază
     tags: ['ADHD', 'Personalitate', 'Raport psihologic'],
     title: 'Evaluări psihologice complexe',
@@ -99,6 +106,8 @@ export const SERVICES = [
   },
   {
     id: 'identitate',
+    icon: 'compass',
+    summary: 'Consiliere și raport psihologic pentru persoanele LGBTQIA+.', // apare pe cardul închis
     duration: '50 min / ședință',
     tags: ['LGBTQIA+', 'Tranziție de gen'],
     title: 'Consiliere și evaluare pentru afirmarea identității',
@@ -111,6 +120,8 @@ export const SERVICES = [
   },
   {
     id: 'criza',
+    icon: 'lifeBuoy',
+    summary: 'Suport imediat pentru stabilizare și prevenirea suicidului.', // apare pe cardul închis
     duration: '50 min / ședință',
     tags: ['Stabilizare', 'Prevenție'],
     title: 'Intervenție în criză și prevenirea suicidului',

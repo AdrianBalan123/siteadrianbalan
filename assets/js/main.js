@@ -125,6 +125,19 @@
     apply();
   }
 
+  // Servicii: un link spre #serviciu (de ex. servicii.html#evaluari) deschide cardul respectiv
+  var openService = function () {
+    var target = location.hash ? document.getElementById(location.hash.slice(1)) : null;
+    if (target && target.matches('details.service')) {
+      target.open = true;
+      target.scrollIntoView({ block: 'start' });
+    }
+  };
+  if (document.querySelector('details.service')) {
+    openService();
+    window.addEventListener('hashchange', openService);
+  }
+
   // Distribuie articolul: linkurile folosesc adresa reală a paginii, „copiază” pune linkul în clipboard
   document.querySelectorAll('.share').forEach(function (share) {
     var here = location.origin + location.pathname;
