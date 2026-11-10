@@ -998,6 +998,41 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   display: grid;
   text-align: center;
 }
+/* desktop: the reviews look exactly like the "Cred cu tărie" quote on Despre — sage card,
+   green quote badge on the left edge, green text aligned left */
+@media (min-width: 861px) {
+  .quote-carousel .quote-card {
+    max-width: 760px;
+    margin: 8px auto 0;
+    padding: 22px 30px 22px 46px;
+    box-shadow: none;
+  }
+  .quote-carousel .quote-card .quote-icon {
+    top: 50%;
+    left: 0;
+    width: 46px;
+    height: 46px;
+    background: var(--sage-soft);
+    border-color: var(--sage);
+    color: var(--sage-deep);
+    transition: top 0.45s ease;
+  }
+  .quote-carousel .quote-card .quote-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+  .quote-carousel .quote-stage {
+    text-align: left;
+  }
+  .quote-carousel .quote-slide {
+    align-items: flex-start;
+  }
+  .quote-carousel .quote-slide blockquote {
+    color: var(--sage-deep);
+    font-size: clamp(17px, 1.6vw, 19px);
+    line-height: 1.6;
+  }
+}
 /* the stage takes the height of the review on show (set from JS), so short reviews leave no gap */
 .quote-stage {
   transition: height 0.45s ease;
