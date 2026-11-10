@@ -261,9 +261,10 @@ ${shareBar(a)}
 const reviews = () =>
   `<section class="section quote-carousel" aria-labelledby="recenzii" aria-roledescription="carusel">
 <div class="wrap">
-<div class="section-head"><div><h2 id="recenzii">Ce spun cei cu care am lucrat</h2><p>Câteva gânduri primite de la clienți după ședințe.</p></div><p class="trust-note">${icon('lock')} Pentru confidențialitate, recenziile sunt anonime.</p></div>
+<div class="section-head"><div><h2 id="recenzii">Ce spun cei cu care am lucrat</h2><p>Câteva gânduri primite de la clienți după ședințe.</p></div></div>
 <div class="quote-card"><span class="quote-icon">${icon('quote')}</span><div class="quote-stage" aria-live="polite">${TESTIMONIALS.map((t, i) => `<figure class="quote-slide${i ? '' : ' is-active'}" role="group" aria-roledescription="recenzie" aria-label="${i + 1} din ${TESTIMONIALS.length}"${i ? ' aria-hidden="true"' : ''}><blockquote>${esc(t.text)}</blockquote></figure>`).join('')}</div></div>
 <div class="quote-controls" hidden><button type="button" class="quote-arrow" data-dir="-1" aria-label="Recenzia precedentă">${icon('chevronLeft')}</button><div class="quote-dots">${TESTIMONIALS.map((t, i) => `<button type="button" data-i="${i}" aria-label="Recenzia ${i + 1}"${i ? '' : ' aria-current="true"'}></button>`).join('')}</div><button type="button" class="quote-arrow" data-dir="1" aria-label="Recenzia următoare">${icon('chevronRight')}</button></div>
+<p class="trust-note">${icon('lock')} Pentru confidențialitate, recenziile sunt anonime.</p>
 </div>
 </section>`;
 
@@ -343,7 +344,8 @@ ${contactActions()}
 </div>
 </section>
 <section class="section about-how" aria-labelledby="cum-lucrez">
-<div class="wrap about-how-grid">
+<div class="wrap">
+<div class="about-how-grid">
 <div class="about-how-text">
 <h2 id="cum-lucrez">Cum lucrez</h2>
 <p>Abordarea mea este integrativă, îmbinând elemente din terapia cognitiv-comportamentală (CBT) cu elemente din psihoterapii experiențiale, adaptată nevoilor și ritmului fiecărui client. În centrul practicii mele se află relația terapeutică autentică, bazată pe empatie, încredere și respect profund pentru experiența unică a fiecărui om.</p>
@@ -351,11 +353,7 @@ ${contactActions()}
 </div>
 <ul class="values">${values.map(([ic, h, d]) => `<li class="value"><span class="value-icon">${icon(ic)}</span><div><h3>${esc(h)}</h3><p>${esc(d)}</p></div></li>`).join('')}</ul>
 </div>
-</section>
-<section class="about-essence" aria-labelledby="in-esenta">
-<div class="wrap">
-<h2 id="in-esenta">În esență</h2>
-<p>Misiunea mea este să ajut oamenii să se înțeleagă, să se accepte și să-și reconstruiască relația cu sine. Terapia nu este doar despre a „rezolva” o problemă, ci despre a descoperi o formă mai autentică de a trăi: cu sens, cu grijă și cu o mai mare libertate interioară.</p>
+<aside class="essence-card" aria-labelledby="in-esenta"><h2 id="in-esenta">În esență</h2><p>Misiunea mea este să ajut oamenii să se înțeleagă, să se accepte și să-și reconstruiască relația cu sine. Terapia nu este doar despre a „rezolva” o problemă, ci despre a descoperi o formă mai autentică de a trăi: cu sens, cu grijă și cu o mai mare libertate interioară.</p></aside>
 </div>
 </section>
 ${reviews()}

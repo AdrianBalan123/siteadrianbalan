@@ -998,8 +998,13 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   display: grid;
   text-align: center;
 }
+/* the stage takes the height of the review on show (set from JS), so short reviews leave no gap */
+.quote-stage {
+  transition: height 0.45s ease;
+}
 .quote-slide {
   grid-area: 1 / 1;
+  align-self: start;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -1905,25 +1910,15 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 }
 /* Despre on phones and narrow tablets: the whole page is centred, section by section */
 @media (max-width: 860px) {
-  .about-how-text,
-  .about-essence {
+  .about-how-text {
     text-align: center;
     text-wrap: balance;
-  }
-  .values .value {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    text-align: center;
   }
   .quote-carousel .section-head {
     flex-direction: column;
     align-items: center;
     text-align: center;
     text-wrap: balance;
-  }
-  .quote-carousel .trust-note {
-    justify-content: center;
   }
   main:has(.about-hero) .cta-box {
     justify-items: center;
@@ -1979,26 +1974,30 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   margin-top: 16px;
   color: var(--muted);
 }
+/* the three values: short rows with a thin line between them, not tall cards */
 .values {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 12px;
 }
 .value {
   display: flex;
   gap: 16px;
   align-items: flex-start;
-  padding: 20px 22px;
-  border-radius: var(--r-md);
-  background: var(--card);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow);
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.value:first-child {
+  padding-top: 0;
+}
+.value:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
 }
 .value-icon {
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   flex: none;
   display: grid;
   place-items: center;
@@ -2007,44 +2006,53 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   color: var(--sage-deep);
 }
 .value-icon svg {
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
 }
 .value h3 {
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 600;
 }
 .value p {
   margin-top: 2px;
   color: var(--muted);
   font-size: 15.5px;
+  line-height: 1.55;
 }
 @media (max-width: 860px) {
   .about-how-grid {
     grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  /* centred page, but the value rows keep their icon on the left, in a centred block */
+  .values {
+    width: 100%;
+    max-width: 440px;
+    margin-inline: auto;
+    text-align: left;
   }
 }
-
-.about-essence {
-  padding-block: clamp(56px, 8vw, 96px);
-  background: var(--card);
-  border-top: 1px solid var(--line);
+/* "În esență" closes the section as a sage card, instead of a separate white band */
+.essence-card {
+  margin-top: clamp(36px, 5vw, 56px);
+  padding: clamp(24px, 4vw, 40px);
+  border: 1px solid var(--sage);
+  border-radius: var(--r-md);
+  background: var(--sage-soft);
   text-align: center;
 }
-.about-essence h2 {
-  font-family: var(--sans);
+.essence-card h2 {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--sage-deep);
 }
-.about-essence p {
-  max-width: 44ch;
-  margin: 18px auto 0;
-  font-family: var(--sans);
-  font-size: clamp(20px, 2.4vw, 26px);
-  line-height: 1.5;
+.essence-card p {
+  max-width: 52ch;
+  margin: 12px auto 0;
+  font-size: clamp(17px, 1.9vw, 21px);
+  line-height: 1.55;
   text-wrap: balance;
 }
 
@@ -2380,6 +2388,18 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   color: #8a4b4b;
   font-size: 13.5px;
   font-weight: 500;
+}
+/* under the dots: one centred line, the lock sitting inline with the words when it wraps */
+.quote-carousel .trust-note {
+  display: block;
+  margin-top: 14px;
+  text-align: center;
+  text-wrap: balance;
+}
+.quote-carousel .trust-note svg {
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: -3px;
 }
 .trust-note {
   display: flex;

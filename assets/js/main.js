@@ -320,6 +320,10 @@
     var controls = document.querySelector('.quote-controls');
     var dots = controls.querySelectorAll('.quote-dots button');
     var current = 0;
+    // the stage is as tall as the review on show (short reviews leave no empty space)
+    var fit = function () {
+      stage.style.height = slides[current].offsetHeight + 'px';
+    };
     var show = function (i) {
       current = (i + slides.length) % slides.length;
       slides.forEach(function (s, k) {
@@ -330,8 +334,12 @@
         if (k === current) d.setAttribute('aria-current', 'true');
         else d.removeAttribute('aria-current');
       });
+      fit();
     };
     controls.hidden = false;
+    fit();
+    window.addEventListener('resize', fit);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
 
     // Schimbare automată la 7 s; se oprește cât timp mouse-ul/focusul e pe carusel,
     // când tab-ul nu e vizibil, și nu pornește deloc dacă utilizatorul a cerut mișcare redusă.
