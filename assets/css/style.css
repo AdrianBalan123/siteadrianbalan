@@ -2137,6 +2137,13 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 .service .intro {
   color: var(--muted);
 }
+/* the longer paragraphs inside a card are justified; hyphenation keeps the gaps between words even */
+.service .intro,
+.service .note {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
 .service .tags {
   margin-top: 14px;
 }
@@ -2264,59 +2271,6 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   .svc-summary {
     font-size: 14px;
     line-height: 1.45;
-  }
-}
-
-/* Servicii on phones: centred like Despre — icon on top of each card, the arrow under the text,
-   and the open card's text, tags, list points and note all centred */
-@media (max-width: 560px) {
-  main:has(.services) .page-head {
-    text-align: center;
-  }
-  .service summary {
-    flex-direction: column;
-    text-align: center;
-    gap: 6px;
-  }
-  .service summary .svc-icon {
-    align-self: center;
-  }
-  .svc-head {
-    width: 100%;
-  }
-  .svc-summary {
-    margin-inline: auto;
-    max-width: 30ch;
-  }
-  .service-body {
-    text-align: center;
-  }
-  .service .tags {
-    justify-content: center;
-  }
-  .service .checklist li {
-    display: block;
-    text-align: center;
-    text-wrap: balance;
-  }
-  .service .checklist .item-icon {
-    display: grid;
-    margin: 0 auto 6px;
-  }
-  .service .note {
-    text-wrap: balance;
-  }
-  main:has(.services) .cta-box {
-    justify-items: center;
-    text-align: center;
-  }
-  main:has(.services) .cta-box p {
-    margin-inline: auto;
-    text-wrap: balance;
-  }
-  main:has(.services) .cta-actions,
-  main:has(.services) .cta-actions .contact-pair {
-    justify-content: center;
   }
 }
 
