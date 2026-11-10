@@ -31,6 +31,10 @@ const ICONS = {
   chevronLeft: '<path d="m15 18-6-6 6-6"/>',
   chevronRight: '<path d="m9 18 6-6-6-6"/>',
   link: '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
+  sunrise: '<path d="M12 2v8"/><path d="m4.93 10.93 1.41 1.41"/><path d="M2 18h2"/><path d="M20 18h2"/><path d="m19.07 10.93-1.41 1.41"/><path d="M22 22H2"/><path d="m8 6 4-4 4 4"/><path d="M16 18a4 4 0 0 0-8 0"/>',
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>',
+  moon: '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
+  video: '<path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/>',
   // Servicii: one icon per item (Lucide)
   cloudRain: '<path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M16 14v6"/><path d="M8 14v6"/><path d="M12 16v6"/>',
   zap: '<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>',
@@ -162,7 +166,8 @@ ${logo()}
 
 const QUOTE = 'Cred cu tărie că fiecare persoană poartă în sine resursele necesare pentru vindecare, sens și transformare, iar rolul meu este să creez cadrul sigur, conținător și empatic în care aceste procese pot avea loc.';
 
-const choice = (v) => `<label class="choice"><input type="checkbox" value="${esc(v)}"><span>${esc(v)}</span></label>`;
+// a tile the visitor ticks; `label` is what shows (a short day name), `v` goes into the WhatsApp message
+const choice = (v, label = v, ic = '', type = 'checkbox', name = '') => `<label class="choice"><input type="${type}"${name ? ` name="${name}"` : ''} value="${esc(v)}"><span>${ic ? icon(ic) : ''}${esc(label)}</span></label>`;
 
 // Formularul compune mesajul și îl deschide în WhatsApp (site static, fără server).
 // Fără JavaScript, trimite doar câmpul „text” direct la wa.me.
@@ -170,23 +175,25 @@ export const bookingForm = () =>
   `<form class="booking-form" id="programare" action="${SITE.whatsapp}" method="get" target="_blank">
 <h2>Programează o ședință</h2>
 <p class="form-lead">Lasă-mi câteva cuvinte și revin cu o propunere de programare.</p>
-<div class="field"><label for="f-nume">Nume</label><input id="f-nume" autocomplete="name" required></div>
-<fieldset class="field"><legend>Când îți este mai ușor? <span>(opțional)</span></legend>
-<div class="choices" data-group="zile">${['Luni', 'Marți', 'Miercuri', 'Joi', 'Vineri'].map((z) => choice(z)).join('')}</div>
-<div class="choices" data-group="interval">${['Dimineața', 'După-amiaza', 'Seara'].map((z) => choice(z)).join('')}</div>
+<div class="field-row"><div class="field"><label for="f-nume">Nume</label><input id="f-nume" autocomplete="name" required></div><div class="field"><label for="f-tema">Temă <span>(opțional)</span></label><select id="f-tema"><option value="">Aleg mai târziu</option>${SERVICES.map((s) => `<option>${esc(s.title)}</option>`).join('')}<option>Nu sunt sigur, aș vrea o discuție preliminară</option></select></div></div>
+<fieldset class="field"><legend>Unde? <span>(opțional)</span></legend>
+<div class="choices choices-format" data-group="format">${[['Fizic (Timișoara)', 'pin'], ['Online', 'video']].map(([z, ic]) => choice(z, z, ic, 'radio', 'format')).join('')}</div>
 </fieldset>
-<div class="field"><label for="f-tema">Despre ce ai vrea să vorbim? <span>(opțional)</span></label><select id="f-tema"><option value="">Aleg mai târziu</option>${SERVICES.map((s) => `<option>${esc(s.title)}</option>`).join('')}<option>Nu sunt sigur, aș vrea o discuție preliminară</option></select></div>
-<div class="field"><label for="f-mesaj">Mesaj</label><textarea id="f-mesaj" name="text" rows="4" placeholder="Câteva rânduri sunt suficiente, nu e nevoie de detalii." required></textarea></div>
+<fieldset class="field"><legend>Când îți este mai ușor? <span>(opțional)</span></legend>
+<div class="choices choices-days" data-group="zile">${[['Luni', 'Lun'], ['Marți', 'Mar'], ['Miercuri', 'Mie'], ['Joi', 'Joi'], ['Vineri', 'Vin'], ['Sâmbătă', 'Sâm']].map(([z, s]) => choice(z, s)).join('')}</div>
+<div class="choices choices-time" data-group="interval">${[['Dimineața', 'sunrise'], ['După-amiaza', 'sun'], ['Seara', 'moon']].map(([z, ic]) => choice(z, z, ic)).join('')}</div>
+</fieldset>
+<div class="field"><label for="f-mesaj">Mesaj</label><textarea id="f-mesaj" name="text" rows="3" placeholder="Câteva rânduri sunt suficiente, nu e nevoie de detalii." required></textarea></div>
 <button class="btn btn-primary" type="submit">${icon('whatsapp')} Trimite pe WhatsApp</button>
 <p class="trust-note">${icon('lock')} Mesajul se deschide în WhatsApp, gata de trimis. Nimic nu se salvează pe site.</p>
 </form>`;
 
-const contactInfo = () =>
+const contactInfo = (map = '') =>
   `<div class="contact-card">
 <div><p class="label">Telefon și WhatsApp</p><a class="phone-big" href="tel:${SITE.phoneTel}">${esc(SITE.phoneDisplay)}</a></div>
 <div class="actions"><a class="btn btn-primary" href="tel:${SITE.phoneTel}">${icon('phone')} Sună acum</a><a class="btn btn-ghost" href="${SITE.whatsapp}" target="_blank" rel="noopener noreferrer">${icon('whatsapp')} WhatsApp</a></div>
-<div><p class="label">Adresa cabinetului</p><address>${esc(SITE.address)}</address><p style="margin-top:10px"><a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(SITE.mapsQuery)}" target="_blank" rel="noopener noreferrer">Deschide în Google Maps</a></p></div>
-<p class="pill">${icon('clock')} Ședințe de 50 de minute</p>
+<div><p class="label">Adresa cabinetului</p><address>${esc(SITE.address)}</address><p style="margin-top:4px"><a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(SITE.mapsQuery)}" target="_blank" rel="noopener noreferrer">Deschide în Google Maps</a></p></div>
+${map}
 </div>`;
 
 /* ---------- blocks regenerated by the admin inside existing pages ---------- */
@@ -385,9 +392,8 @@ ${ctaBox()}
 
 export function contactPage() {
   const q = encodeURIComponent(SITE.mapsQuery);
-  const body = `<div class="wrap page-head"><h1>Contact și programări</h1><p>Pentru informații, o discuție preliminară sau programarea unei consultații, lasă-mi un mesaj, sună-mă sau scrie-mi pe WhatsApp. Sunt aici să răspund tuturor întrebărilor tale.</p></div>
-<div class="wrap contact-grid">${bookingForm()}${contactInfo()}</div>
-<div class="wrap"><div class="map map-wide"><iframe src="https://www.google.com/maps?q=${q}&amp;z=16&amp;output=embed" title="Harta: cabinetul de pe strada Aristide Demetriade 1/3, Timișoara" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div></div>`;
+  const body = `<div class="wrap page-head page-head-compact"><h1>Contact și programări</h1><p>Pentru informații, o discuție preliminară sau programarea unei consultații, lasă-mi un mesaj, sună-mă sau scrie-mi pe WhatsApp. Sunt aici să răspund tuturor întrebărilor tale.</p></div>
+<div class="wrap contact-grid">${bookingForm()}${contactInfo(`<div class="map map-in-card"><iframe src="https://www.google.com/maps?q=${q}&amp;z=16&amp;output=embed" title="Harta: cabinetul de pe strada Aristide Demetriade 1/3, Timișoara" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>`)}</div>`;
   return layout({ title: 'Contact și programări | Adrian Bălan, psiholog Timișoara', description: 'Programări la 0720 754 920, telefonic, pe WhatsApp sau prin formular. Cabinet pe strada Aristide Demetriade nr. 1/3, Timișoara.', path: '/contact.html', current: '/contact.html', body });
 }
 

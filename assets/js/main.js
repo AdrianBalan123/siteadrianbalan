@@ -191,6 +191,7 @@
       // *text* = bold în WhatsApp
       var lines = ['Bună ziua! 👋', 'Aș dori să programez o ședință.', '', '*Nume:* ' + val('f-nume')];
       if (val('f-tema')) lines.push('*Temă:* ' + val('f-tema'));
+      if (picked('format').length) lines.push('*Format:* ' + picked('format')[0]);
       if (cand) lines.push('*Disponibilitate:* ' + cand);
       lines.push('', '*Mesaj:*', val('f-mesaj'), '', 'Mulțumesc!');
       window.open(form.action + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
