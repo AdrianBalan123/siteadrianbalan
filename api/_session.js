@@ -28,25 +28,40 @@ export function getSession(req) {
   if (expected.length !== given.length || !timingSafeEqual(expected, given)) return null;
   try {
     const s = JSON.parse(Buffer.from(payload, 'base64url').toString());
-    return s.exp > Date.now() / 1000 ? s : null;
+    // a user removed from ADMIN_USERS loses access right away, even with a valid cookie
+    return s.exp > Date.now() / 1000 && users().has(s.u) ? s : null;
   } catch {
     return null;
   }
 }
 
-// ADMIN_PASSWORD_HASH = "scrypt:<salt hex>:<hash hex>" (generat cu: node scripts/parola-admin.mjs)
-export function checkPassword(password) {
-  const [kind, salt, hash] = String(process.env.ADMIN_PASSWORD_HASH || '').split(':');
+// Utilizatorii: ADMIN_USERS = "admin=scrypt:<salt>:<hash>;tudor=scrypt:<salt>:<hash>"
+// (generat cu: node scripts/parola-admin.mjs). Merge și varianta cu un singur utilizator: ADMIN_USER + ADMIN_PASSWORD_HASH.
+function users() {
+  const map = new Map();
+  for (const entry of String(process.env.ADMIN_USERS || '').split(';')) {
+    const k = entry.indexOf('=');
+    if (k > 0) map.set(entry.slice(0, k).trim(), entry.slice(k + 1).trim());
+  }
+  if (process.env.ADMIN_USER && process.env.ADMIN_PASSWORD_HASH) map.set(process.env.ADMIN_USER, process.env.ADMIN_PASSWORD_HASH);
+  return map;
+}
+
+function matches(stored, password) {
+  const [kind, salt, hash] = String(stored || '').split(':');
   if (kind !== 'scrypt' || !salt || !hash) return false;
   const want = Buffer.from(hash, 'hex');
   const got = scryptSync(String(password), Buffer.from(salt, 'hex'), want.length);
   return timingSafeEqual(want, got);
 }
 
-export function sameUser(user) {
-  const want = Buffer.from(String(process.env.ADMIN_USER || ''));
-  const got = Buffer.from(String(user || ''));
-  return want.length > 0 && want.length === got.length && timingSafeEqual(want, got);
+const DUMMY = 'scrypt:00000000000000000000000000000000:' + '0'.repeat(128);
+
+// the user's name when user and password match, otherwise null (an unknown user costs the same time)
+export function checkLogin(user, password) {
+  const stored = users().get(String(user || ''));
+  const ok = matches(stored || DUMMY, password);
+  return stored && ok ? String(user) : null;
 }
 
 // cererile care modifică ceva trebuie să vină de pe același site (protecție CSRF, pe lângă SameSite=Strict)
@@ -61,5 +76,5 @@ export function sameOrigin(req) {
 }
 
 export function configured() {
-  return ['ADMIN_USER', 'ADMIN_PASSWORD_HASH', 'SESSION_SECRET', 'GITHUB_TOKEN', 'GITHUB_REPO'].every((k) => process.env[k]);
+  return users().size > 0 && ['SESSION_SECRET', 'GITHUB_TOKEN', 'GITHUB_REPO'].every((k) => process.env[k]);
 }

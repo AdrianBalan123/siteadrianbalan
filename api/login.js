@@ -1,4 +1,4 @@
-import { checkPassword, configured, sameOrigin, sameUser, setSession } from './_session.js';
+import { checkLogin, configured, sameOrigin, setSession } from './_session.js';
 
 // încercări greșite pe adresă IP (în memoria instanței) + o pauză la fiecare eșec, contra ghicirii parolei
 const fails = new Map();
@@ -20,8 +20,8 @@ export default async function handler(req, res) {
   }
 
   const { username, password } = req.body || {};
-  const ok = sameUser(username) && checkPassword(password);
-  if (!ok) {
+  const user = checkLogin(username, password);
+  if (!user) {
     const cur = f && now - f.since < WINDOW ? f : { count: 0, since: now };
     cur.count += 1;
     fails.set(ip, cur);
@@ -29,6 +29,6 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'Utilizator sau parolă greșită.' });
   }
   fails.delete(ip);
-  setSession(res, process.env.ADMIN_USER);
-  return res.status(200).json({ user: process.env.ADMIN_USER });
+  setSession(res, user);
+  return res.status(200).json({ user });
 }

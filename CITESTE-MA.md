@@ -22,13 +22,12 @@ Login cu **utilizator și parolă**. Tokenul GitHub stă doar pe server (variabi
 
 | Variabilă | Ce pui |
 |---|---|
-| `ADMIN_USER` | utilizatorul de administrare (ex. `adrian`) |
-| `ADMIN_PASSWORD_HASH` | rezultatul comenzii `node scripts/parola-admin.mjs` (scrii parola, primești hash-ul) |
-| `SESSION_SECRET` | tot din `node scripts/parola-admin.mjs` |
+| `ADMIN_USERS` | utilizatorii și hash-urile parolelor, din `node scripts/parola-admin.mjs` (forma `admin=scrypt:…;tudor=scrypt:…`) |
+| `SESSION_SECRET` | tot din `node scripts/parola-admin.mjs`, o singură dată |
 | `GITHUB_TOKEN` | token GitHub **fine-grained**: doar repository-ul site-ului, **Contents: Read and write** |
 | `GITHUB_REPO` | `AdrianBalan123/siteadrianbalan` |
 
-După ce le salvezi: Deployments → ultimul deploy → **Redeploy**. Pentru o parolă nouă rulezi din nou scriptul și înlocuiești `ADMIN_PASSWORD_HASH`.
+După ce le salvezi: Deployments → ultimul deploy → **Redeploy**. Pentru un utilizator nou sau o parolă nouă rulezi din nou scriptul și înlocuiești `ADMIN_USERS`. Un utilizator scos de acolo pierde accesul imediat.
 
 Protecții: după 8 încercări greșite de pe aceeași adresă, login-ul se blochează 15 minute; serverul acceptă doar operațiile de care are nevoie editorul, doar pe repository-ul site-ului.
 
