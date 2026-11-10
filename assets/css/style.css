@@ -46,18 +46,19 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  background: var(--bg); /* the page colour lives here, so the fixed gradient layer behind <body> shows through */
 }
 
 body {
   margin: 0;
-  background: var(--bg);
+  background-color: transparent;
   /* every page except the landing (which has its own moving gradient): the same mood at the top,
      sage in the corners and a faint rose glow, fading into the plain cream where the reading starts */
   background-image:
     radial-gradient(38% 52% at 0% 0%, rgba(123, 158, 137, 0.42) 0%, transparent 70%),
     radial-gradient(34% 46% at 100% 4%, rgba(123, 158, 137, 0.34) 0%, transparent 70%),
     radial-gradient(30% 34% at 62% 20%, rgba(221, 165, 165, 0.26) 0%, transparent 72%),
-    linear-gradient(180deg, #f1f4ef 0%, var(--bg) 100%);
+    linear-gradient(180deg, rgba(232, 240, 234, 0.75) 0%, transparent 100%);
   background-size: 100% 760px;
   background-repeat: no-repeat;
   color: var(--ink);
@@ -197,10 +198,11 @@ body:not(:has(.hero-full))::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(45% 40% at 0% 100%, rgba(123, 158, 137, 0.2) 0%, transparent 70%),
-    radial-gradient(40% 45% at 100% 55%, rgba(221, 165, 165, 0.16) 0%, transparent 70%),
-    radial-gradient(40% 40% at 100% 100%, rgba(123, 158, 137, 0.14) 0%, transparent 70%),
-    radial-gradient(35% 35% at 0% 45%, rgba(246, 230, 228, 0.5) 0%, transparent 70%);
+    radial-gradient(50% 45% at 0% 100%, rgba(123, 158, 137, 0.26) 0%, transparent 70%),
+    radial-gradient(45% 50% at 100% 60%, rgba(221, 165, 165, 0.2) 0%, transparent 70%),
+    radial-gradient(45% 45% at 100% 100%, rgba(123, 158, 137, 0.2) 0%, transparent 70%),
+    radial-gradient(40% 40% at 0% 40%, rgba(221, 165, 165, 0.16) 0%, transparent 70%),
+    radial-gradient(40% 35% at 55% 50%, rgba(231, 239, 233, 0.6) 0%, transparent 72%);
 }
 /* narrow screens: the same top gradient, with wider shapes so the rose reads as a glow, not a streak */
 @media (max-width: 560px) {
@@ -209,7 +211,7 @@ body:not(:has(.hero-full))::before {
       radial-gradient(70% 40% at 0% 0%, rgba(123, 158, 137, 0.42) 0%, transparent 70%),
       radial-gradient(60% 34% at 100% 4%, rgba(123, 158, 137, 0.34) 0%, transparent 70%),
       radial-gradient(70% 28% at 65% 22%, rgba(221, 165, 165, 0.24) 0%, transparent 72%),
-      linear-gradient(180deg, #f1f4ef 0%, var(--bg) 100%);
+      linear-gradient(180deg, rgba(232, 240, 234, 0.75) 0%, transparent 100%);
     background-size: 100% 680px;
   }
 }
