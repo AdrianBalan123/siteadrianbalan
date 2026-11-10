@@ -2706,14 +2706,6 @@ fieldset.field {
 .choices-format {
   grid-template-columns: 1fr 1fr;
 }
-/* the contact page heading is centred */
-main:has(.contact-grid) .page-head {
-  text-align: center;
-}
-main:has(.contact-grid) .page-head h1,
-main:has(.contact-grid) .page-head p {
-  margin-inline: auto;
-}
 /* name and topic share a row */
 .field-row {
   display: grid;
@@ -2726,74 +2718,106 @@ main:has(.contact-grid) .page-head p {
     gap: 18px;
   }
 }
-/* laptops and desktops: the whole Contact page (form, details, map) fits one screen */
+/* laptops and desktops: the whole Contact page (form, details, map) fits one screen,
+   down to short laptop windows (~620px under the header) */
 @media (min-width: 861px) {
-  /* the form and the card say the same as the intro paragraph, so it steps aside here */
-  main:has(.contact-grid) .page-head-compact p {
-    display: none;
-  }
-  main:has(.contact-grid) .page-head-compact {
-    padding-block: clamp(8px, 1.6vh, 18px) 12px;
-  }
-  main:has(.contact-grid) .page-head-compact h1 {
-    font-size: clamp(28px, 3vw, 36px);
+  .contact-grid {
+    margin-top: clamp(12px, 2.4vh, 28px);
   }
   .booking-form {
-    gap: 10px;
-    padding: 20px 26px;
+    gap: 8px;
+    padding: 18px 24px;
   }
   .booking-form h2 {
-    font-size: 23px;
+    font-size: 21px;
   }
   .form-lead {
     margin-top: -6px;
-    font-size: 15px;
+    font-size: 14.5px;
+  }
+  .field {
+    gap: 4px;
+  }
+  .field label,
+  .field legend {
+    font-size: 14px;
   }
   fieldset.field {
     gap: 6px;
   }
   .field legend {
-    margin-bottom: 2px;
+    margin-bottom: 0;
   }
-  .choice span {
-    min-height: 38px;
+  .choices {
+    gap: 6px;
   }
+  .choice span,
   .choices-time .choice span {
-    min-height: 38px;
+    min-height: 36px;
     flex-direction: row;
     gap: 7px;
+    font-size: 14px;
   }
-  .field input:not([type='checkbox']),
+  .field input:not([type='checkbox']):not([type='radio']),
   .field select {
-    min-height: 44px;
-    padding-block: 9px;
+    min-height: 40px;
+    padding-block: 7px;
   }
   .field textarea {
-    min-height: 68px;
-    padding-block: 10px;
+    min-height: 60px;
+    padding-block: 8px;
   }
   .booking-form .btn {
-    min-height: 46px;
+    min-height: 44px;
+    margin-top: 2px;
+  }
+  .booking-form .trust-note {
+    margin-top: -2px;
+    font-size: 13px;
   }
   .contact-card {
-    padding: 22px 26px;
-    gap: 14px;
-  }
-  .phone-big {
-    font-size: clamp(28px, 2.6vw, 36px);
-  }
-  .contact-card .label {
-    font-size: 14px;
-    margin-bottom: 2px;
-  }
-  .contact-card address {
-    font-size: 16px;
-  }
-  .contact-card .actions .btn {
-    min-height: 44px;
+    padding: 18px 22px;
+    gap: 12px;
   }
   .contact-card .phone-big {
-    font-size: clamp(26px, 2.4vw, 34px);
+    font-size: clamp(26px, 2.4vw, 32px);
+  }
+  .contact-card .label {
+    font-size: 13.5px;
+    margin-bottom: 0;
+  }
+  .contact-card .actions .btn {
+    min-height: 42px;
+  }
+  .contact-card .map-in-card,
+  .contact-card .map-in-card iframe {
+    min-height: 150px;
+  }
+}
+/* very short windows: the last few pixels */
+@media (min-width: 861px) and (max-height: 660px) {
+  .contact-grid {
+    margin-top: 8px;
+  }
+  .field textarea {
+    min-height: 50px;
+  }
+  .form-lead {
+    display: none;
+  }
+}
+/* tall screens: a little more air */
+@media (min-width: 861px) and (min-height: 860px) {
+  .booking-form {
+    gap: 12px;
+    padding: 24px 28px;
+  }
+  .choice span,
+  .choices-time .choice span {
+    min-height: 40px;
+  }
+  .field textarea {
+    min-height: 84px;
   }
 }
 
