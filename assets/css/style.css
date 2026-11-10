@@ -1794,6 +1794,9 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
     justify-content: center;
   }
   /* the booking button spans the same width as the pair under it */
+  .about-intro .hero-actions {
+    flex-direction: column;
+  }
   .about-intro .hero-actions > .btn-primary,
   .cta-actions > .btn-primary {
     flex-basis: 100%;
@@ -1902,6 +1905,31 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 .about-intro .hero-actions {
   margin-top: 24px;
   justify-content: flex-start;
+}
+/* Despre intro: one calm invitation — the booking button, with WhatsApp as a quiet text link beside it
+   (every option is offered again in the "Vrei să vorbim?" box at the end) */
+.about-actions {
+  align-items: center;
+  gap: 10px 22px;
+}
+.quiet-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--sage-deep);
+  font-size: 15.5px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s;
+}
+.quiet-link:hover {
+  text-decoration-color: currentColor;
+}
+.quiet-link svg {
+  width: 17px;
+  height: 17px;
 }
 /* laptops and desktops: photo, intro and quote fit the first screen, close under the header;
    the photo is sized by the screen's height */

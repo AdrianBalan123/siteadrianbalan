@@ -357,7 +357,7 @@ export function aboutPage() {
 <p class="lead">Mă numesc Adrian Bălan și sunt psiholog clinician, dedicat înțelegerii profunde a oamenilor și a modului în care aceștia se raportează la sine, la ceilalți și la lume.</p>
 <figure class="about-quote"><span class="quote-icon">${icon('quote')}</span><blockquote>${esc(QUOTE)}</blockquote></figure>
 <p>Lucrez cu adolescenți și adulți care se confruntă cu depresie, anxietate, traume, sexualitate, relaționare și dificultăți de identitate.</p>
-${contactActions()}
+<div class="hero-actions about-actions"><a class="btn btn-primary" href="${BOOK}">${icon('calendar')} Programează o ședință</a><a class="quiet-link" href="${SITE.whatsapp}" target="_blank" rel="noopener noreferrer">${icon('whatsapp')} sau scrie-mi pe WhatsApp</a></div>
 </div>
 </div>
 </section>
