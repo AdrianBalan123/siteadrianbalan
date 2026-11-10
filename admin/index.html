@@ -34,17 +34,12 @@
   <section id="view-login" hidden>
     <div class="login-card">
       <h1>Intră în administrare</h1>
-      <p>Articolele se publică prin GitHub. Introdu cheia de acces primită (un token GitHub). Rămâi conectat pe acest calculator.</p>
+      <p>Intră cu utilizatorul și parola de administrare. Sesiunea expiră după 12 ore.</p>
       <form class="form" id="login-form">
-        <label for="token">Cheia de acces</label>
-        <input id="token" type="password" autocomplete="current-password" required>
-        <details class="advanced">
-          <summary>Setări repository</summary>
-          <label for="repo" style="margin-top:14px">Repository (utilizator/nume)</label>
-          <input id="repo" type="text" placeholder="tudor/site-adrian-balan" autocomplete="off">
-          <label for="branch" style="margin-top:14px">Ramura</label>
-          <input id="branch" type="text" placeholder="main" autocomplete="off">
-        </details>
+        <label for="username">Utilizator</label>
+        <input id="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+        <label for="password" class="login-gap">Parola</label>
+        <input id="password" type="password" autocomplete="current-password" required>
         <button class="btn btn-primary" type="submit">Intră</button>
       </form>
     </div>

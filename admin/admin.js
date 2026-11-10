@@ -1,47 +1,44 @@
-// Admin fără server: citește și scrie fișierele site-ului direct în repository-ul GitHub.
-// Fiecare salvare = un commit; Vercel publică automat noua versiune.
+// Administrarea: login cu utilizator și parolă; serverul (funcțiile din /api, pe Vercel) ține tokenul GitHub
+// și face commit-urile. Fiecare salvare = un commit; Vercel publică automat noua versiune.
 import * as T from '/assets/js/template.js';
 
 const $ = (s) => document.querySelector(s);
-const STORE = 'ab-admin';
 
-/* ---------------- settings ---------------- */
-function loadCfg() {
-  try {
-    return JSON.parse(localStorage.getItem(STORE)) || {};
-  } catch {
-    return {};
-  }
-}
-function saveCfg(c) {
-  try {
-    localStorage.setItem(STORE, JSON.stringify(c));
-  } catch {}
-}
-let cfg = loadCfg();
+// the old version kept a GitHub token in this browser: remove it
+try {
+  localStorage.removeItem('ab-admin');
+} catch {}
 
-/* ---------------- GitHub API ---------------- */
-async function gh(path, opts = {}) {
-  const res = await fetch(`https://api.github.com/repos/${cfg.repo}${path}`, {
+let cfg = { user: '', branch: 'main' };
+
+async function api(url, opts = {}) {
+  const res = await fetch(url, {
     ...opts,
-    headers: {
-      Authorization: `Bearer ${cfg.token}`,
-      Accept: 'application/vnd.github+json',
-      'X-GitHub-Api-Version': '2022-11-28',
-      ...(opts.body ? { 'Content-Type': 'application/json' } : {}),
-    },
+    credentials: 'same-origin',
+    headers: opts.body ? { 'Content-Type': 'application/json' } : {},
   });
+  const data = res.status === 204 ? null : await res.json().catch(() => null);
   if (!res.ok) {
-    let msg = `GitHub a răspuns cu eroarea ${res.status}.`;
-    if (res.status === 401) msg = 'Cheia de acces nu mai e validă. Ieși din cont și intră cu o cheie nouă.';
-    if (res.status === 403) msg = 'Cheia de acces nu are drept de scriere pe repository (Contents: Read and write).';
-    if (res.status === 404) msg = 'Nu găsesc repository-ul sau fișierul. Verifică setările repository-ului.';
-    if (res.status === 409 || res.status === 422) msg = 'Site-ul a fost modificat între timp. Reîncarcă pagina și încearcă din nou.';
-    const err = new Error(msg);
+    const err = new Error((data && data.error) || `Serverul a răspuns cu eroarea ${res.status}.`);
     err.status = res.status;
     throw err;
   }
-  return res.status === 204 ? null : res.json();
+  return data;
+}
+
+/* ---------------- GitHub, through /api/github ---------------- */
+async function gh(path, opts = {}) {
+  try {
+    return await api(`/api/github?path=${encodeURIComponent(path)}`, opts);
+  } catch (e) {
+    if (e.status === 401) {
+      cfg.user = '';
+      show('login');
+      e.message = 'Sesiunea a expirat. Intră din nou.';
+    }
+    if (e.status === 409 || e.status === 422) e.message = 'Site-ul a fost modificat între timp. Reîncarcă pagina și încearcă din nou.';
+    throw e;
+  }
 }
 
 const b64ToText = (b64) => new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\n/g, '')), (c) => c.charCodeAt(0)));
@@ -408,7 +405,7 @@ async function save(ev) {
 /* ---------------- routing ---------------- */
 let dirty = false;
 async function route() {
-  if (!cfg.token || !cfg.repo) return show('login');
+  if (!cfg.user) return show('login');
   const h = location.hash.slice(1);
   if (h === 'nou') return openEditor(null);
   if (h.startsWith('editeaza/')) return openEditor(decodeURIComponent(h.slice(9)));
@@ -417,9 +414,17 @@ async function route() {
 }
 
 async function start() {
-  if (!cfg.token || !cfg.repo) return show('login');
   busy(true);
   try {
+    try {
+      const me = await api('/api/me');
+      cfg = { user: me.user, branch: me.branch || 'main' };
+    } catch (e) {
+      cfg.user = '';
+      show('login');
+      if (e.status !== 401) error(e.message);
+      return;
+    }
     await loadArticles();
     await route();
   } catch (e) {
@@ -432,33 +437,26 @@ async function start() {
 
 /* ---------------- events ---------------- */
 document.addEventListener('DOMContentLoaded', () => {
-  $('#repo').value = cfg.repo || '';
-  $('#branch').value = cfg.branch || 'main';
-  if (!cfg.repo) $('.advanced').open = true;
-
   $('#login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     error('');
-    cfg = { token: $('#token').value.trim(), repo: $('#repo').value.trim().replace(/^https?:\/\/github\.com\//, '').replace(/\.git$/, ''), branch: $('#branch').value.trim() || 'main' };
-    if (!/^[\w.-]+\/[\w.-]+$/.test(cfg.repo)) return error('Scrie repository-ul în forma utilizator/nume, de exemplu tudor/site-adrian-balan.');
     busy(true);
     try {
-      const repo = await gh('');
-      if (!repo.permissions?.push) throw new Error('Cheia de acces nu are drept de scriere pe acest repository.');
-      saveCfg(cfg);
-      $('#token').value = '';
+      await api('/api/login', { method: 'POST', body: JSON.stringify({ username: $('#username').value.trim(), password: $('#password').value }) });
+      $('#password').value = '';
       await start();
     } catch (err) {
-      cfg = {};
       error(err.message);
     } finally {
       busy(false);
     }
   });
 
-  $('#logout').addEventListener('click', () => {
-    saveCfg({ repo: cfg.repo, branch: cfg.branch });
-    cfg = { repo: cfg.repo, branch: cfg.branch };
+  $('#logout').addEventListener('click', async () => {
+    try {
+      await api('/api/logout', { method: 'POST' });
+    } catch {}
+    cfg = { user: '', branch: 'main' };
     location.hash = '';
     show('login');
   });

@@ -1,6 +1,6 @@
 # Site Adrian Bălan, psiholog clinician
 
-Site 100% static (HTML, CSS, JavaScript), fără PHP, fără server și fără bază de date. Găzduit pe Vercel, cu admin pentru articole care publică prin GitHub.
+Site static (HTML, CSS, JavaScript), fără PHP și fără bază de date. Găzduit pe Vercel; admin-ul pentru articole folosește câteva funcții mici în `api/` și publică prin GitHub.
 
 ## Cum vezi site-ul pe calculator
 
@@ -14,17 +14,23 @@ Site 100% static (HTML, CSS, JavaScript), fără PHP, fără server și fără b
 4. **Domeniul de la cyber_Folks:** în Vercel, Project → Settings → Domains → adaugă domeniul. Vercel îți arată înregistrările DNS (un `A` și un `CNAME`), pe care le pui în panoul cyber_Folks la zona DNS a domeniului.
 5. Pune domeniul real în `assets/js/content.js` (`url`) și în `robots.txt`, apoi rulează `npm run genereaza` (vezi mai jos).
 
-## Admin articole: `/admin/`
+## Admin articole: `/admin`
 
-Admin-ul nu are server: scrie fișierele direct în repository-ul GitHub, iar Vercel publică noua versiune în aproximativ un minut.
+Login cu **utilizator și parolă**. Tokenul GitHub stă doar pe server (variabile de mediu în Vercel), nu în browser. Funcțiile din `api/` verifică parola, țin sesiunea (cookie securizat, 12 ore) și fac commit-urile; Vercel publică noua versiune în aproximativ un minut.
 
-**Cheia de acces (o dată pe calculator):**
-1. Mergi la github.com → Settings → Developer settings → Personal access tokens → **Fine-grained tokens** → Generate new token.
-2. Repository access: **Only select repositories** → doar repository-ul site-ului.
-3. Permissions → Repository permissions → **Contents: Read and write**.
-4. Copiază tokenul și introdu-l în `/admin/`, împreună cu repository-ul (`utilizator/site-adrian-balan`).
+**Configurare (o singură dată), în Vercel → Project → Settings → Environment Variables:**
 
-Cheia rămâne salvată doar în browserul acelui calculator. „Ieși din cont” o șterge. Tokenul are acces doar la acest repository.
+| Variabilă | Ce pui |
+|---|---|
+| `ADMIN_USER` | utilizatorul de administrare (ex. `adrian`) |
+| `ADMIN_PASSWORD_HASH` | rezultatul comenzii `node scripts/parola-admin.mjs` (scrii parola, primești hash-ul) |
+| `SESSION_SECRET` | tot din `node scripts/parola-admin.mjs` |
+| `GITHUB_TOKEN` | token GitHub **fine-grained**: doar repository-ul site-ului, **Contents: Read and write** |
+| `GITHUB_REPO` | `AdrianBalan123/siteadrianbalan` |
+
+După ce le salvezi: Deployments → ultimul deploy → **Redeploy**. Pentru o parolă nouă rulezi din nou scriptul și înlocuiești `ADMIN_PASSWORD_HASH`.
+
+Protecții: după 8 încercări greșite de pe aceeași adresă, login-ul se blochează 15 minute; serverul acceptă doar operațiile de care are nevoie editorul, doar pe repository-ul site-ului.
 
 Din admin se pot scrie articole noi (cu thumbnail), edita, ascunde sau șterge. Textul se poate lipi direct din Word.
 
