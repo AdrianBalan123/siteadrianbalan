@@ -403,9 +403,13 @@ ${ctaBox()}
 
 export function contactPage() {
   const q = encodeURIComponent(SITE.mapsQuery);
+  // Google's final embed address (the short /maps?output=embed form answers with a redirect first)
+  const mapSrc = `https://www.google.com/maps/embed?origin=mfe&amp;pb=!1m3!2m1!1s${encodeURIComponent(SITE.mapsQuery).replace(/%20/g, '+')}!6i16`;
   const body = `<h1 class="sr-only">Contact și programări</h1>
-<div class="wrap contact-grid">${bookingForm()}${contactInfo(`<div class="map map-in-card"><iframe src="https://www.google.com/maps?q=${q}&amp;z=16&amp;output=embed" title="Harta: cabinetul de pe strada Aristide Demetriade 1/3, Timișoara" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>`)}</div>`;
-  return layout({ title: 'Contact și programări | Adrian Bălan, psiholog Timișoara', description: 'Programări la 0720 754 920, telefonic, pe WhatsApp sau prin formular. Cabinet pe strada Aristide Demetriade nr. 1/3, Timișoara.', path: '/contact.html', current: '/contact.html', body });
+<div class="wrap contact-grid">${bookingForm()}${contactInfo(`<div class="map map-in-card"><iframe src="${mapSrc}" title="Harta: cabinetul de pe strada Aristide Demetriade 1/3, Timișoara" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>`)}</div>`;
+  return layout({ title: 'Contact și programări | Adrian Bălan, psiholog Timișoara', description: 'Programări la 0720 754 920, telefonic, pe WhatsApp sau prin formular. Cabinet pe strada Aristide Demetriade nr. 1/3, Timișoara.', path: '/contact.html', current: '/contact.html', body, head: `<link rel="preconnect" href="https://www.google.com">
+<link rel="preconnect" href="https://maps.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://maps.googleapis.com" crossorigin>` });
 }
 
 // Confidențialitate: ce date ajung unde (site, WhatsApp, servicii externe) și drepturile din GDPR

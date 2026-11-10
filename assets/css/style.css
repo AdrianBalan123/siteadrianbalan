@@ -2106,6 +2106,15 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 }
 
 /* ---------- services ---------- */
+/* Servicii: title and intro centred */
+main:has(.services) .page-head {
+  text-align: center;
+}
+main:has(.services) .page-head h1,
+main:has(.services) .page-head p {
+  margin-inline: auto;
+  text-wrap: balance;
+}
 /* an accordion: every service is a closed card that opens to its details (native <details>) */
 .services {
   display: grid;
