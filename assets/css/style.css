@@ -2259,6 +2259,9 @@ main:has(.services) .page-head p {
   display: flex;
   flex-direction: column;
 }
+.svc-right {
+  gap: 18px;
+}
 .service .svc-left .note {
   margin-top: 18px;
 }
@@ -2266,8 +2269,11 @@ main:has(.services) .page-head p {
   margin-top: auto;
   justify-content: center;
 }
-.svc-right .checklist {
-  margin-bottom: 18px;
+/* desktop: the open card's content starts under the title, not under the icon — one clean left edge */
+@media (min-width: 861px) {
+  .service-body {
+    padding-left: calc(clamp(16px, 3vw, 28px) + 48px + 16px);
+  }
 }
 @media (max-width: 860px) {
   .svc-book {
