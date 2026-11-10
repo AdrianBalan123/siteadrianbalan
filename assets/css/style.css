@@ -1714,6 +1714,33 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   gap: 10px;
   flex-wrap: wrap;
 }
+/* call + WhatsApp side by side, next to the booking button (on its own row on phones) */
+.contact-pair {
+  display: flex;
+  gap: 10px;
+}
+@media (max-width: 560px) {
+  .contact-pair {
+    flex-basis: 100%;
+    justify-content: center;
+  }
+  .contact-pair .btn {
+    flex: 1 1 0;
+    justify-content: center;
+  }
+  /* the booking button spans the same width as the pair under it */
+  .about-intro .hero-actions > .btn-primary,
+  .cta-actions > .btn-primary {
+    flex-basis: 100%;
+    justify-content: center;
+  }
+  .cta-actions .contact-pair {
+    justify-content: flex-start;
+  }
+  main:has(.about-hero) .cta-actions .contact-pair {
+    justify-content: center;
+  }
+}
 @media (max-width: 760px) {
   .cta-box {
     grid-template-columns: 1fr;

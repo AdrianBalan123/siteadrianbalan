@@ -53,7 +53,7 @@ const logo = () =>
 const BOOK = '/contact.html#programare';
 
 export const contactActions = (cls = 'hero-actions') =>
-  `<div class="${cls}"><a class="btn btn-primary" href="${BOOK}">${icon('calendar')} Programează o ședință</a><a class="btn btn-ghost" href="tel:${SITE.phoneTel}">${icon('phone')} ${esc(SITE.phoneDisplay)}</a></div>`;
+  `<div class="${cls}"><a class="btn btn-primary" href="${BOOK}">${icon('calendar')} Programează o ședință</a><span class="contact-pair"><a class="btn btn-ghost" href="tel:${SITE.phoneTel}" aria-label="Sună la ${esc(SITE.phoneDisplay)}">${icon('phone')} Sună</a><a class="btn btn-ghost" href="${SITE.whatsapp}" target="_blank" rel="noopener noreferrer">${icon('whatsapp')} WhatsApp</a></span></div>`;
 
 export const ctaBox = () =>
   `<aside class="cta-box"><div><h2>Vrei să vorbim?</h2><p>Pentru o discuție preliminară sau o programare, lasă-mi un mesaj sau sună-mă la ${esc(SITE.phoneDisplay)}.</p></div>${contactActions('cta-actions')}</aside>`;
