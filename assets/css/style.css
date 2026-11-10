@@ -659,7 +659,7 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
   width: min(560px, 40vw);
   height: clamp(120px, calc(100vh - 480px), 500px);
   height: clamp(120px, calc(100svh - 480px), 500px);
-  /* touch: hold and drag turns the brain, a quick swipe still opens Despre (handled in JS) */
+  /* touch: dragging on the brain turns it; a swipe elsewhere opens Despre (handled in JS) */
   touch-action: none;
   -webkit-user-select: none;
   user-select: none;

@@ -298,48 +298,20 @@
     for (var b = 0; b < 8; b++) fire(best, 5 + Math.floor(rand() * 4));
   });
 
-  // drag to turn it: right away with a mouse; on touch, hold still for a moment first,
-  // so a quick swipe over the brain still works as a swipe (it opens Despre on the landing)
-  var holdTimer = 0, touchDown = false, downX = 0, downY = 0;
-  var startDrag = function (x, y) {
-    dragging = true;
-    moved = 0;
-    lastX = x;
-    lastY = y;
-    canvas.classList.add('is-dragging');
-  };
+  // drag to turn it, with a mouse or a finger, right away
+  // (a swipe anywhere else on the landing still opens Despre)
   var endDrag = function () {
-    clearTimeout(holdTimer);
-    touchDown = false;
     dragging = false;
     canvas.classList.remove('is-dragging');
   };
   canvas.addEventListener('pointerdown', function (e) {
-    if (e.pointerType === 'mouse') {
-      startDrag(e.clientX, e.clientY);
-      e.preventDefault();
-      return;
-    }
-    touchDown = true;
+    dragging = true;
     moved = 0;
-    downX = lastX = e.clientX;
-    downY = lastY = e.clientY;
-    clearTimeout(holdTimer);
-    holdTimer = setTimeout(function () {
-      if (!touchDown) return;
-      startDrag(lastX, lastY);
-      if (navigator.vibrate) navigator.vibrate(8);
-    }, 220);
-  });
-  canvas.addEventListener('pointermove', function (e) {
-    if (!touchDown || dragging) return;
     lastX = e.clientX;
     lastY = e.clientY;
-    // moved before the hold kicked in: it's a swipe, not a drag
-    if (Math.abs(e.clientX - downX) + Math.abs(e.clientY - downY) > 10) {
-      clearTimeout(holdTimer);
-      touchDown = false;
-    }
+    canvas.classList.add('is-dragging');
+    if (canvas.setPointerCapture) try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
+    e.preventDefault();
   });
   window.addEventListener('pointerup', endDrag);
   window.addEventListener('pointercancel', endDrag);
