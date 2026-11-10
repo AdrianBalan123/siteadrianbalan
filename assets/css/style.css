@@ -1272,9 +1272,12 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
     grid-column: 1 / -1;
     flex-direction: row;
   }
+  /* its height follows the screen, so the whole card fits in the first view, even zoomed in */
   .article-list:not(.is-filtered) > .card:first-child .thumb {
     flex: 0 0 56%;
-    aspect-ratio: 16 / 8.5;
+    aspect-ratio: auto;
+    height: clamp(240px, calc(100vh - 400px), 360px);
+    height: clamp(240px, calc(100svh - 400px), 360px);
   }
   .article-list:not(.is-filtered) > .card:first-child .card-body {
     justify-content: center;
@@ -1287,7 +1290,7 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 }
 
 .page-head-compact {
-  padding-block: clamp(24px, 4vw, 44px) clamp(16px, 2vw, 24px);
+  padding-block: clamp(20px, 3vw, 36px) clamp(14px, 1.6vw, 20px);
 }
 .page-head-compact h1 {
   font-size: clamp(32px, 4.4vw, 48px);
@@ -1299,7 +1302,7 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 .article-tools {
   display: grid;
   gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 @media (max-width: 560px) {
   /* phones: keep the newest article in the first screen */
