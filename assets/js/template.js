@@ -393,7 +393,7 @@ export function servicesPage() {
 <div class="services">
 ${SERVICES.map((s) => `<details class="service" id="${s.id}">
 <summary><span class="svc-icon">${icon(s.icon || 'check')}</span><span class="svc-head"><h2>${esc(s.title)}</h2><span class="svc-summary">${esc(s.summary || '')}</span></span><span class="svc-toggle">${icon('chevronDown')}</span></summary>
-<div class="service-body"><div><p class="intro">${esc(s.intro)}</p><ul class="tags">${s.tags.map((tag) => `<li>${esc(tag)}</li>`).join('')}</ul></div><div><ul class="checklist">${s.items.map(item).join('')}</ul>${s.note ? `<p class="note">${esc(s.note)}</p>` : ''}</div></div>
+<div class="service-body"><div class="svc-left"><p class="intro">${esc(s.intro)}</p><ul class="tags">${s.tags.map((tag) => `<li>${esc(tag)}</li>`).join('')}</ul>${s.note ? `<p class="note">${esc(s.note)}</p>` : ''}<a class="btn btn-primary svc-book" href="/contact.html?tema=${encodeURIComponent(s.title)}#programare">${icon('calendar')} Programează pentru acest serviciu</a></div><div><ul class="checklist">${s.items.map(item).join('')}</ul></div></div>
 </details>`).join('\n')}
 </div>
 ${ctaBox()}

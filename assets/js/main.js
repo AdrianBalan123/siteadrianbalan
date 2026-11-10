@@ -183,6 +183,15 @@
   // Programare: compune mesajul din câmpuri și îl deschide în WhatsApp
   var form = document.getElementById('programare');
   if (form) {
+    // venit de pe Servicii („Programează pentru acest serviciu”): tema e deja aleasă
+    var tema = new URLSearchParams(location.search).get('tema');
+    var select = document.getElementById('f-tema');
+    if (tema && select) {
+      Array.prototype.some.call(select.options, function (o) {
+        if (o.value === tema || o.text === tema) { select.value = o.value; return true; }
+        return false;
+      });
+    }
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var val = function (id) {
