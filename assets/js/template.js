@@ -387,13 +387,12 @@ export function servicesPage() {
   };
   const body = `<div class="wrap page-head page-head-compact">
 <h1>Servicii</h1>
-<p>Intervenții bazate pe dovezi științifice, evaluări cu instrumente validate și sprijin pentru tine și pentru cei apropiați. Dacă nu ești sigur de ce ai nevoie, sună-mă și lămurim împreună.</p>
 </div>
 <div class="wrap">
 <div class="services">
 ${SERVICES.map((s) => `<details class="service" id="${s.id}">
 <summary><span class="svc-icon">${icon(s.icon || 'check')}</span><span class="svc-head"><h2>${esc(s.title)}</h2><span class="svc-summary">${esc(s.summary || '')}</span></span><span class="svc-toggle">${icon('chevronDown')}</span></summary>
-<div class="service-body"><div class="svc-left"><p class="intro">${esc(s.intro)}</p><ul class="tags">${s.tags.map((tag) => `<li>${esc(tag)}</li>`).join('')}</ul>${s.note ? `<p class="note">${esc(s.note)}</p>` : ''}<a class="btn btn-primary svc-book" href="/contact.html?tema=${encodeURIComponent(s.title)}#programare">${icon('calendar')} Programează pentru acest serviciu</a></div><div><ul class="checklist">${s.items.map(item).join('')}</ul></div></div>
+<div class="service-body"><div class="svc-left"><p class="intro">${esc(s.intro)}</p><ul class="tags">${s.tags.map((tag) => `<li>${esc(tag)}</li>`).join('')}</ul>${s.note ? `<p class="note">${esc(s.note)}</p>` : ''}</div><div class="svc-right"><ul class="checklist">${s.items.map(item).join('')}</ul><a class="btn btn-primary svc-book" href="/contact.html?tema=${encodeURIComponent(s.title)}#programare">${icon('calendar')} Programează pentru acest serviciu</a></div></div>
 </details>`).join('\n')}
 </div>
 ${ctaBox()}

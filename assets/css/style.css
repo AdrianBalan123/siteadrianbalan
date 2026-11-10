@@ -2252,8 +2252,10 @@ main:has(.services) .page-head p {
 .service .tags {
   margin-top: 14px;
 }
-/* left column: text, tags, the note, then the booking button — it balances the list on the right */
-.svc-left {
+/* left column: text, tags and the note; right column: the list, then the booking button
+   at the bottom, level with the end of the note */
+.svc-left,
+.svc-right {
   display: flex;
   flex-direction: column;
 }
@@ -2261,30 +2263,20 @@ main:has(.services) .page-head p {
   margin-top: 18px;
 }
 .svc-book {
-  align-self: flex-start;
-  margin-top: 18px;
+  margin-top: auto;
+  justify-content: center;
 }
-/* one column (tablets, phones): the booking button moves to the very end of the card, after the list */
+.svc-right .checklist {
+  margin-bottom: 18px;
+}
 @media (max-width: 860px) {
-  .svc-left {
-    display: contents;
-  }
-  .service-body > :last-child {
-    order: 1;
-  }
   .svc-book {
-    order: 2;
-    margin-top: 0;
-  }
-  .service .svc-left .tags,
-  .service .svc-left .note {
-    margin-top: 0;
+    align-self: flex-start;
   }
 }
 @media (max-width: 560px) {
   .svc-book {
     align-self: stretch;
-    justify-content: center;
   }
 }
 .service .checklist {
