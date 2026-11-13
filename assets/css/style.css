@@ -3187,3 +3187,61 @@ fieldset.field {
 .card[hidden] {
   display: none;
 }
+
+/* back to top: appears after the first screen; above the WhatsApp button on phones */
+.to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--sage-deep);
+  box-shadow: 0 6px 18px -8px rgba(45, 55, 72, 0.35);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.25s, transform 0.25s, visibility 0.25s, background-color 0.2s, color 0.2s;
+}
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.to-top:hover {
+  background: var(--sage-deep);
+  color: #fff;
+}
+.to-top:focus-visible {
+  outline: 2px solid var(--sage);
+  outline-offset: 3px;
+}
+.to-top svg {
+  width: 20px;
+  height: 20px;
+}
+@media (max-width: 760px) {
+  .to-top {
+    right: 16px;
+    bottom: 68px;
+    width: 40px;
+    height: 40px;
+  }
+  .to-top svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .to-top {
+    transition: none;
+  }
+}

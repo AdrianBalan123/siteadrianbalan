@@ -522,3 +522,30 @@
     io.observe(end);
   }
 })();
+
+// Butonul „Înapoi sus”: apare după primul ecran derulat
+(function () {
+  var btn = document.querySelector('.to-top');
+  if (!btn) return;
+  var ticking = false;
+  var update = function () {
+    ticking = false;
+    btn.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.8);
+  };
+  window.addEventListener(
+    'scroll',
+    function () {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    },
+    { passive: true }
+  );
+  update();
+  btn.addEventListener('click', function () {
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: still ? 'auto' : 'smooth' });
+    btn.blur();
+  });
+})();

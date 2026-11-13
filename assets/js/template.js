@@ -28,6 +28,7 @@ const ICONS = {
   arrowUpRight: '<path d="M7 7h10v10"/><path d="M7 17 17 7"/>',
   book: '<path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>',
   chevronDown: '<path d="m6 9 6 6 6-6"/>',
+  arrowUp: '<path d="M12 19V5M5 12l7-7 7 7"/>',
   chevronLeft: '<path d="m15 18-6-6 6-6"/>',
   chevronRight: '<path d="m9 18 6-6-6-6"/>',
   link: '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
@@ -152,6 +153,7 @@ ${logo()}
 </footer>` : ''}
 <a class="fab" href="${SITE.whatsapp}" target="_blank" rel="noopener noreferrer" aria-label="Scrie pe WhatsApp">${icon('whatsapp')}</a>
 <a class="fab fab-phone" href="tel:${SITE.phoneTel}" aria-label="Sună: ${esc(SITE.phoneDisplay)}">${icon('phone')}</a>
+${footer ? `<button class="to-top" type="button" aria-label="Înapoi sus">${icon('arrowUp')}</button>` : ''}
 </body>
 </html>
 `;
