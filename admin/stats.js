@@ -1,6 +1,8 @@
 // Dashboard-ul de statistici din panoul de administrare.
 // Datele vin de la /api/stats; graficul e desenat în SVG, fără biblioteci externe.
 
+import { icon } from '/assets/js/template.js';
+
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 const num = (n) => Number(n || 0).toLocaleString('ro-RO');
 const pct = (a, b) => (b ? Math.round((a / b) * 100) : 0);
@@ -28,28 +30,58 @@ let state = { days: 30, data: null, metric: 'uv', api: null, titleOf: null, root
 
 /* ---------- pieces ---------- */
 function delta(cur, prev, days) {
-  if (!prev) return `<span class="kpi-delta">${days === 1 ? 'ieri: 0' : 'fără date pentru perioada anterioară'}</span>`;
+  const vs = days === 1 ? 'față de ieri' : 'față de perioada trecută';
+  if (!prev) return `<span class="kpi-delta">${days === 1 ? `ieri: 0` : 'prima perioadă cu date'}</span>`;
   const d = Math.round(((cur - prev) / prev) * 100);
-  const label = days === 1 ? 'față de ieri' : 'față de perioada anterioară';
-  if (d === 0) return `<span class="kpi-delta">la fel ca ${days === 1 ? 'ieri' : 'perioada anterioară'}</span>`;
-  return `<span class="kpi-delta ${d > 0 ? 'up' : 'down'}">${d > 0 ? '▲ +' : '▼ '}${d}% ${label}</span>`;
+  if (d === 0) return `<span class="kpi-delta"><span class="pill">0%</span> ${vs}</span>`;
+  return `<span class="kpi-delta"><span class="pill ${d > 0 ? 'up' : 'down'}">${d > 0 ? '▲' : '▼'} ${Math.abs(d)}%</span> ${vs}</span>`;
 }
 
-function kpi(label, value, sub, cur, prev, days) {
-  return `<div class="kpi"><span class="kpi-label">${label}</span><strong class="kpi-value">${num(value)}</strong>${sub ? `<span class="kpi-sub">${sub}</span>` : ''}${delta(cur, prev, days)}</div>`;
+function kpi(ic, label, value, cur, prev, days, sub = '') {
+  return `<div class="kpi"><span class="kpi-label"><span class="kpi-icon">${icon(ic)}</span>${label}</span><strong class="kpi-value">${num(value)}${sub ? `<small>${sub}</small>` : ''}</strong>${delta(cur, prev, days)}</div>`;
 }
 
 // a ranked list with a thin bar per row (one hue: it shows size, not identity)
-function bars(title, rows, { note = '', empty = 'Încă nu sunt date.', limit = 8, extra } = {}) {
+function bars(title, rows, { note = '', empty = 'Încă nu sunt date.', limit = 6, extra } = {}) {
   const max = Math.max(1, ...rows.map((r) => r[1]));
   const total = rows.reduce((a, r) => a + r[1], 0);
   const item = (r, i) =>
-    `<li${i >= limit ? ' class="more" hidden' : ''}><div class="bar-row"><span class="bar-label">${esc(r[0])}</span><span class="bar-value">${num(r[1])}${extra ? extra(r) : `<small>${pct(r[1], total)}%</small>`}</span></div><span class="bar" style="--w:${(r[1] / max) * 100}%"></span></li>`;
+    `<li${i >= limit ? ' class="more" hidden' : ''}><div class="bar-row"><span class="bar-label" title="${esc(r[0])}">${esc(r[0])}</span><span class="bar-value">${num(r[1])}${extra ? extra(r) : `<small>${pct(r[1], total)}%</small>`}</span></div><span class="bar" style="--w:${(r[1] / max) * 100}%"></span></li>`;
   return `<section class="stat-card"><h2>${title}</h2>${note ? `<p class="stat-note">${note}</p>` : ''}${
     rows.length
       ? `<ol class="bars">${rows.map(item).join('')}</ol>${rows.length > limit ? `<button type="button" class="linklike show-more">Arată toate (${rows.length})</button>` : ''}`
       : `<p class="stat-empty">${empty}</p>`
   }</section>`;
+}
+
+// articles as a real table: views, read to the end, and the share that finished it
+function articleTable(rows) {
+  const limit = 10;
+  const max = Math.max(1, ...rows.map((r) => r[1]));
+  return `<section class="stat-card"><div class="card-head"><div><h2>Articole</h2><p class="stat-note">Câte vizualizări a avut fiecare articol și câți cititori au ajuns până la final.</p></div></div>${
+    rows.length
+      ? `<table class="art-table"><thead><tr><th scope="col">Articol</th><th scope="col">Vizualizări</th><th scope="col">Citite integral</th></tr></thead><tbody>${rows
+          .map(
+            (r, i) =>
+              `<tr${i >= limit ? ' class="more" hidden' : ''}><th scope="row"><span class="art-title" title="${esc(r[0])}">${esc(r[0])}</span><span class="bar" style="--w:${(r[1] / max) * 100}%"></span></th><td>${num(r[1])}</td><td>${num(r[2])}<small>${pct(r[2], r[1])}%</small></td></tr>`
+          )
+          .join('')}</tbody></table>${rows.length > limit ? `<button type="button" class="linklike show-more">Arată toate (${rows.length})</button>` : ''}`
+      : `<p class="stat-empty">Niciun articol vizualizat în perioada asta.</p>`
+  }</section>`;
+}
+
+// how people got in touch: the numbers that matter most for a practice
+function contactCard(ev, uv) {
+  const main = [
+    ['phone', 'Sună', ev.call || 0],
+    ['whatsapp', 'WhatsApp', ev.whatsapp || 0],
+    ['message', 'Formular trimis', ev.form || 0],
+  ];
+  const total = main.reduce((a, r) => a + r[2], 0);
+  return `<section class="stat-card contact-card-stats"><h2>Cum te-au contactat</h2>
+<ul class="contact-list">${main.map(([ic, l, n]) => `<li><span class="kpi-icon">${icon(ic)}</span><span>${l}</span><strong>${num(n)}</strong></li>`).join('')}</ul>
+<p class="conv"><strong>${pct(total, uv)}%</strong> dintre vizitatori au luat legătura</p>
+<p class="stat-note">${num(ev.book || 0)} au apăsat „Programează o ședință”${ev.maps ? ` · ${num(ev.maps)} au deschis harta` : ''}</p></section>`;
 }
 
 /* ---------- the line chart ---------- */
@@ -140,41 +172,40 @@ ${grid}${xt}
 /* ---------- the whole page ---------- */
 function render() {
   const { data: s, days } = state;
-  const body = state.root;
   const t = s.totals;
   const p = s.prev;
-  const articles = s.pages.filter(([path]) => path.startsWith('/articole/'));
   const reads = Object.fromEntries(s.reads);
-  const pagesOther = s.pages.filter(([path]) => !path.startsWith('/articole/')).map(([path, n]) => [PAGES[path] || path, n]);
   const ev = Object.fromEntries(s.events);
-  const evRows = EVENTS.filter(([k]) => ev[k]).map(([k, label]) => [label, ev[k]]);
-  const art = articles.sort((a, b) => b[1] - a[1]).map(([path, n]) => [state.titleOf(path.slice(10)) || path.slice(10), n, reads[path] || 0]);
-  const entries = s.entries.sort((a, b) => b[1] - a[1]).map(([path, n]) => [PAGES[path] || state.titleOf(path.slice(10)) || path, n]);
   const sortDesc = (l) => [...l].sort((a, b) => b[1] - a[1]);
+  const label = (path) => PAGES[path] || (path.startsWith('/articole/') && state.titleOf(path.slice(10))) || path;
+  const art = sortDesc(s.pages.filter(([path]) => path.startsWith('/articole/'))).map(([path, n]) => [label(path), n, reads[path] || 0]);
+  const pagesOther = sortDesc(s.pages.filter(([path]) => !path.startsWith('/articole/'))).map(([path, n]) => [label(path), n]);
+  const other = EVENTS.filter(([k]) => !['call', 'whatsapp', 'form', 'book', 'maps'].includes(k) && ev[k]).map(([k, l]) => [l, ev[k]]);
 
-  body.innerHTML = `
-<div class="kpis">
-${kpi('Vizitatori unici', t.uv, '', t.uv, p.uv, days)}
-${kpi('Vizite', t.visits, t.visits ? `${(t.pv / t.visits).toLocaleString('ro-RO', { maximumFractionDigits: 1 })} pagini pe vizită` : '', t.visits, p.visits, days)}
-${kpi('Pagini vizualizate', t.pv, '', t.pv, p.pv, days)}
-${kpi('Contactări', t.contacts, t.uv ? `Sună, WhatsApp sau formular · ${pct(t.contacts, t.uv)}% din vizitatori` : 'Sună, WhatsApp sau formular', t.contacts, p.contacts, days)}
+  state.root.innerHTML = `
+<div class="kpi-strip">
+${kpi('users', 'Vizitatori unici', t.uv, t.uv, p.uv, days)}
+${kpi('compass', 'Vizite', t.visits, t.visits, p.visits, days, t.visits ? `${(t.pv / t.visits).toLocaleString('ro-RO', { maximumFractionDigits: 1 })} pagini / vizită` : '')}
+${kpi('fileText', 'Pagini vizualizate', t.pv, t.pv, p.pv, days)}
+${kpi('phone', 'Contactări', t.contacts, t.contacts, p.contacts, days)}
 </div>
+<div class="dash-row${days > 1 ? '' : ' solo'}">
 ${
   days > 1
-    ? `<section class="stat-card chart-card"><div class="chart-head"><h2>Pe zile</h2><div class="seg" role="group" aria-label="Ce arată graficul"><button type="button" data-metric="uv" aria-pressed="${state.metric === 'uv'}">Vizitatori</button><button type="button" data-metric="pv" aria-pressed="${state.metric === 'pv'}">Vizualizări</button></div></div><div class="chart"></div></section>`
+    ? `<section class="stat-card chart-card"><div class="chart-head"><h2>Evoluție pe zile</h2><div class="seg" role="group" aria-label="Ce arată graficul"><button type="button" data-metric="uv" aria-pressed="${state.metric === 'uv'}">Vizitatori</button><button type="button" data-metric="pv" aria-pressed="${state.metric === 'pv'}">Vizualizări</button></div></div><div class="chart"></div></section>`
     : ''
 }
-<div class="stat-grid">
-${bars('Articole citite', art, {
-  note: 'Vizualizări și câți au ajuns până la finalul articolului.',
-  empty: 'Niciun articol vizualizat în perioada asta.',
-  extra: (r) => `<small title="citite până la final">${num(r[2])} până la final</small>`,
-})}
-${bars('Interacțiuni', evRows, { note: 'Clickuri care pot aduce o programare.', empty: 'Nicio interacțiune încă.', limit: 10, extra: () => '' })}
-${bars('De unde vin vizitatorii', sortDesc(s.sources), { note: '„Direct” = au scris adresa sau au venit dintr-o aplicație.' })}
-${bars('Pagini', sortDesc(pagesOther))}
+${contactCard(ev, t.uv)}
+</div>
+${articleTable(art)}
+<div class="stat-grid three">
+${bars('De unde vin', sortDesc(s.sources), { note: '„Direct” = adresa scrisă sau un link din aplicații.' })}
 ${bars('Dispozitive', sortDesc(s.devices))}
-${bars('Prima pagină văzută', entries, { note: 'Pe ce pagină intră oamenii pe site.' })}
+${bars('Pagini', pagesOther)}
+</div>
+<div class="stat-grid">
+${bars('Prima pagină văzută', sortDesc(s.entries).map(([path, n]) => [label(path), n]), { note: 'Pe ce pagină intră oamenii pe site.' })}
+${bars('Alte interacțiuni', other, { note: 'Citiri, întrebări frecvente deschise, distribuiri.', empty: 'Nicio interacțiune încă.', extra: () => '' })}
 </div>`;
   drawChart();
 }
@@ -224,7 +255,7 @@ export function showStats({ api, titleOf }) {
       }
       const more = e.target.closest('.show-more');
       if (more) {
-        more.previousElementSibling.querySelectorAll('.more').forEach((li) => (li.hidden = false));
+        more.parentNode.querySelectorAll('.more').forEach((li) => (li.hidden = false));
         more.remove();
       }
     });

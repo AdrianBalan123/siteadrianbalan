@@ -685,3 +685,225 @@
 .chart [hidden] {
   display: none;
 }
+
+/* ---------- dashboard layout v2 ---------- */
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+.kpi-strip .kpi {
+  gap: 6px;
+  padding: 18px 22px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.kpi-strip .kpi + .kpi {
+  border-left: 1px solid var(--line);
+}
+.kpi-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.kpi-icon {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--sage-soft);
+  color: var(--sage-deep);
+}
+.kpi-icon svg {
+  width: 15px;
+  height: 15px;
+}
+.kpi-strip .kpi-value {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  font-size: clamp(26px, 3vw, 34px);
+}
+.kpi-value small {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+.kpi-delta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 0;
+  font-size: 12.5px;
+}
+.pill {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(100, 116, 139, 0.1);
+  color: var(--ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.pill.up {
+  background: #e3efe7;
+  color: #2f5d47;
+}
+.pill.down {
+  background: #f7e6e5;
+  color: #95433f;
+}
+.dash-row {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.dash-row .chart-card {
+  margin-bottom: 0;
+}
+.dash-row.solo {
+  grid-template-columns: 1fr;
+}
+.contact-card-stats {
+  display: flex;
+  flex-direction: column;
+}
+.contact-list {
+  display: grid;
+  gap: 10px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.contact-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  background: rgba(123, 158, 137, 0.07);
+  font-size: 15px;
+}
+.contact-list strong {
+  margin-left: auto;
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+}
+.dash-row.solo .contact-list {
+  grid-template-columns: repeat(3, 1fr);
+}
+.conv {
+  margin-top: auto;
+  padding-top: 16px;
+  font-size: 14px;
+}
+.conv strong {
+  color: var(--sage-deep);
+  font-size: 22px;
+}
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.stat-grid {
+  margin-top: 14px;
+}
+.stat-grid.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.art-table {
+  width: 100%;
+  margin-top: 14px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.art-table th,
+.art-table td {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+  vertical-align: top;
+  font-variant-numeric: tabular-nums;
+}
+.art-table thead th {
+  padding-top: 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 500;
+}
+.art-table th:first-child {
+  width: 100%;
+  max-width: 0;
+  padding-right: 16px;
+  text-align: left;
+  font-weight: 400;
+}
+.art-table td {
+  padding-left: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.art-table td small {
+  margin-left: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+.art-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.art-title {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.art-table .bar {
+  max-width: 320px;
+}
+@media (max-width: 980px) {
+  .dash-row,
+  .stat-grid.three {
+    grid-template-columns: 1fr;
+  }
+  .dash-row.solo .contact-list {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 900px) {
+  .kpi-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .kpi-strip .kpi:nth-child(3) {
+    border-left: 0;
+  }
+  .kpi-strip .kpi:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+}
+@media (max-width: 520px) {
+  .kpi-strip .kpi {
+    padding: 14px;
+  }
+  .art-table thead th:nth-child(3),
+  .art-table td:nth-child(3) {
+    display: none;
+  }
+}
+.art-table thead th {
+  white-space: nowrap;
+}
+.art-table thead th + th {
+  padding-left: 20px;
+}
