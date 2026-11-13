@@ -368,3 +368,45 @@
 .login-gap {
   margin-top: 14px;
 }
+
+/* FAQ editor under the article text */
+.faq-editor {
+  margin-top: 28px;
+}
+.faq-editor-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.faq-editor-head .label {
+  font-weight: 600;
+  font-size: 15px;
+}
+.faq-row {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  margin-bottom: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--card);
+}
+.faq-row .faq-q {
+  font-weight: 500;
+}
+.faq-del {
+  justify-self: end;
+  padding: 4px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: #b04a4a;
+  font: 500 14px var(--sans);
+  cursor: pointer;
+}
+.faq-del:hover {
+  background: #fbeaea;
+}

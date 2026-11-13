@@ -6,7 +6,21 @@
   "thumbnail": "/uploads/articole/disocierea-protectie-psihica-sau-pierdere-de-sine-fenomenologia-unei-rupturi.jpg",
   "readingMinutes": 25,
   "published": true,
-  "date": "2025-12-08T10:00:00"
+  "date": "2025-12-08T10:00:00",
+  "faq": [
+   {
+    "q": "Ce este disocierea?",
+    "a": "Disocierea este o deconectare temporară de propriile gânduri, emoții, corp sau de realitatea din jur. Mulți o descriu ca pe senzația că trăiesc „în spatele unui geam”: lumea continuă, dar pare îndepărtată sau ireală."
+   },
+   {
+    "q": "Care este diferența dintre depersonalizare și derealizare?",
+    "a": "În depersonalizare, persoana se simte străină de sine, ca și cum și-ar observa corpul sau gândurile din afară. În derealizare, lumea din jur pare ireală, plată sau ca într-un vis. Sunt două fețe ale aceleiași rupturi și apar adesea împreună."
+   },
+   {
+    "q": "Când devine disocierea o problemă și ce ajută?",
+    "a": "Disocierea poate fi o protecție utilă în momente copleșitoare, dar devine o problemă când apare des, durează mult sau afectează viața de zi cu zi. Psihoterapia ajută la reconectarea treptată cu corpul, emoțiile și realitatea, mai ales când disocierea are legătură cu trauma."
+   }
+  ]
  },
  {
   "slug": "zgomotul-permanent-si-generatia-ecranelor-cum-tehnologia-ne-fura-linistea-si-ne",
@@ -15,7 +29,21 @@
   "thumbnail": "/uploads/articole/zgomotul-permanent-si-generatia-ecranelor-cum-tehnologia-ne-fura-linistea-si-ne.jpg",
   "readingMinutes": 19,
   "published": true,
-  "date": "2025-12-01T10:00:00"
+  "date": "2025-12-01T10:00:00",
+  "faq": [
+   {
+    "q": "De ce ne este greu să stăm în liniște, fără telefon?",
+    "a": "Stimularea continuă devine o normă pentru creier, iar liniștea începe să pară inconfortabilă. Adesea, ecranul ne ajută să evităm gânduri sau emoții pe care nu vrem să le simțim, așa că fuga de liniște e uneori o fugă de sine."
+   },
+   {
+    "q": "Cum afectează ecranele copiii?",
+    "a": "Copiii crescuți cu stimulare permanentă au mai puține ocazii să se plictisească, iar plictiseala este importantă pentru creativitate, răbdare și reglare emoțională. Expunerea excesivă poate influența atenția, empatia și dezvoltarea emoțională."
+   },
+   {
+    "q": "Cum ne putem recupera liniștea?",
+    "a": "Prin momente mici, dar regulate, fără stimulare: o plimbare fără telefon, mese fără ecrane, câteva minute de stat cu propriile gânduri. Scopul nu este renunțarea la tehnologie, ci folosirea ei conștient, nu ca refugiu automat."
+   }
+  ]
  },
  {
   "slug": "cand-sexul-devine-spectacol-impactul-pornografiei-asupra-psihicului",
@@ -24,7 +52,21 @@
   "thumbnail": "/uploads/articole/cand-sexul-devine-spectacol-impactul-pornografiei-asupra-psihicului.jpg",
   "readingMinutes": 21,
   "published": true,
-  "date": "2025-11-24T10:00:00"
+  "date": "2025-11-24T10:00:00",
+  "faq": [
+   {
+    "q": "Cum influențează pornografia creierul?",
+    "a": "Pornografia activează puternic sistemul de recompensă al creierului, bazat pe dopamină. Consumul frecvent poate duce la nevoia de stimuli tot mai intenși și la un ciclu greu de oprit, asemănător altor comportamente compulsive."
+   },
+   {
+    "q": "Poate pornografia să afecteze relația de cuplu?",
+    "a": "Da. Consumul compulsiv poate crea așteptări nerealiste despre corp și sex, distanță emoțională și secrete în cuplu. Rușinea și ascunderea izolează adesea persoana chiar mai mult decât consumul în sine."
+   },
+   {
+    "q": "Când este nevoie de ajutor specializat?",
+    "a": "Când consumul scapă de sub control, este folosit ca mod principal de a gestiona emoțiile sau afectează relațiile și imaginea de sine. Psihoterapia ajută la înțelegerea nevoilor din spatele comportamentului și la construirea unei sexualități conștiente, fără judecată."
+   }
+  ]
  },
  {
   "slug": "fantezie-rusine-si-dorinta-o-explorare-psihologica-a-parafiliilor-consensuale-si",
@@ -33,7 +75,21 @@
   "thumbnail": "/uploads/articole/fantezie-rusine-si-dorinta-o-explorare-psihologica-a-parafiliilor-consensuale-si.jpg",
   "readingMinutes": 33,
   "published": true,
-  "date": "2025-11-17T10:00:00"
+  "date": "2025-11-17T10:00:00",
+  "faq": [
+   {
+    "q": "Ce este o parafilie?",
+    "a": "O parafilie este un interes sexual intens și persistent pentru obiecte, situații sau practici atipice. Multe parafilii consensuale țin de diversitatea erotică și nu reprezintă o tulburare; vorbim de tulburare doar când produc suferință semnificativă sau implică persoane care nu își pot da acordul."
+   },
+   {
+    "q": "Este normal să ai fantezii sexuale neobișnuite?",
+    "a": "Da. Fantezia este un spațiu în care psihicul explorează fără consecințe, iar a avea o fantezie nu înseamnă a dori să o pui în practică. Linia importantă este trecerea de la fantezie la comportament, mai ales fără consimțământ."
+   },
+   {
+    "q": "Când ar trebui să cer ajutor?",
+    "a": "Când dorințele produc multă rușine sau suferință, afectează relația sau există riscul de a face rău cuiva. Un psiholog lucrează fără judecată, cu scopul de a înțelege dorința și de a găsi un mod sigur și asumat de a o trăi."
+   }
+  ]
  },
  {
   "slug": "procesarea-traumatica-a-pierderii-o-privire-asupra-doliului-complicat",
@@ -42,7 +98,21 @@
   "thumbnail": "/uploads/articole/procesarea-traumatica-a-pierderii-o-privire-asupra-doliului-complicat.jpg",
   "readingMinutes": 32,
   "published": true,
-  "date": "2025-11-10T10:00:00"
+  "date": "2025-11-10T10:00:00",
+  "faq": [
+   {
+    "q": "Ce este doliul complicat?",
+    "a": "Doliul complicat apare când durerea pierderii nu se atenuează în timp, ci rămâne la fel de intensă luni sau ani la rând și blochează viața de zi cu zi. Persoana poate rămâne prinsă în dor, vinovăție sau neîncredere că pierderea s-a produs."
+   },
+   {
+    "q": "De ce unele pierderi devin traumatice?",
+    "a": "Pierderile bruște, violente, premature sau cele care lasă lucruri nespuse sunt mai greu de integrat. Când pierderea zdruncină sentimentul de siguranță sau identitatea persoanei, ea poate fi trăită ca o traumă, nu doar ca o tristețe."
+   },
+   {
+    "q": "Când e nevoie de ajutor specializat în doliu?",
+    "a": "Când durerea nu scade deloc după multe luni, când apar gânduri că viața nu mai are sens sau când vinovăția și furia devin copleșitoare. Terapia ajută la procesarea pierderii și la reconstruirea sinelui, fără a „uita” persoana iubită."
+   }
+  ]
  },
  {
   "slug": "cand-nu-stii-cine-esti-daca-nu-te-iubeste-cineva",
@@ -51,7 +121,21 @@
   "thumbnail": "/uploads/articole/cand-nu-stii-cine-esti-daca-nu-te-iubeste-cineva.jpg",
   "readingMinutes": 24,
   "published": true,
-  "date": "2025-11-03T10:00:00"
+  "date": "2025-11-03T10:00:00",
+  "faq": [
+   {
+    "q": "De ce unii oameni nu se simt întregi fără o relație?",
+    "a": "Când identitatea s-a format mai mult în privirea celorlalți decât din interior, persoana ajunge să se cunoască doar prin felul în care este iubită. În absența celuilalt, apare un gol, ca și cum sinele și-ar pierde conturul."
+   },
+   {
+    "q": "Cum îți construiești o identitate proprie?",
+    "a": "Prin a învăța să te vezi tu pe tine: să-ți observi nevoile, valorile și emoțiile fără să aștepți confirmare din afară. Este un proces treptat, în care singurătatea devine treptat un spațiu de liniște, nu de abandon."
+   },
+   {
+    "q": "Cum arată relațiile după această reconstrucție?",
+    "a": "Nu te mai pierzi în celălalt, ci te întâlnești cu el. Iubirea nu îți mai definește identitatea, ci o completează, iar relația devine o alegere, nu o condiție pentru a exista."
+   }
+  ]
  },
  {
   "slug": "sa-pari-om-costul-psihic-al-camuflajului-autist",
@@ -60,7 +144,21 @@
   "thumbnail": "/uploads/articole/sa-pari-om-costul-psihic-al-camuflajului-autist.jpg",
   "readingMinutes": 28,
   "published": true,
-  "date": "2025-10-27T10:00:00"
+  "date": "2025-10-27T10:00:00",
+  "faq": [
+   {
+    "q": "Ce este camuflajul autist (masking)?",
+    "a": "Camuflajul este efortul unei persoane autiste de a-și ascunde trăsăturile autiste și de a imita comportamentele sociale considerate „normale”. Nu este o alegere sau o manipulare, ci un mecanism de protecție învățat pentru a fi acceptat."
+   },
+   {
+    "q": "Ce efecte are camuflajul pe termen lung?",
+    "a": "Camuflajul permanent consumă multă energie și poate duce la anxietate, epuizare cronică și senzația că sinele real este invizibil. După ani de mascare, poate apărea burnout-ul autist, o stare de colaps fizic și emoțional."
+   },
+   {
+    "q": "Cum poate fi redusă presiunea camuflajului?",
+    "a": "Prin înțelegerea propriului mod de funcționare, prin medii care acceptă diferențele și prin dezvățarea treptată a măștii acolo unde este sigur. Un psiholog afirmativ pentru neurodivergență poate sprijini acest proces de reconectare cu sinele real."
+   }
+  ]
  },
  {
   "slug": "control-gelozie-si-paranoia-relationala-mecanismele-care-distorsioneaza-iubirea",
@@ -69,7 +167,21 @@
   "thumbnail": "/uploads/articole/control-gelozie-si-paranoia-relationala-mecanismele-care-distorsioneaza-iubirea.jpg",
   "readingMinutes": 23,
   "published": true,
-  "date": "2025-10-20T10:00:00"
+  "date": "2025-10-20T10:00:00",
+  "faq": [
+   {
+    "q": "Care este diferența dintre gelozia normală și cea patologică?",
+    "a": "Gelozia normală este o reacție trecătoare la o amenințare reală sau probabilă. Gelozia patologică este persistentă, obsesivă, bazată pe interpretări eronate și scenarii catastrofice, și duce la verificări și control asupra partenerului."
+   },
+   {
+    "q": "De ce ajunge cineva să-și controleze partenerul?",
+    "a": "Controlul este adesea o frică mascată: frica de abandon, de trădare sau de pierderea siguranței. Paradoxul este că, cu cât controlezi mai mult, cu atât relația se erodează mai repede."
+   },
+   {
+    "q": "Când devine controlul abuz?",
+    "a": "Când limitează libertatea celuilalt prin verificarea telefonului, izolarea de prieteni, amenințări sau umilire, controlul devine o formă de violență psihologică. O relație sănătoasă se bazează pe încredere, nu pe supraveghere."
+   }
+  ]
  },
  {
   "slug": "primii-pasi-spre-intimitate-educatie-sexuala-sanatoasa-limite-si-consimtamant",
@@ -78,7 +190,21 @@
   "thumbnail": "/uploads/articole/primii-pasi-spre-intimitate-educatie-sexuala-sanatoasa-limite-si-consimtamant.jpg",
   "readingMinutes": 24,
   "published": true,
-  "date": "2025-10-13T10:00:00"
+  "date": "2025-10-13T10:00:00",
+  "faq": [
+   {
+    "q": "Ce înseamnă consimțământul pentru un adolescent?",
+    "a": "Consimțământul înseamnă un „da” liber, clar și informat, care poate fi retras oricând. Tăcerea, presiunea sau lipsa unui „nu” nu înseamnă acord. Este fundamentul oricărei relații sănătoase."
+   },
+   {
+    "q": "Cum învață un adolescent să-și stabilească limitele?",
+    "a": "Prin a-și recunoaște emoțiile și disconfortul, prin a exersa să spună „nu” fără vinovăție și prin a vedea modele de respect în familie. Limitele protejează spațiul interior și nu sunt un semn de răceală."
+   },
+   {
+    "q": "Cum pot părinții să vorbească despre intimitate cu adolescentul?",
+    "a": "Deschis, calm și fără rușine, alegând momente liniștite și ascultând mai mult decât predică. Un adolescent care se simte în siguranță să întrebe acasă va lua decizii mai informate și mai sănătoase."
+   }
+  ]
  },
  {
   "slug": "adolescentii-queer-vulnerabilitate-identitate-si-supravietuire",
@@ -87,7 +213,21 @@
   "thumbnail": "/uploads/articole/adolescentii-queer-vulnerabilitate-identitate-si-supravietuire.jpg",
   "readingMinutes": 18,
   "published": true,
-  "date": "2025-10-06T10:00:00"
+  "date": "2025-10-06T10:00:00",
+  "faq": [
+   {
+    "q": "Ce este stresul minoritar?",
+    "a": "Stresul minoritar este presiunea suplimentară pe care o trăiesc persoanele dintr-un grup stigmatizat: frica de respingere, ascunderea identității, discriminarea și rușinea interiorizată. Explică de ce adolescenții queer au un risc mai mare de anxietate și depresie."
+   },
+   {
+    "q": "Cum pot părinții să sprijine un adolescent queer?",
+    "a": "Prin acceptare, ascultare și protecție. Familia poate fi cel mai important factor de siguranță: un adolescent acceptat acasă are un risc mult mai mic de depresie și gânduri suicidare."
+   },
+   {
+    "q": "Ce îi ajută pe adolescenții queer să facă față?",
+    "a": "Comunitatea, prietenii care îi acceptă, modelele pozitive, creativitatea și accesul la sprijin psihologic afirmativ. Reziliența se construiește atunci când identitatea este văzută și respectată."
+   }
+  ]
  },
  {
   "slug": "de-la-manie-la-depresie-dinamica-neuropsihologica-a-tulburarii-bipolare",
@@ -96,7 +236,21 @@
   "thumbnail": "/uploads/articole/de-la-manie-la-depresie-dinamica-neuropsihologica-a-tulburarii-bipolare.jpg",
   "readingMinutes": 25,
   "published": true,
-  "date": "2025-09-29T10:00:00"
+  "date": "2025-09-29T10:00:00",
+  "faq": [
+   {
+    "q": "Ce este tulburarea bipolară?",
+    "a": "Tulburarea afectivă bipolară este o afecțiune în care dispoziția oscilează între episoade de manie sau hipomanie (energie crescută, nevoie redusă de somn, impulsivitate) și episoade de depresie. Este mult mai mult decât simple „schimbări de dispoziție”."
+   },
+   {
+    "q": "Care sunt tipurile de tulburare bipolară?",
+    "a": "Principalele forme sunt Bipolar I (cu cel puțin un episod maniacal), Bipolar II (cu episoade hipomaniacale și depresive) și ciclotimia (oscilații mai ușoare, dar de lungă durată). Pot apărea și episoade mixte, cu simptome din ambii poli."
+   },
+   {
+    "q": "Cum se tratează tulburarea bipolară?",
+    "a": "De obicei prin combinarea tratamentului medicamentos, stabilit de medicul psihiatru, cu psihoterapia. Rutinele regulate, somnul previzibil, gestionarea stresului și monitorizarea semnelor timpurii ajută la prevenirea recăderilor."
+   }
+  ]
  },
  {
   "slug": "tulburarea-obsesivcompulsiva-ce-spune-stiinta-despre-gandurile-intruzive-si",
@@ -105,7 +259,21 @@
   "thumbnail": "/uploads/articole/tulburarea-obsesivcompulsiva-ce-spune-stiinta-despre-gandurile-intruzive-si.jpg",
   "readingMinutes": 19,
   "published": true,
-  "date": "2025-09-22T10:00:00"
+  "date": "2025-09-22T10:00:00",
+  "faq": [
+   {
+    "q": "Ce sunt gândurile intruzive?",
+    "a": "Gândurile intruzive sunt gânduri, imagini sau impulsuri nedorite care apar brusc și produc anxietate. Aproape toată lumea le are; în TOC, ele devin persistente, iar persoana le acordă o importanță foarte mare și încearcă să le neutralizeze."
+   },
+   {
+    "q": "De ce compulsiile nu ajută pe termen lung?",
+    "a": "Compulsiile aduc o ușurare temporară, dar întăresc ciclul obsesie–anxietate–compulsie. Creierul învață că anxietatea scade doar prin ritual, așa că obsesia revine și mai puternic."
+   },
+   {
+    "q": "Cum se tratează TOC?",
+    "a": "Cea mai bine studiată metodă este terapia cognitiv-comportamentală cu expunere și prevenția răspunsului (ERP), uneori combinată cu medicație prescrisă de psihiatru. Cu tratament potrivit, mulți oameni ajung să trăiască mult mai liber."
+   }
+  ]
  },
  {
   "slug": "magia-lucrurilor-banale-cum-rutina-hraneste-iubirea-si-cum-micile-obiceiuri",
@@ -114,7 +282,21 @@
   "thumbnail": "/uploads/articole/magia-lucrurilor-banale-cum-rutina-hraneste-iubirea-si-cum-micile-obiceiuri.jpg",
   "readingMinutes": 13,
   "published": true,
-  "date": "2025-09-15T10:00:00"
+  "date": "2025-09-15T10:00:00",
+  "faq": [
+   {
+    "q": "Cum ajută rutina într-un cuplu?",
+    "a": "Gesturile mici și repetate, cum ar fi cafeaua de dimineață sau întrebarea „cum a fost ziua ta?”, creează un sentiment de siguranță și apartenență. Intimitatea se construiește mai mult din aceste momente decât din gesturile spectaculoase."
+   },
+   {
+    "q": "Cum evităm ca rutina să devină plictiseală?",
+    "a": "Rutina devine plictisitoare când este trăită automat, fără prezență. O putem reinventa prin mici schimbări, atenție autentică unul la celălalt și momente noi introduse în ritmul obișnuit."
+   },
+   {
+    "q": "Rutina face cuplul mai rezistent?",
+    "a": "Da. Ritualurile comune oferă stabilitate în perioadele dificile și ajută partenerii să rămână conectați chiar și atunci când viața devine stresantă."
+   }
+  ]
  },
  {
   "slug": "munca-invizibila-in-viata-cotidiana-intre-roluri-emotii-si-relatii",
@@ -123,7 +305,21 @@
   "thumbnail": "/uploads/articole/munca-invizibila-in-viata-cotidiana-intre-roluri-emotii-si-relatii.jpg",
   "readingMinutes": 15,
   "published": true,
-  "date": "2025-09-08T10:00:00"
+  "date": "2025-09-08T10:00:00",
+  "faq": [
+   {
+    "q": "Ce este munca invizibilă?",
+    "a": "Munca invizibilă este efortul constant de a organiza, planifica, anticipa și îngriji, care nu apare pe nicio listă și rareori este recunoscut. Include încărcătura mentală: să ții minte programările, cumpărăturile sau nevoile fiecăruia."
+   },
+   {
+    "q": "Cum afectează munca invizibilă relațiile?",
+    "a": "Când este împărțită inegal și nerecunoscută, produce frustrare, oboseală și distanță în cuplu sau familie. Când este văzută și apreciată, poate deveni o sursă de apropiere."
+   },
+   {
+    "q": "Cum putem echilibra munca invizibilă?",
+    "a": "Prin a o face vizibilă: a vorbi despre ea, a o lista și a împărți responsabilitatea întreagă (nu doar execuția sarcinilor). Recunoașterea efortului celuilalt contează la fel de mult ca împărțirea sarcinilor."
+   }
+  ]
  },
  {
   "slug": "atentia-fragmentata-pretul-invizibil-al-vietii-online",
@@ -132,7 +328,21 @@
   "thumbnail": "/uploads/articole/atentia-fragmentata-pretul-invizibil-al-vietii-online.jpg",
   "readingMinutes": 11,
   "published": true,
-  "date": "2025-09-01T10:00:00"
+  "date": "2025-09-01T10:00:00",
+  "faq": [
+   {
+    "q": "Este multitasking-ul eficient?",
+    "a": "Nu cu adevărat. Creierul nu face mai multe lucruri deodată, ci comută rapid între ele, iar fiecare comutare costă timp și energie. Rezultatul este mai multă oboseală și mai puțină concentrare."
+   },
+   {
+    "q": "Cum ne afectează notificările?",
+    "a": "Notificările ne întrerup atenția de zeci de ori pe zi și ne obișnuiesc cu stimularea rapidă. Pe termen lung, pot crește anxietatea, scade productivitatea și ne pot face să ne simțim mereu „pe fugă”."
+   },
+   {
+    "q": "Cum ne putem recupera atenția?",
+    "a": "Prin dezactivarea notificărilor neesențiale, perioade fără telefon, lucrul pe rând la o singură sarcină și pauze reale. Atenția se antrenează, ca un mușchi, prin exercițiu constant."
+   }
+  ]
  },
  {
   "slug": "dincolo-de-miza-banilor-costurile-emotionale-ale-jocurilor-de-noroc",
@@ -141,7 +351,21 @@
   "thumbnail": "/uploads/articole/dincolo-de-miza-banilor-costurile-emotionale-ale-jocurilor-de-noroc.jpg",
   "readingMinutes": 15,
   "published": true,
-  "date": "2025-08-25T10:00:00"
+  "date": "2025-08-25T10:00:00",
+  "faq": [
+   {
+    "q": "De ce creează jocurile de noroc dependență?",
+    "a": "Jocurile de noroc folosesc recompense imprevizibile, care activează puternic sistemul de recompensă al creierului. „Aproape câștigurile” și speranța de a recupera pierderile mențin persoana în joc."
+   },
+   {
+    "q": "Cum afectează dependența de jocuri familia?",
+    "a": "Pe lângă datorii, apar minciuni, neîncredere, conflicte și rușine. Familia trăiește adesea în tăcere aceeași povară, iar copiii pot fi profund afectați."
+   },
+   {
+    "q": "Unde se poate cere ajutor?",
+    "a": "Psihoterapia este eficientă în tratarea dependenței de jocuri de noroc, iar grupurile de sprijin ajută la ruperea izolării. Articolul include resurse din România și internaționale; primul pas este să vorbești cu cineva de încredere sau cu un specialist."
+   }
+  ]
  },
  {
   "slug": "patru-labute-si-o-inima-cum-animalele-de-companie-intaresc-familia",
@@ -150,7 +374,21 @@
   "thumbnail": "/uploads/articole/patru-labute-si-o-inima-cum-animalele-de-companie-intaresc-familia.jpg",
   "readingMinutes": 12,
   "published": true,
-  "date": "2025-08-18T10:00:00"
+  "date": "2025-08-18T10:00:00",
+  "faq": [
+   {
+    "q": "Cum influențează animalele de companie sănătatea mentală?",
+    "a": "Animalele de companie oferă afecțiune necondiționată, reduc sentimentul de singurătate și pot scădea nivelul de stres. Rutina îngrijirii lor aduce structură și sens zilelor."
+   },
+   {
+    "q": "Ce beneficii au animalele pentru copii?",
+    "a": "Copiii care cresc cu animale învață responsabilitate, empatie și grijă față de altă ființă. Animalul poate fi și un sprijin emoțional în momentele dificile."
+   },
+   {
+    "q": "Pot animalele să apropie membrii familiei?",
+    "a": "Da. Grija comună pentru un animal creează activități împreună, subiecte de conversație și momente de bucurie care întăresc coeziunea familiei."
+   }
+  ]
  },
  {
   "slug": "cand-garderoba-devine-brand-rusinea-standardelor-si-marketingul-vietii",
@@ -159,7 +397,21 @@
   "thumbnail": "/uploads/articole/cand-garderoba-devine-brand-rusinea-standardelor-si-marketingul-vietii.jpg",
   "readingMinutes": 10,
   "published": true,
-  "date": "2025-08-11T10:00:00"
+  "date": "2025-08-11T10:00:00",
+  "faq": [
+   {
+    "q": "De ce contează atât de mult hainele pentru imaginea de sine?",
+    "a": "Hainele sunt un limbaj: spun ceva despre cine suntem sau despre cine vrem să părem. Ele pot exprima identitatea, dar pot fi și o mască pentru vulnerabilitate."
+   },
+   {
+    "q": "Cum apare rușinea legată de aspect?",
+    "a": "Standardele de frumusețe și stil impuse de industrie și rețelele sociale creează impresia că nu suntem „suficient de buni”. Comparația constantă transformă hainele dintr-o alegere într-o presiune."
+   },
+   {
+    "q": "Ce înseamnă să te îmbraci autentic?",
+    "a": "Să alegi ce porți în funcție de confort, valori și identitate, nu de frica judecății. Moda poate deveni astfel o formă de libertate, nu un brand personal de întreținut."
+   }
+  ]
  },
  {
   "slug": "copilul-care-nu-poate-sta-in-banca-adhd-in-scoala-care-cere-supunere",
@@ -168,7 +420,21 @@
   "thumbnail": "/uploads/articole/copilul-care-nu-poate-sta-in-banca-adhd-in-scoala-care-cere-supunere.jpg",
   "readingMinutes": 15,
   "published": true,
-  "date": "2025-08-04T10:00:00"
+  "date": "2025-08-04T10:00:00",
+  "faq": [
+   {
+    "q": "Ce este ADHD?",
+    "a": "ADHD (tulburarea de deficit de atenție și hiperactivitate) este o condiție neurobiologică ce afectează atenția, impulsivitatea și nivelul de activitate. Nu este rezultatul unei educații proaste sau al lipsei de voință."
+   },
+   {
+    "q": "De ce le este greu copiilor cu ADHD la școală?",
+    "a": "Școala tradițională cere ore de stat nemișcat și atenție susținută, exact acolo unde copiii cu ADHD au cele mai mari dificultăți. Etichetele, pedepsele și rușinea pot transforma școala într-o experiență traumatică."
+   },
+   {
+    "q": "Cum poate fi sprijinit un copil cu ADHD la școală?",
+    "a": "Prin adaptări simple: pauze de mișcare, instrucțiuni scurte și clare, sarcini împărțite în pași, feedback pozitiv și colaborare între părinți, profesori și specialiști. O evaluare psihologică ajută la înțelegerea nevoilor reale ale copilului."
+   }
+  ]
  },
  {
   "slug": "trauma-colectiva-a-tacerii-cum-lipsa-dialogului-public-despre-suferinta",
@@ -177,7 +443,21 @@
   "thumbnail": "/uploads/articole/trauma-colectiva-a-tacerii-cum-lipsa-dialogului-public-despre-suferinta.jpg",
   "readingMinutes": 15,
   "published": true,
-  "date": "2025-07-28T10:00:00"
+  "date": "2025-07-28T10:00:00",
+  "faq": [
+   {
+    "q": "Ce este trauma colectivă a tăcerii?",
+    "a": "Este suferința care nu a putut fi spusă într-o comunitate și care a fost transmisă din generație în generație ca regulă nescrisă: „despre asta nu se vorbește”. Tăcerea protejează pe moment, dar perpetuează rușinea și stigmatul."
+   },
+   {
+    "q": "Ce consecințe psihologice are tăcerea?",
+    "a": "Durerea nespusă poate duce la izolare, anxietate, depresie și la sentimentul că propria suferință nu este legitimă. Tăcerea împiedică și cererea de ajutor."
+   },
+   {
+    "q": "Cum putem sparge tăcerea?",
+    "a": "Prin mărturie, dialog public și spații sigure în care suferința poate fi spusă fără judecată. Fiecare poveste rostită face mai ușor pentru alții să vorbească."
+   }
+  ]
  },
  {
   "slug": "parinti-perfectionisti-copii-rusinati-mostenirea-exigentei-excesive",
@@ -186,7 +466,21 @@
   "thumbnail": "/uploads/articole/parinti-perfectionisti-copii-rusinati-mostenirea-exigentei-excesive.jpg",
   "readingMinutes": 15,
   "published": true,
-  "date": "2025-07-21T10:00:00"
+  "date": "2025-07-21T10:00:00",
+  "faq": [
+   {
+    "q": "Cum afectează perfecționismul parental copiii?",
+    "a": "Când iubirea pare condiționată de performanță, copiii învață că greșeala înseamnă că nu sunt suficient de buni. Rezultatul este adesea rușine, anxietate și frică de eșec."
+   },
+   {
+    "q": "Cum arată adulții crescuți de părinți foarte exigenți?",
+    "a": "Mulți devin la rândul lor perfecționiști, critici cu ei înșiși, cu dificultăți în a se odihni sau a accepta laude. Rușinea din copilărie poate rămâne o voce interioară constantă."
+   },
+   {
+    "q": "Se poate rupe cercul exigenței excesive?",
+    "a": "Da, prin conștientizare, autocompasiune și prin a le oferi copiilor iubire independentă de rezultate. Psihoterapia ajută la vindecarea rușinii și la construirea unor standarde realiste."
+   }
+  ]
  },
  {
   "slug": "trauma-educationala-cand-scoala-uita-sa-fie-spatiu-de-siguranta",
@@ -195,7 +489,21 @@
   "thumbnail": "/uploads/articole/trauma-educationala-cand-scoala-uita-sa-fie-spatiu-de-siguranta.jpg",
   "readingMinutes": 19,
   "published": true,
-  "date": "2025-07-14T10:00:00"
+  "date": "2025-07-14T10:00:00",
+  "faq": [
+   {
+    "q": "Ce este trauma educațională?",
+    "a": "Trauma educațională apare când experiențele de la școală, cum ar fi umilirea, rușinarea publică, frica sau excluderea, lasă urme emoționale de durată. Școala devine un spațiu de amenințare, nu de învățare."
+   },
+   {
+    "q": "Cum se manifestă trauma educațională?",
+    "a": "Prin anxietate legată de școală, dureri fizice înainte de ore, evitare, scăderea încrederii în sine și frica de a greși. Efectele pot continua și la vârsta adultă."
+   },
+   {
+    "q": "Cum poate fi vindecată trauma educațională?",
+    "a": "Prin relații sigure cu adulți care validează, prin recunoașterea a ceea ce s-a întâmplat și, la nevoie, prin psihoterapie. Și profesorii pot preveni trauma folosind respectul în loc de rușine."
+   }
+  ]
  },
  {
   "slug": "sexualitatea-e-limbajul-libertatii-corpului-intalnirea-dintre-vulnerabilitate-si",
@@ -204,7 +512,21 @@
   "thumbnail": "/uploads/articole/sexualitatea-e-limbajul-libertatii-corpului-intalnirea-dintre-vulnerabilitate-si.jpg",
   "readingMinutes": 15,
   "published": true,
-  "date": "2025-07-07T10:00:00"
+  "date": "2025-07-07T10:00:00",
+  "faq": [
+   {
+    "q": "De ce ne face sexualitatea vulnerabili?",
+    "a": "Sexualitatea implică expunere: a corpului, a dorințelor și a nevoii de conexiune. Această vulnerabilitate poate speria, dar este și spațiul în care se naște autenticitatea."
+   },
+   {
+    "q": "Cum ne afectează rușinea culturală legată de sexualitate?",
+    "a": "Rușinea învățată poate duce la anxietate, dificultăți în intimitate și la deconectarea de propriul corp. Recunoașterea ei este primul pas spre o sexualitate trăită liber."
+   },
+   {
+    "q": "Cum poate fi vindecată relația cu propria sexualitate?",
+    "a": "Prin acceptarea dorințelor fără vinovăție, prin limite clare și prin conversații sigure, inclusiv în terapie. Vindecarea este un proces, nu un moment."
+   }
+  ]
  },
  {
   "slug": "cand-sufletul-oboseste-merita-odihna-nu-judecata-depresia-nu-defineste-cine-esti",
@@ -213,7 +535,21 @@
   "thumbnail": "/uploads/articole/cand-sufletul-oboseste-merita-odihna-nu-judecata-depresia-nu-defineste-cine-esti.jpg",
   "readingMinutes": 16,
   "published": true,
-  "date": "2025-06-30T10:00:00"
+  "date": "2025-06-30T10:00:00",
+  "faq": [
+   {
+    "q": "Care este diferența dintre tristețe și depresie?",
+    "a": "Tristețea este o emoție trecătoare, legată de un eveniment. Depresia este o stare care durează săptămâni sau luni și afectează gândurile, energia, somnul, apetitul și capacitatea de a te bucura de lucruri."
+   },
+   {
+    "q": "Care sunt semnele depresiei?",
+    "a": "Printre semne se numără tristețea persistentă, oboseala, pierderea interesului, dificultățile de concentrare, tulburările de somn și apetit, autocritica și retragerea socială. Nu toate apar la fiecare persoană."
+   },
+   {
+    "q": "Ce ajută când ai depresie?",
+    "a": "Odihna, blândețea față de sine, sprijinul celor apropiați, pașii mici și ajutorul specializat. Depresia se tratează, iar psihoterapia și, la nevoie, tratamentul medicamentos sunt eficiente. Depresia nu este vina ta și nu definește cine ești."
+   }
+  ]
  },
  {
   "slug": "bullyingul-nu-e-vina-ta-cum-recunosti-intelegi-si-raspunzi-la-agresiune",
@@ -222,7 +558,21 @@
   "thumbnail": "/uploads/articole/bullyingul-nu-e-vina-ta-cum-recunosti-intelegi-si-raspunzi-la-agresiune.jpg",
   "readingMinutes": 16,
   "published": true,
-  "date": "2025-06-23T10:00:00"
+  "date": "2025-06-23T10:00:00",
+  "faq": [
+   {
+    "q": "Ce este bullyingul?",
+    "a": "Bullyingul este o agresiune repetată și intenționată, în care cineva folosește puterea fizică, socială sau emoțională pentru a controla sau umili pe altcineva. Nu este „doar o glumă”."
+   },
+   {
+    "q": "Care sunt formele bullyingului?",
+    "a": "Bullyingul poate fi fizic, verbal, social (excludere, zvonuri) sau online (cyberbullying). Toate formele dor și toate merită luate în serios."
+   },
+   {
+    "q": "Ce poți face dacă ești victima bullyingului?",
+    "a": "Spune unui adult de încredere, păstrează dovezile, nu răspunde cu violență și caută sprijin emoțional. Cel mai important: nu e vina ta."
+   }
+  ]
  },
  {
   "slug": "nu-e-pacat-sa-simti-e-pacat-sa-te-negi-sexualitatea-ta-e-o-rugaciune-fara-vina",
@@ -231,7 +581,21 @@
   "thumbnail": "/uploads/articole/nu-e-pacat-sa-simti-e-pacat-sa-te-negi-sexualitatea-ta-e-o-rugaciune-fara-vina.jpg",
   "readingMinutes": 18,
   "published": true,
-  "date": "2025-06-16T10:00:00"
+  "date": "2025-06-16T10:00:00",
+  "faq": [
+   {
+    "q": "De unde vine rușinea sexuală în contexte religioase?",
+    "a": "Din mesaje repetate că dorința, corpul sau anumite orientări sunt „păcătoase” sau „murdare”. Aceste mesaje pot crea vinovăție profundă și sentimentul că ești greșit pentru ce simți."
+   },
+   {
+    "q": "Pot păstra credința fără să păstrez rușinea?",
+    "a": "Da. Spiritualitatea și sexualitatea nu sunt dușmani. Mulți oameni își păstrează credința și renunță la rușine, înțelegând credința ca iubire și nu ca control."
+   },
+   {
+    "q": "Cum încep să mă vindec de rușinea sexuală?",
+    "a": "Cu blândețe față de tine, cu pași mici și cu spații sigure în care să vorbești. Psihoterapia poate ajuta la separarea credinței personale de rușinea învățată."
+   }
+  ]
  },
  {
   "slug": "e-ok-sa-simti-un-ghid-despre-sentimente-pentru-adolescentii-interesati-de",
@@ -240,7 +604,21 @@
   "thumbnail": "/uploads/articole/e-ok-sa-simti-un-ghid-despre-sentimente-pentru-adolescentii-interesati-de.jpg",
   "readingMinutes": 18,
   "published": true,
-  "date": "2025-06-09T10:00:00"
+  "date": "2025-06-09T10:00:00",
+  "faq": [
+   {
+    "q": "Există emoții bune și emoții rele?",
+    "a": "Nu. Toate emoțiile sunt mesaje despre nevoile noastre. Furia poate semnala o limită încălcată, frica un pericol, tristețea o pierdere. Problema nu este emoția, ci felul în care o gestionăm."
+   },
+   {
+    "q": "Cum recunosc ce simt?",
+    "a": "Observă semnele din corp (tensiune, bătăi rapide ale inimii), din gânduri și din comportamente. A pune un nume emoției o face deja mai ușor de gestionat."
+   },
+   {
+    "q": "Ce fac când emoțiile devin prea intense?",
+    "a": "Respiră, ia o pauză și vorbește cu cineva de încredere: un părinte, un profesor, un prieten sau un psiholog. A cere ajutor este un semn de curaj, nu de slăbiciune."
+   }
+  ]
  },
  {
   "slug": "nu-vrei-sa-mori-vrei-sa-nu-mai-doara-daca-citesti-asta-inca-esti-aici-si-asta",
@@ -249,7 +627,21 @@
   "thumbnail": "/uploads/articole/nu-vrei-sa-mori-vrei-sa-nu-mai-doara-daca-citesti-asta-inca-esti-aici-si-asta.jpg",
   "readingMinutes": 17,
   "published": true,
-  "date": "2025-06-02T10:00:00"
+  "date": "2025-06-02T10:00:00",
+  "faq": [
+   {
+    "q": "Ce pot face dacă am gânduri de sinucidere?",
+    "a": "Nu rămâne singur cu ele. Sună la TelVerde Antisuicid (0800 801 200, gratuit) sau la 112 dacă ești în pericol imediat, ori vorbește acum cu cineva de încredere. Amână orice decizie: gândurile din momentele de durere maximă nu sunt adevăruri."
+   },
+   {
+    "q": "De ce simți că vrei să mori când de fapt vrei să nu mai doară?",
+    "a": "Când durerea emoțională devine copleșitoare, mintea caută o ieșire și poate confunda oprirea durerii cu oprirea vieții. Durerea se poate însă schimba, iar cu sprijin există și alte ieșiri."
+   },
+   {
+    "q": "Cum pot ajuta pe cineva care nu mai poate?",
+    "a": "Ascultă fără să judeci, întreabă direct dacă se gândește la sinucidere (întrebarea nu crește riscul), nu-l lăsa singur în criză și ajută-l să contacteze o linie de sprijin sau un specialist."
+   }
+  ]
  },
  {
   "slug": "nu-sunt-lenes-sunt-epuizat-despre-burnout-rusine-si-nevoia-de-pauza",
@@ -258,7 +650,21 @@
   "thumbnail": "/uploads/articole/nu-sunt-lenes-sunt-epuizat-despre-burnout-rusine-si-nevoia-de-pauza.jpg",
   "readingMinutes": 14,
   "published": true,
-  "date": "2025-05-26T10:00:00"
+  "date": "2025-05-26T10:00:00",
+  "faq": [
+   {
+    "q": "Ce este burnout-ul?",
+    "a": "Burnout-ul este o stare de epuizare fizică și emoțională cauzată de stres prelungit, mai ales la muncă. Nu este doar oboseală, ci o deconectare: de sens, de plăcere și de propria persoană."
+   },
+   {
+    "q": "Care sunt semnele burnout-ului?",
+    "a": "Oboseală care nu trece după odihnă, insomnie, iritabilitate, dureri fără cauză medicală, cinism și senzația că funcționezi, dar ești gol pe dinăuntru."
+   },
+   {
+    "q": "De ce ne e rușine să luăm o pauză?",
+    "a": "Pentru că am învățat că valoarea noastră depinde de cât producem. Pauza nu este lene, ci o formă de vindecare. Recuperarea după burnout cere reînvățarea unui ritm interior, iar terapia poate ajuta."
+   }
+  ]
  },
  {
   "slug": "nu-mai-port-ce-nu-mi-se-potriveste-despre-identitate-si-dezvatare",
@@ -267,7 +673,21 @@
   "thumbnail": "/uploads/articole/nu-mai-port-ce-nu-mi-se-potriveste-despre-identitate-si-dezvatare.jpg",
   "readingMinutes": 13,
   "published": true,
-  "date": "2025-05-19T10:00:00"
+  "date": "2025-05-19T10:00:00",
+  "faq": [
+   {
+    "q": "Ce înseamnă dezvățarea?",
+    "a": "Dezvățarea este procesul de a renunța la convingeri, roluri și așteptări învățate care nu ne mai reprezintă. Nu înseamnă respingerea trecutului, ci alegerea conștientă a ceea ce păstrăm."
+   },
+   {
+    "q": "De ce ne este frică să fim diferiți?",
+    "a": "Pentru că apartenența ne-a fost condiționată de conformare. Frica de respingere și rușinea de a nu corespunde ne țin adesea în „costume” care nu ni se mai potrivesc."
+   },
+   {
+    "q": "Cum îmi descopăr identitatea autentică?",
+    "a": "Întrebându-te ce alegi tu, nu ce ți s-a spus să fii, stabilind granițe și acceptând că identitatea este o alegere continuă. Terapia poate oferi un spațiu sigur pentru această explorare."
+   }
+  ]
  },
  {
   "slug": "generatia-care-rupe-lantul-despre-cum-crestem-altfel",
@@ -276,7 +696,21 @@
   "thumbnail": "/uploads/articole/generatia-care-rupe-lantul-despre-cum-crestem-altfel.jpg",
   "readingMinutes": 15,
   "published": true,
-  "date": "2025-05-12T10:00:00"
+  "date": "2025-05-12T10:00:00",
+  "faq": [
+   {
+    "q": "Ce sunt lanțurile transgeneraționale?",
+    "a": "Sunt tipare emoționale, cum ar fi tăcerea, violența, rușinea sau lipsa afecțiunii, transmise din generație în generație, adesea fără intenție. Ele modelează felul în care iubim și creștem copii."
+   },
+   {
+    "q": "Ce înseamnă să fii un părinte conștient?",
+    "a": "Să nu fii perfect, ci prezent: să-ți recunoști rănile, să-ți repari greșelile față de copil și să-i oferi educație emoțională. Copiii nu au nevoie de părinți fără greșeli, ci de părinți care își asumă."
+   },
+   {
+    "q": "Cum putem crește copii mai liberi emoțional?",
+    "a": "Prin a le valida emoțiile, a-i învăța că puterea nu înseamnă dominare, a nu le cere să se micșoreze ca să fie iubiți și prin a construi comunități și școli care susțin schimbarea."
+   }
+  ]
  },
  {
   "slug": "nu-trebuie-sa-fii-puternica-trebuie-sa-fii-in-siguranta",
@@ -285,7 +719,21 @@
   "thumbnail": "/uploads/articole/nu-trebuie-sa-fii-puternica-trebuie-sa-fii-in-siguranta.jpg",
   "readingMinutes": 14,
   "published": true,
-  "date": "2025-05-05T10:00:00"
+  "date": "2025-05-05T10:00:00",
+  "faq": [
+   {
+    "q": "Ce se întâmplă cu sinele într-o relație abuzivă?",
+    "a": "Abuzul erodează treptat încrederea în sine, în propriile percepții și în ceilalți. Persoana ajunge să se îndoiască de ea însăși și să se adapteze constant pentru a evita conflictul."
+   },
+   {
+    "q": "Care este primul pas spre reconstrucție după abuz?",
+    "a": "Siguranța: fizică și emoțională. Abia când pericolul nu mai este prezent poate începe vindecarea. În pericol imediat, sună la 112."
+   },
+   {
+    "q": "Cât durează recâștigarea încrederii după abuz?",
+    "a": "Este un proces, nu un obiectiv cu termen. Blândețea față de sine, sprijinul celor apropiați și psihoterapia ajută la reconstruirea demnității și a încrederii."
+   }
+  ]
  },
  {
   "slug": "ce-inseamna-sa-fii-barbat-fara-violenta-despre-putere-vulnerabilitate-si",
@@ -294,7 +742,21 @@
   "thumbnail": "/uploads/articole/ce-inseamna-sa-fii-barbat-fara-violenta-despre-putere-vulnerabilitate-si.jpg",
   "readingMinutes": 16,
   "published": true,
-  "date": "2025-04-28T10:00:00"
+  "date": "2025-04-28T10:00:00",
+  "faq": [
+   {
+    "q": "De ce le este greu bărbaților să-și arate emoțiile?",
+    "a": "Pentru că mulți au fost învățați că bărbații nu plâng, nu se îndoiesc și nu arată slăbiciune. Această „armură” protejează pe moment, dar duce la izolare și la emoții exprimate prin furie."
+   },
+   {
+    "q": "Ce înseamnă puterea masculină fără violență?",
+    "a": "Puterea nu ca forță asupra celuilalt, ci ca prezență autentică: responsabilitate, capacitatea de a fi vulnerabil și de a iubi fără control."
+   },
+   {
+    "q": "Cum creștem băieți care nu confundă bărbăția cu dominarea?",
+    "a": "Prin a le valida emoțiile, a le oferi modele masculine blânde și responsabile și a-i învăța respectul și consimțământul de mici."
+   }
+  ]
  },
  {
   "slug": "cand-iubirea-doare-in-tacere-despre-violenta-invizibila-si-curajul-de-a-vorbi",
@@ -303,7 +765,21 @@
   "thumbnail": "/uploads/articole/cand-iubirea-doare-in-tacere-despre-violenta-invizibila-si-curajul-de-a-vorbi.jpg",
   "readingMinutes": 11,
   "published": true,
-  "date": "2025-04-21T10:00:00"
+  "date": "2025-04-21T10:00:00",
+  "faq": [
+   {
+    "q": "Ce este violența invizibilă într-o relație?",
+    "a": "Violența psihologică: umilire, manipulare, control, izolare, amenințări, tăceri punitive. Nu lasă urme pe corp, dar rănește profund încrederea și sentimentul de sine."
+   },
+   {
+    "q": "De ce rămân oamenii în relații abuzive?",
+    "a": "Din frică, dependență emoțională sau financiară, speranța că partenerul se va schimba, rușine sau izolare. A rămâne nu înseamnă slăbiciune, ci reflectă mecanisme psihologice complexe."
+   },
+   {
+    "q": "Cum pot sprijini pe cineva care vorbește despre abuz?",
+    "a": "Crede-o, ascultă fără să judeci și nu-i spune ce „trebuia” să facă. Oferă sprijin concret și respectă-i ritmul. În caz de pericol imediat, sunați la 112."
+   }
+  ]
  },
  {
   "slug": "ce-facem-cu-frica-de-esec-intre-perfectionism-si-autenticitate",
@@ -312,7 +788,21 @@
   "thumbnail": "/uploads/articole/ce-facem-cu-frica-de-esec-intre-perfectionism-si-autenticitate.jpg",
   "readingMinutes": 15,
   "published": true,
-  "date": "2025-04-14T10:00:00"
+  "date": "2025-04-14T10:00:00",
+  "faq": [
+   {
+    "q": "De unde vine frica de eșec?",
+    "a": "Adesea din convingerea că valoarea noastră depinde de reușită și din experiențe în care greșelile au fost pedepsite sau rușinate. Frica de eșec este, de fapt, frica de judecată și de respingere."
+   },
+   {
+    "q": "Care este legătura dintre perfecționism și frica de eșec?",
+    "a": "Perfecționismul funcționează ca o armură: ridică standardele atât de sus încât orice greșeală pare o catastrofă. Paradoxal, ne blochează și ne face să amânăm sau să evităm."
+   },
+   {
+    "q": "Cum pot gestiona frica de eșec?",
+    "a": "Prin autocompasiune, prin a privi greșelile ca învățare, prin obiective realiste și pași mici. Autenticitatea, adică a acționa după valorile tale, este antidotul fricii de eșec."
+   }
+  ]
  },
  {
   "slug": "cum-ne-gestionam-emotiile-fara-sa-le-reprimam-ghid-bland-pentru-parinti",
@@ -321,7 +811,21 @@
   "thumbnail": "/uploads/articole/cum-ne-gestionam-emotiile-fara-sa-le-reprimam-ghid-bland-pentru-parinti.jpg",
   "readingMinutes": 17,
   "published": true,
-  "date": "2025-04-07T10:00:00"
+  "date": "2025-04-07T10:00:00",
+  "faq": [
+   {
+    "q": "Care este diferența dintre a gestiona și a reprima emoțiile?",
+    "a": "Reprimarea înseamnă a ascunde sau a nega emoția, ceea ce o face să revină mai puternic. Gestionarea înseamnă a o recunoaște, a o numi și a alege cum răspunzi la ea."
+   },
+   {
+    "q": "Ce tehnici ajută la reglarea emoțională?",
+    "a": "Respirația conștientă, validarea emoțiilor, pauzele înainte de a reacționa, exprimarea prin cuvinte, mișcare sau artă și rutinele care previn crizele."
+   },
+   {
+    "q": "Cum îi ajutăm pe copii să-și gestioneze emoțiile?",
+    "a": "Prin co-reglare: copilul învață să se calmeze alături de un adult calm. În loc de „nu mai plânge”, ajută mai mult „văd că ești trist, sunt aici”."
+   }
+  ]
  },
  {
   "slug": "cum-sa-gestionezi-relatiile-cu-membrii-familiei-care-nu-accepta-orientarea",
@@ -330,7 +834,21 @@
   "thumbnail": "/uploads/articole/cum-sa-gestionezi-relatiile-cu-membrii-familiei-care-nu-accepta-orientarea.jpg",
   "readingMinutes": 18,
   "published": true,
-  "date": "2025-03-31T10:00:00"
+  "date": "2025-03-31T10:00:00",
+  "faq": [
+   {
+    "q": "De ce reacționează unii părinți negativ la orientarea sexuală a copilului?",
+    "a": "Adesea din frică, lipsă de informații, convingeri religioase sau culturale și grija față de ce va spune lumea. Reacția inițială nu este întotdeauna cea finală."
+   },
+   {
+    "q": "Cum vorbesc cu familia care nu mă acceptă?",
+    "a": "Alege momente calme, vorbește la persoana întâi despre ce simți și ai nevoie, oferă informații și acceptă că acceptarea poate dura. Nu ești obligat să ai toate conversațiile odată."
+   },
+   {
+    "q": "Cum mă protejez emoțional?",
+    "a": "Stabilește limite clare, construiește o rețea de sprijin (prieteni, comunitate, organizații LGBTQIA+) și caută un psiholog afirmativ. Bunăstarea ta contează la fel de mult ca relația cu familia."
+   }
+  ]
  },
  {
   "slug": "cum-sa-sprijini-pe-cineva-care-a-trecut-printr-o-experienta-traumatica-ghid",
@@ -339,7 +857,21 @@
   "thumbnail": "/uploads/articole/cum-sa-sprijini-pe-cineva-care-a-trecut-printr-o-experienta-traumatica-ghid.jpg",
   "readingMinutes": 15,
   "published": true,
-  "date": "2025-03-24T10:00:00"
+  "date": "2025-03-24T10:00:00",
+  "faq": [
+   {
+    "q": "Cum recunosc că cineva trece prin efectele unei traume?",
+    "a": "Semnele pot include amintiri intruzive, coșmaruri, evitare, iritabilitate, hipervigilență, retragere socială sau amorțeală emoțională. Ele pot apărea imediat sau la distanță de eveniment."
+   },
+   {
+    "q": "Ce nu ar trebui să spun cuiva care a trecut printr-o traumă?",
+    "a": "Evită minimalizarea („putea fi mai rău”), grăbirea („treci peste”), judecata și insistența pe detalii. Ascultă, crede și lasă persoana să conducă ritmul."
+   },
+   {
+    "q": "Cum am grijă de mine când sprijin pe cineva?",
+    "a": "Stabilește limite, cere și tu sprijin și nu încerca să fii terapeutul celuilalt. Încurajează persoana să caute ajutor profesional și ai grijă de propriul echilibru."
+   }
+  ]
  },
  {
   "slug": "relatiile-la-distanta-provocari-si-modalitati-de-a-mentine-conexiunea",
@@ -348,7 +880,21 @@
   "thumbnail": "/uploads/articole/relatiile-la-distanta-provocari-si-modalitati-de-a-mentine-conexiunea.jpg",
   "readingMinutes": 16,
   "published": true,
-  "date": "2025-03-17T10:00:00"
+  "date": "2025-03-17T10:00:00",
+  "faq": [
+   {
+    "q": "Pot funcționa relațiile la distanță?",
+    "a": "Da, mai ales când există comunicare deschisă, încredere și un plan comun de viitor. Distanța fizică nu înseamnă neapărat distanță emoțională."
+   },
+   {
+    "q": "Care sunt cele mai mari provocări ale relațiilor la distanță?",
+    "a": "Lipsa intimității fizice, diferențele de fus orar, gelozia, singurătatea și neînțelegerile din comunicarea online."
+   },
+   {
+    "q": "Cum menținem conexiunea emoțională la distanță?",
+    "a": "Prin comunicare regulată, dar nu forțată, activități comune online, vizite planificate și discuții despre obiectivele comune. Momentele mici de atenție contează."
+   }
+  ]
  },
  {
   "slug": "ghid-pentru-adolescenti-explorarea-si-intelegerea-propriei-sexualitati",
@@ -357,7 +903,21 @@
   "thumbnail": "/uploads/articole/ghid-pentru-adolescenti-explorarea-si-intelegerea-propriei-sexualitati.jpg",
   "readingMinutes": 15,
   "published": true,
-  "date": "2025-03-10T10:00:00"
+  "date": "2025-03-10T10:00:00",
+  "faq": [
+   {
+    "q": "Care este diferența dintre orientare sexuală, identitate de gen și expresie de gen?",
+    "a": "Orientarea sexuală se referă la cine te atrage. Identitatea de gen este felul în care te simți tu (femeie, bărbat, non-binar etc.). Expresia de gen este felul în care îți arăți genul prin haine, comportament sau aspect."
+   },
+   {
+    "q": "Este normal să nu știu încă ce orientare am?",
+    "a": "Da. Adolescența este o perioadă de explorare și nu există un termen-limită pentru a te defini. Sentimentele se pot clarifica în timp."
+   },
+   {
+    "q": "Cu cine pot vorbi despre sexualitatea mea?",
+    "a": "Cu un prieten de încredere, un părinte deschis, un consilier școlar sau un psiholog. Este important să vorbești cu cineva care te respectă și te ascultă fără judecată."
+   }
+  ]
  },
  {
   "slug": "cum-iti-poti-sustine-partenerul-in-lupta-cu-depresia-si-anxietatea",
@@ -366,7 +926,21 @@
   "thumbnail": "/uploads/articole/cum-iti-poti-sustine-partenerul-in-lupta-cu-depresia-si-anxietatea.jpg",
   "readingMinutes": 21,
   "published": true,
-  "date": "2025-03-03T10:00:00"
+  "date": "2025-03-03T10:00:00",
+  "faq": [
+   {
+    "q": "Cum recunosc depresia sau anxietatea la partenerul meu?",
+    "a": "Semnele pot fi retragerea, oboseala, iritabilitatea, pierderea interesului, grijile excesive, tulburările de somn sau evitarea unor situații. Schimbările persistente merită discutate cu blândețe."
+   },
+   {
+    "q": "Cum îmi pot susține partenerul?",
+    "a": "Ascultă fără să judeci, validează ce simte, evită sfaturile simpliste și oferă ajutor concret. Prezența ta contează mai mult decât soluțiile."
+   },
+   {
+    "q": "Cum îl încurajez să meargă la un psiholog?",
+    "a": "Vorbește din grijă, nu din reproș, oferă-te să-l ajuți să caute un specialist și respectă-i ritmul. Ai grijă și de tine: nu poți fi singurul sprijin al partenerului."
+   }
+  ]
  },
  {
   "slug": "gestionarea-geloziei-in-relatiile-cu-parteneri-bisexuali-strategii-de-succes",
@@ -375,7 +949,21 @@
   "thumbnail": "/uploads/articole/gestionarea-geloziei-in-relatiile-cu-parteneri-bisexuali-strategii-de-succes.jpg",
   "readingMinutes": 15,
   "published": true,
-  "date": "2025-02-24T10:00:00"
+  "date": "2025-02-24T10:00:00",
+  "faq": [
+   {
+    "q": "De ce poate apărea mai multă gelozie în relațiile cu parteneri bisexuali?",
+    "a": "Adesea din cauza miturilor: că persoanele bisexuale ar fi „nehotărâte”, mai predispuse la infidelitate sau că ar avea nevoie de ambele sexe. Aceste prejudecăți nu au bază reală, dar pot alimenta nesiguranța."
+   },
+   {
+    "q": "Cum construim încrederea în cuplu?",
+    "a": "Prin comunicare onestă, acord asupra limitelor relației, respect pentru identitatea partenerului și prin a vorbi despre nesiguranțe fără a le transforma în acuzații."
+   },
+   {
+    "q": "Când ajută terapia de cuplu?",
+    "a": "Când gelozia produce conflicte repetate, control sau suferință. Un terapeut afirmativ poate ajuta partenerii să înțeleagă sursa geloziei și să construiască siguranță."
+   }
+  ]
  },
  {
   "slug": "reconectarea-dupa-tradare-cum-sa-reinnoiesti-intimitatea-emotionala",
@@ -384,7 +972,21 @@
   "thumbnail": "/uploads/articole/reconectarea-dupa-tradare-cum-sa-reinnoiesti-intimitatea-emotionala.jpg",
   "readingMinutes": 17,
   "published": true,
-  "date": "2025-02-17T10:00:00"
+  "date": "2025-02-17T10:00:00",
+  "faq": [
+   {
+    "q": "Se poate reconstrui o relație după infidelitate?",
+    "a": "Da, dacă ambii parteneri își doresc acest lucru și sunt dispuși să lucreze. Procesul cere timp, onestitate și asumarea responsabilității de către cel care a trădat."
+   },
+   {
+    "q": "Ce simt partenerii după descoperirea unei trădări?",
+    "a": "Partenerul trădat poate trăi șoc, furie, durere și neîncredere, iar cel care a trădat vinovăție, rușine sau confuzie. Toate aceste reacții sunt firești."
+   },
+   {
+    "q": "Cum ajută terapia de cuplu după trădare?",
+    "a": "Terapia oferă un spațiu sigur pentru comunicare, ajută la înțelegerea a ceea ce a dus la trădare și sprijină reconstruirea încrederii și a intimității emoționale."
+   }
+  ]
  },
  {
   "slug": "cum-sa-vorbesti-cu-copiii-despre-identitatile-lgbtqia-ghid-pentru-parinti-si",
@@ -393,7 +995,21 @@
   "thumbnail": "/uploads/articole/cum-sa-vorbesti-cu-copiii-despre-identitatile-lgbtqia-ghid-pentru-parinti-si.jpg",
   "readingMinutes": 16,
   "published": true,
-  "date": "2025-02-10T10:00:00"
+  "date": "2025-02-10T10:00:00",
+  "faq": [
+   {
+    "q": "De la ce vârstă putem vorbi cu copiii despre identitățile LGBTQIA+?",
+    "a": "De la vârste mici, adaptând limbajul: preșcolarilor le putem spune simplu că există familii diferite, iar cu școlarii și adolescenții putem discuta mai în detaliu despre identitate și respect."
+   },
+   {
+    "q": "De ce este important să vorbim cu copiii despre diversitate?",
+    "a": "Copiii care înțeleg diversitatea sunt mai empatici, mai puțin predispuși la bullying și, dacă ei înșiși sunt LGBTQIA+, se simt mai în siguranță să vorbească."
+   },
+   {
+    "q": "Ce fac dacă nu știu răspunsul la o întrebare a copilului?",
+    "a": "E în regulă să spui „nu știu, hai să aflăm împreună”. Onestitatea și deschiderea contează mai mult decât un răspuns perfect."
+   }
+  ]
  },
  {
   "slug": "dependenta-de-substante-si-legatura-sa-cu-traumele-din-copilarie",
@@ -402,7 +1018,21 @@
   "thumbnail": "/uploads/articole/dependenta-de-substante-si-legatura-sa-cu-traumele-din-copilarie.jpg",
   "readingMinutes": 15,
   "published": true,
-  "date": "2025-02-03T10:00:00"
+  "date": "2025-02-03T10:00:00",
+  "faq": [
+   {
+    "q": "Care este legătura dintre trauma din copilărie și dependență?",
+    "a": "Trauma din copilărie poate afecta dezvoltarea creierului și capacitatea de a gestiona stresul. Substanțele devin adesea o modalitate de a amorți durerea emoțională, nu doar o căutare a plăcerii."
+   },
+   {
+    "q": "Ce efecte are dependența pe termen lung?",
+    "a": "Dependența afectează sănătatea fizică (inimă, ficat, creier), sănătatea mentală (anxietate, depresie) și relațiile. Efectele se acumulează în timp."
+   },
+   {
+    "q": "Cum se tratează dependența legată de traume?",
+    "a": "Cel mai eficient este un tratament care abordează ambele: dependența și trauma. Psihoterapia, sprijinul medical și suportul familiei și al comunității cresc șansele de recuperare."
+   }
+  ]
  },
  {
   "slug": "abuzul-si-trauma-generationala-cum-sa-intrerupi-ciclul-violentei",
@@ -411,7 +1041,21 @@
   "thumbnail": "/uploads/articole/abuzul-si-trauma-generationala-cum-sa-intrerupi-ciclul-violentei.jpg",
   "readingMinutes": 22,
   "published": true,
-  "date": "2025-01-27T10:00:00"
+  "date": "2025-01-27T10:00:00",
+  "faq": [
+   {
+    "q": "Ce este trauma generațională?",
+    "a": "Trauma generațională este suferința emoțională transmisă de la o generație la alta prin tipare de comportament, stiluri de atașament și convingeri. Copiii pot purta efectele unor traume pe care nu le-au trăit direct."
+   },
+   {
+    "q": "Cum recunosc trauma generațională în familia mea?",
+    "a": "Prin tipare repetate: violență, tăcere, dependențe, relații instabile sau dificultăți de exprimare emoțională care apar la mai multe generații. Conștientizarea istoriei familiale este primul pas."
+   },
+   {
+    "q": "Cum se poate întrerupe ciclul violenței?",
+    "a": "Prin conștientizare, psihoterapie, dezvoltarea abilităților de gestionare a emoțiilor, sprijin comunitar și relații sigure. Ruperea ciclului începe cu o persoană care alege să facă altfel."
+   }
+  ]
  },
  {
   "slug": "relatii-si-identitati-queer-explorarea-diversitatii-si-intelegerea-dinamicii",
@@ -420,7 +1064,21 @@
   "thumbnail": "/uploads/articole/relatii-si-identitati-queer-explorarea-diversitatii-si-intelegerea-dinamicii.jpg",
   "readingMinutes": 24,
   "published": true,
-  "date": "2025-01-20T10:00:00"
+  "date": "2025-01-20T10:00:00",
+  "faq": [
+   {
+    "q": "Ce provocări specifice au relațiile queer?",
+    "a": "Stigmatizarea, discriminarea, lipsa modelelor relaționale vizibile și uneori lipsa sprijinului din partea familiei. Acestea pot adăuga stres relației."
+   },
+   {
+    "q": "Ce este terapia afirmativă?",
+    "a": "Terapia afirmativă este o abordare în care identitățile LGBTQIA+ sunt respectate și validate, nu tratate ca problemă. Terapeutul creează un spațiu sigur, fără judecată."
+   },
+   {
+    "q": "Cum pot construi o relație queer sănătoasă?",
+    "a": "Prin comunicare deschisă, gestionarea constructivă a conflictelor, respect pentru nevoile fiecăruia și o rețea de sprijin în comunitate."
+   }
+  ]
  },
  {
   "slug": "impactul-adhd-asupra-vietii-sexuale-si-relatiilor-intime",
@@ -429,7 +1087,21 @@
   "thumbnail": "/uploads/articole/impactul-adhd-asupra-vietii-sexuale-si-relatiilor-intime.jpg",
   "readingMinutes": 14,
   "published": true,
-  "date": "2025-01-13T10:00:00"
+  "date": "2025-01-13T10:00:00",
+  "faq": [
+   {
+    "q": "Cum influențează ADHD relațiile de cuplu?",
+    "a": "Inatenția, uitarea, impulsivitatea și dificultățile de organizare pot fi percepute de partener ca lipsă de interes. De aici pot apărea conflicte și neînțelegeri."
+   },
+   {
+    "q": "Cum afectează ADHD viața sexuală?",
+    "a": "Inatenția poate face dificilă prezența în momentele intime, hiperactivitatea poate aduce neliniște, iar impulsivitatea poate influența comportamentul sexual. Efectele diferă de la o persoană la alta."
+   },
+   {
+    "q": "Ce ajută cuplurile în care un partener are ADHD?",
+    "a": "Informarea despre ADHD, comunicarea deschisă, strategiile practice (rutine, remindere) și terapia individuală sau de cuplu. Înțelegerea reduce mult vina și conflictele."
+   }
+  ]
  },
  {
   "slug": "cum-e-sa-traiesti-cu-adhd-in-romania",
@@ -438,6 +1110,20 @@
   "thumbnail": "/uploads/articole/cum-e-sa-traiesti-cu-adhd-in-romania.jpg",
   "readingMinutes": 17,
   "published": true,
-  "date": "2025-01-06T10:00:00"
+  "date": "2025-01-06T10:00:00",
+  "faq": [
+   {
+    "q": "Cum se pune diagnosticul de ADHD în România?",
+    "a": "Diagnosticul se pune de un medic psihiatru (sau psihiatru pediatric la copii), de obicei pe baza unei evaluări clinice, a istoricului și a unor instrumente standardizate. Evaluarea psihologică ajută la clarificarea tabloului."
+   },
+   {
+    "q": "Poate fi diagnosticat ADHD și la adulți?",
+    "a": "Da. Mulți adulți află că au ADHD abia târziu, după ani de dificultăți la școală, la muncă sau în relații. Un diagnostic, chiar și târziu, poate aduce înțelegere și ușurare."
+   },
+   {
+    "q": "Ce strategii ajută în viața cu ADHD?",
+    "a": "Tratamentul medical, când este recomandat, psihoterapia, strategiile de organizare și gestionare a timpului, adaptările la școală sau la muncă și sprijinul familiei. Un stil de viață echilibrat și tehnologia pot ajuta și ele."
+   }
+  ]
  }
 ]

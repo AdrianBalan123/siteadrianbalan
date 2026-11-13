@@ -1597,6 +1597,73 @@ html:active-view-transition-type(to-landing)::view-transition-new(root) {
 .prose b {
   font-weight: 500;
 }
+/* FAQ at the end of an article: a quiet accordion, same width as the text */
+.article-faq {
+  max-width: 68ch;
+  padding-block: 8px 24px;
+  interpolate-size: allow-keywords;
+}
+.article-faq h2 {
+  margin-bottom: 16px;
+  font-size: clamp(22px, 2.6vw, 28px);
+}
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+.faq-item:first-of-type {
+  border-top: 1px solid var(--line);
+}
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  list-style: none;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.faq-item summary svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: var(--sage-deep);
+  transition: transform 0.3s;
+}
+.faq-item[open] summary svg {
+  transform: rotate(180deg);
+}
+.faq-item summary:hover span {
+  color: var(--sage-deep);
+}
+.faq-a p {
+  margin: 0;
+  padding-bottom: 18px;
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.75;
+}
+@supports (interpolate-size: allow-keywords) {
+  .faq-item::details-content {
+    height: 0;
+    overflow: clip;
+    transition: height 0.3s ease, content-visibility 0.3s allow-discrete;
+  }
+  .faq-item[open]::details-content {
+    height: auto;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .faq-item::details-content {
+      transition: none;
+    }
+  }
+}
 /* share row under the article */
 .share {
   display: flex;

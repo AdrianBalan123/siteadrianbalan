@@ -228,7 +228,47 @@ ${top ? '' : '<span class="share-label">Distribuie articolul</span>'}
 </div>`;
 };
 
+// Întrebări frecvente la finalul articolului: vizibile ca acordeon + date structurate (FAQPage) pentru Google și AI
+const faqList = (a) => (Array.isArray(a.faq) ? a.faq.filter((f) => f && String(f.q || '').trim() && String(f.a || '').trim()) : []);
+const jsonLd = (data) => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
+
+const articleFaq = (faq) =>
+  faq.length
+    ? `<section class="article-faq" aria-labelledby="faq-t">
+<h2 id="faq-t">Întrebări frecvente</h2>
+${faq.map((f, i) => `<details class="faq-item"${i ? '' : ' open'}><summary><span>${esc(f.q)}</span>${icon('chevronDown')}</summary><div class="faq-a"><p>${esc(f.a)}</p></div></details>`).join('\n')}
+</section>`
+    : '';
+
+const articleSchema = (a, faq) => {
+  const url = `${SITE.url}/articole/${a.slug}`;
+  const graph = [
+    {
+      '@type': 'BlogPosting',
+      '@id': `${url}#articol`,
+      headline: a.title,
+      description: a.excerpt,
+      url,
+      mainEntityOfPage: url,
+      inLanguage: 'ro-RO',
+      ...(a.date ? { datePublished: a.date } : {}),
+      ...(a.thumbnail ? { image: SITE.url + a.thumbnail } : {}),
+      author: { '@type': 'Person', name: 'Adrian Bălan', jobTitle: 'Psiholog clinician', url: `${SITE.url}/despre` },
+      publisher: { '@type': 'Person', name: 'Adrian Bălan', url: SITE.url },
+    },
+  ];
+  if (faq.length) {
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': `${url}#intrebari`,
+      mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    });
+  }
+  return jsonLd({ '@context': 'https://schema.org', '@graph': graph });
+};
+
 export function articlePage(a, content) {
+  const faq = faqList(a);
   const body = `<article>
 <div class="wrap">
 <header class="article-head">
@@ -240,6 +280,7 @@ ${a.thumbnail ? `<div class="article-cover">${cdnImg(a.thumbnail, { sizes: '(max
 <div class="prose">
 ${content.replace(/<img (?![^>]*loading=)/g, '<img loading="lazy" decoding="async" ')}
 </div>
+${articleFaq(faq)}
 ${shareBar(a)}
 <div style="max-width:1000px">${ctaBox()}</div>
 </div>
@@ -252,6 +293,7 @@ ${shareBar(a)}
     current: '/articole',
     ogImage: a.thumbnail || undefined,
     type: 'article',
+    head: articleSchema(a, faq),
     body,
   });
 }

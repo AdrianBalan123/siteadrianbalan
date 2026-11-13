@@ -314,7 +314,9 @@ async function openEditor(slug) {
   $('#thumb-preview').innerHTML = T.thumb(editing?.thumbnail);
   const link = $('#view-on-site');
   link.hidden = !(editing && editing.published !== false);
-  if (editing) link.href = `/articole/${editing.slug}.html`;
+  if (editing) link.href = `/articole/${editing.slug}`;
+  $('#faq-rows').replaceChildren();
+  (editing?.faq || []).forEach((f) => addFaqRow(f.q, f.a));
 
   if (!quill) {
     quill = new Quill('#editor', {
@@ -340,6 +342,43 @@ async function openEditor(slug) {
   }
   dirty = false;
 }
+
+/* ---------------- FAQ rows ---------------- */
+function addFaqRow(q = '', a = '') {
+  const row = document.createElement('div');
+  row.className = 'faq-row';
+  const qi = document.createElement('input');
+  qi.type = 'text';
+  qi.className = 'faq-q';
+  qi.maxLength = 200;
+  qi.placeholder = 'Întrebarea';
+  qi.setAttribute('aria-label', 'Întrebarea');
+  qi.value = q;
+  const ai = document.createElement('textarea');
+  ai.className = 'faq-ans';
+  ai.rows = 3;
+  ai.maxLength = 1000;
+  ai.placeholder = 'Răspunsul';
+  ai.setAttribute('aria-label', 'Răspunsul');
+  ai.value = a;
+  const del = document.createElement('button');
+  del.type = 'button';
+  del.className = 'faq-del';
+  del.textContent = 'Șterge';
+  del.addEventListener('click', () => {
+    row.remove();
+    dirty = true;
+  });
+  for (const el of [qi, ai]) el.addEventListener('input', () => (dirty = true));
+  row.append(qi, ai, del);
+  $('#faq-rows').append(row);
+  return row;
+}
+
+const readFaq = () =>
+  [...document.querySelectorAll('#faq-rows .faq-row')]
+    .map((r) => ({ q: r.querySelector('.faq-q').value.replace(/\s+/g, ' ').trim(), a: r.querySelector('.faq-ans').value.replace(/\s+/g, ' ').trim() }))
+    .filter((f) => f.q && f.a);
 
 async function save(ev) {
   ev.preventDefault();
@@ -381,6 +420,7 @@ async function save(ev) {
       readingMinutes: readingMinutes(content),
       published: $('#published').checked,
       date: prev?.date || new Date().toISOString(),
+      faq: readFaq(),
     };
     if (prev) articles[articles.indexOf(prev)] = entry;
     else articles.unshift(entry);
@@ -487,6 +527,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   $('#article-form').addEventListener('submit', save);
+  $('#faq-add').addEventListener('click', () => {
+    addFaqRow().querySelector('.faq-q').focus();
+    dirty = true;
+  });
   $('#article-form').addEventListener('input', () => (dirty = true));
   $('#thumbnail').addEventListener('change', () => {
     const f = $('#thumbnail').files[0];
