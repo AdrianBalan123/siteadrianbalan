@@ -10,8 +10,11 @@ export const SITE = {
   phoneDisplay: '0720 754 920',
   phoneTel: '+40720754920',
   whatsapp: 'https://wa.me/40720754920',
-  address: 'Strada Aristide Demetriade nr. 1/3, Timișoara',
-  mapsQuery: 'Strada Aristide Demetriade 1/3, Timișoara, România',
+  address: 'Strada Aristide Demetriade nr. 1/3, 300088 Timișoara',
+  // harta din pagina Contact caută fișa cabinetului de pe Google Maps (nume + adresă)
+  mapsQuery: 'Adrian Bălan - Cabinet Individual de Psihologie Clinică, Strada Aristide Demetriade nr 1/3, 300088 Timișoara',
+  // linkul „Deschide în Google Maps”: fișa cabinetului
+  mapsUrl: 'https://maps.app.goo.gl/uWHKrvWdiCBfycWV8',
 };
 
 export const NAV = [
