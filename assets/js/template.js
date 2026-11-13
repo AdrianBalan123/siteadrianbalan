@@ -2,6 +2,7 @@
 //  - scripts/genereaza.mjs (generează toate paginile, rulat cu Node)
 //  - admin/admin.js (generează pagina unui articol când e salvat din admin)
 import { NAV, SERVICES, SITE, TESTIMONIALS, TOPICS } from './content.js';
+import { V } from './version.js';
 
 export const esc = (s) =>
   String(s ?? '')
@@ -121,9 +122,9 @@ export function layout({ title, description, path = '/', current = '', ogImage =
 <meta name="theme-color" content="#FBF9F5">
 <link rel="icon" href="/assets/img/icon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/lexend-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/style.css">
-<script src="/assets/js/main.js" defer blocking="render"></script>
-<script src="/assets/js/early.js"></script>${head}
+<link rel="stylesheet" href="/assets/css/style.css?v=${V}">
+<script src="/assets/js/main.js?v=${V}" defer blocking="render"></script>
+<script src="/assets/js/early.js?v=${V}"></script>${head}
 </head>
 <body>
 <a href="#continut" class="skip">Sari la conținut</a>
@@ -337,7 +338,7 @@ export function homePage() {
 <script type="speculationrules">{"prerender":[{"source":"list","urls":["/despre"],"eagerness":"immediate"}]}</script>
 <link rel="prefetch" href="/despre">
 <link rel="prefetch" href="/assets/img/adrian-balan.jpg" as="image">
-<script src="/assets/js/brain.js" defer></script>`;
+<script src="/assets/js/brain.js?v=${V}" defer></script>`;
   return layout({ title: 'Adrian Bălan, psiholog clinician în Timișoara', description: 'Psiholog clinician în Timișoara: terapie pentru depresie, anxietate, ADHD și traumă, evaluări psihologice, suport pentru persoane LGBTQIA+. Programări la 0720 754 920.', path: '/', current: '/', body, head, footer: false }); // no footer: the landing is one screen, scrolling opens Despre
 }
 

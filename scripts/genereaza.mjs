@@ -5,10 +5,18 @@
 import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import * as T from '../assets/js/template.js';
+import { createHash } from 'node:crypto';
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const p = (...x) => path.join(root, ...x);
+
+// cache busting: the pages ask for style.css?v=<hash>, so every change reaches visitors right away
+const hash = createHash('sha256');
+for (const f of ['assets/css/style.css', 'assets/js/main.js', 'assets/js/early.js', 'assets/js/brain.js']) hash.update(readFileSync(p(f)));
+writeFileSync(p('assets/js/version.js'), `// generat de scripts/genereaza.mjs — nu edita de mână
+export const V = '${hash.digest('hex').slice(0, 10)}';
+`);
+const T = await import('../assets/js/template.js');
 
 const list = JSON.parse(readFileSync(p('data/articole.json'), 'utf8'));
 
