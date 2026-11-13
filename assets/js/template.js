@@ -441,13 +441,15 @@ export function privacyPage() {
 <h2>Ce discutăm rămâne între noi</h2>
 <p>Tot ce discuți în ședințe este confidențial. Ca psiholog, am obligația legală și deontologică de a păstra secretul profesional. Excepțiile sunt doar cele prevăzute de lege, de exemplu atunci când există un risc grav și iminent pentru viața ta sau a altcuiva.</p>
 <h2>Ce date colectează site-ul</h2>
-<p>Site-ul nu folosește cookie-uri de urmărire, statistici de vizitare sau reclame și nu are conturi de utilizator.</p>
+<p>Site-ul nu folosește cookie-uri, reclame sau servicii de urmărire ale altor companii și nu are conturi de utilizator.</p>
+<p>Pentru a ști ce articole sunt utile, site-ul numără vizitele în mod anonim: ce pagină a fost deschisă, de pe ce tip de dispozitiv, de unde a venit vizita (de exemplu Google) și câteva clickuri (de exemplu pe butonul de WhatsApp). Adresa IP nu este salvată. Vizitatorii unici sunt numărați printr-un cod care se schimbă în fiecare zi, așa că nu pot fi recunoscuți de la o zi la alta și nici identificați. Datele sunt păstrate cel mult 13 luni.</p>
 <p>Formularul de programare nu trimite nimic pe un server: ce completezi este pus într-un mesaj pe care îl trimiți tu, din aplicația WhatsApp. Mesajele de pe WhatsApp sunt criptate end-to-end.</p>
 <h2>Datele pe care mi le trimiți</h2>
 <p>Numele, numărul de telefon și ce îmi scrii prin telefon sau WhatsApp le folosesc doar ca să îți răspund și să stabilim programarea. Nu le vând și nu le transmit altor persoane.</p>
 <h2>Servicii externe</h2>
 <ul>
 <li><strong>Găzduirea</strong> site-ului este asigurată de Vercel. Ca orice server, poate înregistra date tehnice (de exemplu adresa IP și tipul de browser), necesare pentru funcționare și securitate.</li>
+<li><strong>Statisticile anonime</strong> de vizitare sunt stocate la Upstash, într-un centru de date din Uniunea Europeană (Frankfurt).</li>
 <li><strong>Harta</strong> de pe pagina Contact este oferită de Google Maps. Când se încarcă, Google poate folosi propriile cookie-uri.</li>
 <li><strong>Butoanele de distribuire</strong> ale articolelor deschid WhatsApp sau Facebook doar dacă le apeși.</li>
 </ul>
@@ -455,7 +457,7 @@ export function privacyPage() {
 <p>Conform Regulamentului general privind protecția datelor (GDPR), ai dreptul să ceri acces la datele tale, corectarea sau ștergerea lor, restricționarea prelucrării, să te opui prelucrării și să le primești într-un format portabil. Dacă ai o nemulțumire, te poți adresa Autorității Naționale de Supraveghere a Prelucrării Datelor cu Caracter Personal (<a href="https://www.dataprotection.ro" target="_blank" rel="noopener noreferrer">dataprotection.ro</a>).</p>
 <p>Pentru orice întrebare sau cerere legată de datele tale, sună-mă la <a href="tel:${SITE.phoneTel}">${esc(SITE.phoneDisplay)}</a> sau scrie-mi pe <a href="${SITE.whatsapp}" target="_blank" rel="noopener noreferrer">WhatsApp</a>.</p>
 </div></div>`;
-  return layout({ title: 'Confidențialitate | Adrian Bălan, psiholog Timișoara', description: 'Cum sunt tratate datele tale pe site și în cabinet: secret profesional, fără cookie-uri de urmărire, drepturile tale conform GDPR.', path: '/confidentialitate', body });
+  return layout({ title: 'Confidențialitate | Adrian Bălan, psiholog Timișoara', description: 'Cum sunt tratate datele tale pe site și în cabinet: secret profesional, fără cookie-uri, statistici anonime, drepturile tale conform GDPR.', path: '/confidentialitate', body });
 }
 
 export function notFoundPage() {

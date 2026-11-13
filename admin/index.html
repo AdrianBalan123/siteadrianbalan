@@ -20,6 +20,8 @@
       <span><span class="logo-name">Articole</span><span class="logo-role">Administrare site</span></span>
     </a>
     <nav class="admin-nav" id="admin-nav" hidden>
+      <a href="#" data-tab="list">Articole</a>
+      <a href="#statistici" data-tab="stats">Statistici</a>
       <a href="/" target="_blank" rel="noopener">Vezi site-ul</a>
       <button type="button" class="linklike" id="logout">Ieși din cont</button>
     </nav>
@@ -102,6 +104,24 @@
         <button class="btn btn-primary btn-block" type="submit" id="save-btn">Salvează articolul</button>
       </aside>
     </form>
+  </section>
+
+  <!-- Statistici -->
+  <section id="view-stats" hidden>
+    <div class="admin-head">
+      <div>
+        <h1>Statistici</h1>
+        <p>Vizite anonime, fără cookie-uri. Vizitele tale din acest browser nu se numără.</p>
+      </div>
+      <div class="range" role="group" aria-label="Perioada">
+        <button type="button" data-days="1">Azi</button>
+        <button type="button" data-days="7">7 zile</button>
+        <button type="button" data-days="30" aria-pressed="true">30 de zile</button>
+        <button type="button" data-days="90">90 de zile</button>
+        <button type="button" data-days="365">12 luni</button>
+      </div>
+    </div>
+    <div id="stats-body"></div>
   </section>
 
   <p class="empty" id="loading" hidden>Se încarcă…</p>

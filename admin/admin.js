@@ -1,6 +1,7 @@
 // Administrarea: login cu utilizator și parolă; serverul (funcțiile din /api, pe Vercel) ține tokenul GitHub
 // și face commit-urile. Fiecare salvare = un commit; Vercel publică automat noua versiune.
 import * as T from '/assets/js/template.js';
+import { showStats } from '/admin/stats.js';
 
 const $ = (s) => document.querySelector(s);
 
@@ -170,8 +171,12 @@ let quill;
 let editing = null; // article being edited, or null for a new one
 
 function show(view) {
-  for (const v of ['login', 'list', 'editor']) $(`#view-${v}`).hidden = v !== view;
+  for (const v of ['login', 'list', 'editor', 'stats']) $(`#view-${v}`).hidden = v !== view;
   $('#admin-nav').hidden = view === 'login';
+  for (const a of document.querySelectorAll('#admin-nav [data-tab]')) {
+    if (a.dataset.tab === (view === 'editor' ? 'list' : view)) a.setAttribute('aria-current', 'page');
+    else a.removeAttribute('aria-current');
+  }
   $('#loading').hidden = true;
 }
 function flash(msg) {
@@ -449,6 +454,10 @@ async function route() {
   const h = location.hash.slice(1);
   if (h === 'nou') return openEditor(null);
   if (h.startsWith('editeaza/')) return openEditor(decodeURIComponent(h.slice(9)));
+  if (h === 'statistici') {
+    show('stats');
+    return showStats({ api, titleOf: (slug) => articles.find((a) => a.slug === slug)?.title });
+  }
   show('list');
   renderList();
 }
@@ -459,6 +468,10 @@ async function start() {
     try {
       const me = await api('/api/me');
       cfg = { user: me.user, branch: me.branch || 'main' };
+      // this browser belongs to an administrator: its visits don't count in the statistics
+      try {
+        localStorage.setItem('ab-notrack', '1');
+      } catch {}
     } catch (e) {
       cfg.user = '';
       show('login');

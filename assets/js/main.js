@@ -456,3 +456,69 @@
     })
     .catch(function () {});
 })();
+
+// Statistici anonime (fără cookie-uri, fără date personale): o vizualizare la deschiderea paginii
+// și câteva clickuri importante (sună, WhatsApp, programare, hartă, distribuire, citire completă).
+// Browserele în care s-a intrat în panoul de administrare nu sunt numărate.
+(function () {
+  try {
+    if (localStorage.getItem('ab-notrack')) return;
+  } catch (e) {}
+  if (navigator.webdriver || location.pathname.indexOf('/admin') === 0) return;
+
+  var send = function (data) {
+    data.p = location.pathname;
+    var body = JSON.stringify(data);
+    try {
+      if (navigator.sendBeacon && navigator.sendBeacon('/api/track', new Blob([body], { type: 'text/plain' }))) return;
+    } catch (e) {}
+    try {
+      fetch('/api/track', { method: 'POST', body: body, keepalive: true, headers: { 'Content-Type': 'text/plain' } });
+    } catch (e) {}
+  };
+  var view = function () {
+    send({ r: document.referrer, w: window.innerWidth });
+  };
+  // Despre is prerendered from the landing: count it only when it is actually shown
+  if (document.prerendering) document.addEventListener('prerenderingchange', view, { once: true });
+  else view();
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) view();
+  });
+
+  document.addEventListener(
+    'click',
+    function (e) {
+      var el = e.target.closest && e.target.closest('a, button, summary');
+      if (!el) return;
+      var href = el.getAttribute('href') || '';
+      var ev = '';
+      if (el.dataset.share) ev = 'share-' + el.dataset.share;
+      else if (href.indexOf('tel:') === 0) ev = 'call';
+      else if (/wa\.me|whatsapp\.com/.test(href)) ev = 'whatsapp';
+      else if (el.classList.contains('map-open') || /google\.[a-z.]+\/maps|maps\.app\.goo/.test(href)) ev = 'maps';
+      else if (/^\/contact[^#]*#programare$/.test(href) && !/^\/contact(\.html)?$/.test(location.pathname)) ev = 'book';
+      else if (el.tagName === 'SUMMARY' && el.closest('.faq-item') && !el.parentNode.open) ev = 'faq';
+      if (ev) send({ e: ev });
+    },
+    true
+  );
+  document.addEventListener(
+    'submit',
+    function (e) {
+      if (e.target && e.target.id === 'programare') send({ e: 'form' });
+    },
+    true
+  );
+
+  // an article read to the end: its questions (or the bottom share bar) came into view
+  var end = document.querySelector('.article-faq, .share:not(.share-top)');
+  if (end && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (en) {
+      if (!en[0].isIntersecting) return;
+      io.disconnect();
+      send({ e: 'read' });
+    });
+    io.observe(end);
+  }
+})();
