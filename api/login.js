@@ -1,4 +1,4 @@
-import { checkLogin, configured, sameOrigin, setSession } from './_session.js';
+import { checkLogin, configured, missing, sameOrigin, setSession } from './_session.js';
 
 // încercări greșite pe adresă IP (în memoria instanței) + o pauză la fiecare eșec, contra ghicirii parolei
 const fails = new Map();
@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
   if (req.method !== 'POST') return res.status(405).json({ error: 'Metodă nepermisă.' });
   if (!sameOrigin(req)) return res.status(403).json({ error: 'Cerere respinsă.' });
-  if (!configured()) return res.status(500).json({ error: 'Administrarea nu e configurată încă (variabilele de mediu din Vercel).' });
+  if (!configured()) return res.status(500).json({ error: `Administrarea nu e configurată încă. Lipsesc în Vercel: ${missing().join(', ')}.` });
 
   const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'necunoscut';
   const now = Date.now();

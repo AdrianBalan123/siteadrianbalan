@@ -76,5 +76,12 @@ export function sameOrigin(req) {
 }
 
 export function configured() {
-  return users().size > 0 && ['SESSION_SECRET', 'GITHUB_TOKEN', 'GITHUB_REPO'].every((k) => process.env[k]);
+  return missing().length === 0;
+}
+
+// names (never values) of the settings still missing, so the error says what to add in Vercel
+export function missing() {
+  const out = users().size > 0 ? [] : ['ADMIN_USERS'];
+  for (const k of ['SESSION_SECRET', 'GITHUB_TOKEN', 'GITHUB_REPO']) if (!process.env[k]) out.push(k);
+  return out;
 }
