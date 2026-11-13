@@ -38,6 +38,9 @@ async function gh(path, opts = {}) {
       e.message = 'Sesiunea a expirat. Intră din nou.';
     }
     if (e.status === 409 || e.status === 422) e.message = 'Site-ul a fost modificat între timp. Reîncarcă pagina și încearcă din nou.';
+    if (e.status === 403 && /personal access token|permission/i.test(e.message)) {
+      e.message = 'Tokenul GitHub din Vercel nu are voie să salveze. În GitHub, la tokenul site-ului, pune „Contents: Read and write”.';
+    }
     throw e;
   }
 }
