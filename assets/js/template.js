@@ -103,6 +103,28 @@ export function card(a) {
   return `<a href="/articole/${esc(a.slug)}" class="card" data-search="${esc(`${a.title} ${a.excerpt}`.toLowerCase())}"><div class="thumb">${thumb(a.thumbnail)}<span class="card-arrow" aria-hidden="true">${icon('arrowUpRight')}</span></div><div class="card-body"><h3>${esc(a.title)}</h3><span class="meta">${icon('book')} ${Number(a.readingMinutes) || 1} min de citit</span></div></a>`;
 }
 
+// Datele cabinetului pentru Google (căutări locale: „psiholog Timișoara”), pe paginile principale.
+// Doar informații reale de pe site; fără program sau coordonate inventate.
+const LOCAL_PAGES = ['/', '/despre', '/servicii', '/contact'];
+const businessSchema = () =>
+  jsonLd({
+    '@context': 'https://schema.org',
+    '@type': ['MedicalBusiness', 'LocalBusiness'],
+    '@id': `${SITE.url}/#cabinet`,
+    name: 'Adrian Bălan - Cabinet Individual de Psihologie Clinică',
+    description: 'Cabinet de psihologie clinică în Timișoara: psihoterapie pentru depresie, anxietate, traume, relaționare, sexualitate și identitate, evaluări psihologice.',
+    url: `${SITE.url}/`,
+    telephone: SITE.phoneTel,
+    image: `${SITE.url}/assets/img/adrian-balan.jpg`,
+    hasMap: SITE.mapsUrl,
+    sameAs: [SITE.mapsUrl],
+    address: { '@type': 'PostalAddress', streetAddress: 'Strada Aristide Demetriade nr. 1/3', postalCode: '300088', addressLocality: 'Timișoara', addressRegion: 'Timiș', addressCountry: 'RO' },
+    areaServed: { '@type': 'City', name: 'Timișoara' },
+    knowsLanguage: 'ro',
+    availableService: SERVICES.map((sv) => ({ '@type': 'MedicalTherapy', name: sv.title })),
+    founder: { '@type': 'Person', '@id': `${SITE.url}/#adrian`, name: 'Adrian Bălan', jobTitle: 'Psiholog clinician', url: `${SITE.url}/despre`, image: `${SITE.url}/assets/img/adrian-balan.jpg` },
+  });
+
 export function layout({ title, description, path = '/', current = '', ogImage = '/assets/img/adrian-balan.jpg', body, type = 'website', head = '', footer = true }) {
   const nav = NAV.map((n) => `<a href="${n.href}"${n.href === current ? ' aria-current="page"' : ''}>${esc(n.label)}</a>`).join('');
   return `<!doctype html>
@@ -124,7 +146,7 @@ export function layout({ title, description, path = '/', current = '', ogImage =
 <link rel="preload" href="/assets/fonts/lexend-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css?v=${V}">
 <script src="/assets/js/main.js?v=${V}" defer blocking="render"></script>
-<script src="/assets/js/early.js?v=${V}"></script>${head}
+<script src="/assets/js/early.js?v=${V}"></script>${head}${LOCAL_PAGES.includes(path) ? businessSchema() : ''}
 </head>
 <body>
 <a href="#continut" class="skip">Sari la conținut</a>
